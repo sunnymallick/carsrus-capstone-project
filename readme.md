@@ -1,3 +1,134 @@
-***Replace default README File*****User Story**As a Project Manager, I want to see a completed Readmefile so that I can understand moreabout your project.**Acceptance Criteria**- [ ] Readme located at the root of your project hasbeen updated with info from the wiki.See https://github.com/adamLovettApps/JamOut/blob/main/README.mdfor an example.***Replace default favicon File*****User Story**As a Project Manager, I want to see an updated faviconso that I can easily identify yourapplication in a list of tabs.**Acceptance Criteria**- [ ] Favicon has been updated from the default iconprovided by the project starter. Seehttps://www.favicon-generator.org/for a simple favicongenerator***Deploy for the first time*****User Story**As a Developer, I want to deploy my starter app toHeroku so that I can make sure I can deploychanges consistently.**Acceptance Criteria**- [ ] The cloned starter app has been deployed toHeroku.***Create About Links on the Home Page*****User Story**As a Developer, I want to display links to my GitHuband LinkedIn profiles so that prospectivehiring managers can learn more about me after lookingat my project.**Acceptance Criteria**- [ ] Links to your LinkedIn and GitHub profiles shouldappear on the homepage of yourapplication***Sign Up Functionality*****User Story**As a User, I want to create an account so I can usethe website.**Acceptance Criteria**- [ ] A link/button appears in the navigation forSign Up (only when not already logged in)
-- [ ] When clicking the link/button the user is redirected to a sign up form.- [ ] After filling out the form and clicking a Submitbutton an account is created.- [ ] A message is displayed to the user indicatingthat the account has been created. (optional)- [ ] The user is redirected to an appropriate page(determined by the developer)- [ ] The user has some indication that the user isnow logged in.***Login Functionality*****User Story**As a User, I want to login with my previously createdaccount so I can use the website.**Acceptance Criteria**- [ ] A link/button appears in the navigation forLog In (only when not already logged in)- [ ] When clicking the link/button the user is redirectedto a login form.- [ ] After filling out the form with username andpassword and clicking a Login button the user islogged in.- [ ] A message is displayed to the user indicatingthat the user has successfully logged in(optional)- [ ] The user is redirected to an appropriate page(determined by the developer)- [ ] The user can visually identify they’ve beenlogged in by having their username displayed inthe navigation bar.***Error handling Complete*****User Story**As a Developer, I want to validate the LogIn/Signupforms being submitted so my users have agood experience when using my application.**Acceptance Criteria**- [ ] (Log In) If the username/password combinationis wrong, or the user does not exist the loginfails.- [ ] (Log In) A message is displayed to the end userindicating which fields are invalid.- [ ] (Sign Up) If the username/email already exists,the signup form fails- [ ] (Sign Up) A message is displayed to the enduser indicating which fields are invalid.***Logout Functionality Complete***
-**User Story**As a Logged In User, I can log out of my account soI can ensure it isn’t used without mypermission.**Acceptance Criteria**- [ ] A link/button appears in the navigation forLog Out (only when logged in)- [ ] When clicking this button/link the session endsand the user is logged out.- [ ] When refreshing the page or traveling to otherpages the user does not appear to be loggedin- [ ] The logged out user can log in with a separateaccount without issue.***Demo Login Functionality Complete*****User Story**As a Project Manager, I can use a Demo Account sothat I can use the application withouthaving to use the signup form.**Acceptance Criteria**- [ ] A link/button appears in the navigation formand/or Login Form titled “Demo Login”  (onlywhen logged out)- [ ] When clicking this button/link the user is automaticallylogged in as a Demo User (apreviously created account for testing) without theneed to fill out the signup/login form.- [ ] The user is redirected as if they successfullycompleted the Log In form.***Auth Styling Complete*****User Story**As a User, I would like to see at least basic stylingon the signup and login forms so that theapplication doesn’t appear too similarly to the defaultapplication provided.**NOTE**: Specific style choices are up to you. Butuse common sense given your time, abilityand wireframes.**Acceptance Criteria**- [ ] Sign up and Login forms have been styled appropriately.
+# Flask React Project
+
+This is the starter for the Flask React project.
+
+## Getting started
+
+1. Clone this repository (only this branch)
+
+   ```bash
+   git clone https://github.com/appacademy-starters/python-project-starter.git
+   ```
+
+2. Install dependencies
+
+      ```bash
+      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
+      ```
+
+3. Create a **.env** file based on the example with proper settings for your
+   development environment
+4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+
+5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+
+   ```bash
+   pipenv shell
+   ```
+
+   ```bash
+   flask db upgrade
+   ```
+
+   ```bash
+   flask seed all
+   ```
+
+   ```bash
+   flask run
+   ```
+
+6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+
+***
+*IMPORTANT!*
+   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
+   You can do this by running:
+
+   ```bash
+   pipenv lock -r > requirements.txt
+   ```
+
+*ALSO IMPORTANT!*
+   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
+   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
+***
+
+## Deploy to Heroku
+
+1. Before you deploy, don't forget to run the following command in order to
+ensure that your production environment has all of your up-to-date
+dependencies. You only have to run this command when you have installed new
+Python packages since your last deployment, but if you aren't sure, it won't
+hurt to run it again.
+
+   ```bash
+   pipenv lock -r > requirements.txt
+   ```
+
+2. Create a new project on Heroku
+3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
+4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
+5. Run
+
+   ```bash
+   heroku login
+   ```
+
+6. Login to the heroku container registry
+
+   ```bash
+   heroku container:login
+   ```
+
+7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
+   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
+8. Push your docker container to heroku from the root directory of your project.
+   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
+   This will build the Dockerfile and push the image to your heroku container registry.
+
+   ```bash
+   heroku container:push web -a {NAME_OF_HEROKU_APP}
+   ```
+
+9. Release your docker container to heroku
+
+      ```bash
+      heroku container:release web -a {NAME_OF_HEROKU_APP}
+      ```
+
+10. set up your database
+
+      ```bash
+      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
+      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
+      ```
+
+11. Under Settings find "Config Vars" and add any additional/secret .env
+variables.
+
+12. profit
+
+### For M1 Mac users
+
+(Replaces **Step 8**)
+
+1. Build image with linux platform for heroku servers. Replace
+{NAME_OF_HEROKU_APP} with your own tag:
+
+   ```bash=
+   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
+   ```
+
+2. Tag your app with the url for your apps registry. Make sure to use the name
+of your Heroku app in the url and tag name:
+
+   ```bash=2
+   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
+   ```
+
+3. Use docker to push the image to the Heroku container registry:
+
+   ```bash=3
+   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
+   ```
