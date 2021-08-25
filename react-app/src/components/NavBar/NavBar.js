@@ -37,7 +37,8 @@ const NavBar = () => {
   return (
     <>
       <div className='nav-container'>
-        <NavLink to='/auctions' exact={true}>Auctions</NavLink>
+        <NavLink to='/' exact={true}>Auctions</NavLink>
+        <NavLink to='/past-auctions' exact={true}>Past Auctions</NavLink>
       
         <div className='nav-search'>
           <form>
