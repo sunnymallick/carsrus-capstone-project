@@ -13,6 +13,10 @@ class User(db.Model, UserMixin):
     last_name = db.Column(db.String(50), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    auctions = db.relationship('Auction', back_populates='user')
+    bids = db.relationship('Bid', back_populates='user')
+    comments = db.relationship('Comment', back_populates='user')
+    
     @property
     def password(self):
         return self.hashed_password

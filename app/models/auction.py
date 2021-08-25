@@ -19,6 +19,9 @@ class Auction(db.Model, UserMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     user = db.relationship('User', back_populates='auctions')
+    bids = db.relationship('Bid', back_populates='auction')
+    comments = db.relationship('Comment', back_populates='auction')
+    images = db.relationship('Image', back_populates='auction')
 
     def to_dict(self):
         return {
