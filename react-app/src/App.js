@@ -5,7 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import SplashPage from './components/SplashPage'
+import AuctionsPage from './components/AuctionsPage';
 import { authenticate } from './store/session';
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
       <NavBar />
       <Switch>
       <Route path='/' exact={true} >
-          <SplashPage />
+          <AuctionsPage />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
