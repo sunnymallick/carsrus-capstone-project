@@ -1,5 +1,3 @@
-from flask_sqlalchemy import model
-from sqlalchemy.orm.session import make_transient
 from .db import db
 from flask_login import UserMixin
 
@@ -13,7 +11,7 @@ class Auction(db.Model, UserMixin):
     make = db.Column(db.String, nullable=False)
     model = db.Column(db.String, nullable=False)
     type = db.Column(db.String, nullable=False)
-    reserve_price = db.Column(db.Numeric(100000))
+    reserve_price = db.Column(db.Numeric(precision=10))
     description = db.Column(db.Text, nullable=False)
     time_left = db.Column(db.Time, nullable=False)
     start_date = db.Column(db.Date, nullable=False)
