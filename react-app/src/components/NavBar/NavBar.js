@@ -36,6 +36,13 @@ const NavBar = () => {
   }
   return (
     <>
+      <div className='nav-container'>
+        <div className='nav-search'>
+          <form>
+            <input className='search-input' placeholder='Search for Vehicles'></input>
+          </form>
+        </div>
+      </div>
       {sessionLinks}
     </>
   );
