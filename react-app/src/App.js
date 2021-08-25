@@ -7,6 +7,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import AuctionsPage from './components/AuctionsPage';
 import { authenticate } from './store/session';
+import AuctionDetail from './components/AuctionDetail';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +31,9 @@ function App() {
       <Route path='/' exact={true} >
           <AuctionsPage />
         </Route>
+      <Route path='/auctions/:id' exact={true}>
+        <AuctionDetail />
+      </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
