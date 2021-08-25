@@ -1,26 +1,28 @@
 
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
-// import LogoutButton from '../auth/LogoutButton';
 import UserLoginModal from '../UserLoginModal';
+import UserSignUpModal from '../UserSignUpModal';
 
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
+  const history = useHistory()
 
 
-  const logout = async (e) => {
+  const logoutButton = async (e) => {
     e.preventDefault();
     await dispatch(logout());
+    history.push('/')
   };
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink className='nav' onClick={logout} to='/'>Logout {sessionUser.username}?</NavLink>
+        <NavLink className='nav' onClick={logoutButton} to='/'>Logout {sessionUser.username}?</NavLink>
       </>
     )
   } else {
@@ -28,7 +30,7 @@ const NavBar = () => {
       <>
         <NavLink to='/' exact={true} activeClassName='active'>Home</NavLink>
         <UserLoginModal />
-        <NavLink to='/sign-up' exact={true} activeClassName='active'>Sign Up</NavLink>
+        <UserSignUpModal />
       </>
     )
   }
