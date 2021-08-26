@@ -28,7 +28,6 @@ const NavBar = () => {
   } else {
     sessionLinks = (
       <>
-        <NavLink to='/' exact={true} activeClassName='active'>Home</NavLink>
         <UserLoginModal />
         <UserSignUpModal />
       </>
@@ -39,7 +38,7 @@ const NavBar = () => {
       <div className='nav-container'>
         <NavLink to='/' exact={true}>Auctions</NavLink>
         <NavLink to='/past-auctions' exact={true}>Past Auctions</NavLink>
-      
+        <NavLink to='/form' exact={true}>Sell your Car</NavLink>
         <div className='nav-search'>
           <form>
             <input className='search-input' placeholder='Search for Vehicles'></input>
