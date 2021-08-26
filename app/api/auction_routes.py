@@ -29,13 +29,9 @@ def get_auctions(id):
 @auction_routes.route('/form', methods=['GET', 'POST'])
 def auction_form():
     form = AuctionForm()
-    print('---------')
-    print(form.data)
-    print('---------')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        print('---------')
-        print("i'm here too")
+        
         auction = Auction(
             user_id=form.data['user_id'],
             vin=form.data['vin'],
@@ -49,6 +45,12 @@ def auction_form():
             end_date=form.data['end_date'],
         )
         db.session.add(auction)
+        db.session.commit()
+        image = Image(
+            img_url=form.data['img_url'],
+            auction_id=auction.id
+        )
+        db.session.add(image)
         db.session.commit()
         return auction.to_dict()
     errors = form.errors
