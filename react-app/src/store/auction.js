@@ -24,7 +24,7 @@ export const getAuctions = () => async dispatch => {
 
     if (res.ok) {
         const auctions = await res.json();
-        dispatch(load(auctions.auctions));
+        dispatch(load(auctions));
         return res;
     }
 }
