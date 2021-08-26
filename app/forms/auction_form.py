@@ -6,6 +6,14 @@ from wtforms.validators import DataRequired, ValidationError
 from app.models.user import User
 from app.models.auction import Auction
 
+def vin_number_exists(form, field):
+    #checking if vin number is already in use
+    auction_vin = field.data
+    vin = Auction.query.filter(Auction.vin == auction_vin).first()
+    if vin:
+        raise ValidationError('This VIN number has already been registered.')
+
+
 class AuctionForm(FlaskForm):
     user_id = IntegerField('User Id', validators=[DataRequired()])
     vin = StringField('VIN', validators=[DataRequired()])

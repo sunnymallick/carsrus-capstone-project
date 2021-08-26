@@ -1,9 +1,20 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Auction
+from app.models import db, Auction, Image
 from app.forms.auction_form import AuctionForm
 
+
 auction_routes = Blueprint('auctions', __name__)
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 @auction_routes.route('/')
 def auctions():
@@ -18,12 +29,11 @@ def get_auctions(id):
 @auction_routes.route('/form', methods=['GET', 'POST'])
 def auction_form():
     form = AuctionForm()
-    print('---------')
-    print(form.data)
-    print('---------')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
+        
         auction = Auction(
+            user_id=form.data['user_id'],
             vin=form.data['vin'],
             year=form.data['year'],
             make=form.data['make'],
@@ -36,5 +46,12 @@ def auction_form():
         )
         db.session.add(auction)
         db.session.commit()
-        return auction.to_dict()
-
+        image = Image(
+            img_url=form.data['img_url'],
+            auction_id=auction.id
+        )
+        db.session.add(image)
+        db.session.commit()
+        return {'message': "Let's Sell a car!"}, 200
+    errors = form.errors
+    return {'errors': validation_errors_to_error_messages(errors)}, 401
