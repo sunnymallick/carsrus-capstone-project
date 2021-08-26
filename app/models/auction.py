@@ -11,7 +11,7 @@ class Auction(db.Model, UserMixin):
     make = db.Column(db.String, nullable=False)
     model = db.Column(db.String, nullable=False)
     type = db.Column(db.String, nullable=False)
-    reserve_price = db.Column(db.Numeric(precision=10))
+    reserve_price = db.Column(db.Integer)
     description = db.Column(db.Text, nullable=False)
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)
