@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Auction
+from app.models import db, Auction
 from app.forms.auction_form import AuctionForm
 
 auction_routes = Blueprint('auctions', __name__)
@@ -24,6 +24,14 @@ def auction_form():
             vin=form.data['vin'],
             year=form.data['year'],
             make=form.data['make'],
-            model=form.data['model']
+            model=form.data['model'],
+            type=form.data['type'],
+            reserve_price=form.data['reserve_price'],
+            description=form.data['description'],
+            start_date=form.data['start_date'],
+            end_date=form.data['end_date'],
         )
+        db.session.add(auction)
+        db.session.commit()
+        return auction.to_dict()
 
