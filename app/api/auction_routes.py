@@ -15,9 +15,12 @@ def get_auctions(id):
     auction = Auction.query.get(id)
     return auction.to_dict()
 
-@auction_routes.route('/form')
+@auction_routes.route('/form', methods=['GET', 'POST'])
 def auction_form():
     form = AuctionForm()
+    print('---------')
+    print(form.data)
+    print('---------')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         auction = Auction(
