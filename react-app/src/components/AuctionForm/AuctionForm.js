@@ -6,20 +6,18 @@ import { createAuction } from '../../store/auction';
 
 const AuctionForm = () => {
     const [errors, setErrors] = useState([])
-    const [vin, setVin] = useState('test')
-    const [year, setYear] = useState('2012')
-    const [make, setMake] = useState('toyota')
-    const [model, setModel] = useState('corolla')
-    const [type, setType] = useState('car')
-    const [reservePrice, setReservePrice] = useState('10000')
-    const [description, setDescription] = useState('its a car')
-    const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
-    const [imgUrl, setImgUrl] = useState('test.url')
+    const [vin, setVin] = useState('')
+    const [year, setYear] = useState('')
+    const [make, setMake] = useState('')
+    const [model, setModel] = useState('')
+    const [type, setType] = useState('')
+    const [reservePrice, setReservePrice] = useState('')
+    const [description, setDescription] = useState('')
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+    const [imgUrl, setImgUrl] = useState('')
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.session.user.id)
-    console.log(userId)
-
     const updateVin = (e) => {
         setVin(e.target.value)
     }
