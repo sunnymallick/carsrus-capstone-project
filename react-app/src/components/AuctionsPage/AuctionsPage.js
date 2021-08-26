@@ -23,9 +23,9 @@ const AuctionsPage = () => {
                 if (auction?.id) {
                     return (
                         <>
-                        <div className='auction-listing'>
-                            <h5>{auction.year} {auction.make} {auction.model}</h5>
-                        </div>
+                            <div className='auction-listing'>
+                                <h3>{auction.year} {auction.make} {auction.model}</h3>
+                            </div>
                         </>
                     )
                 }
