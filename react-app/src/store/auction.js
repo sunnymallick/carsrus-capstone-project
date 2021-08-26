@@ -91,7 +91,7 @@ const auctionReducer = (state = initialState, action) => {
         case CREATE_AUCTION: {
             const newState = {
                 ...state,
-                [action.auctions.id]: action.auctions
+                [action.auctions?.id]: action.auctions
             }
             return newState
         }

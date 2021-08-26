@@ -52,6 +52,6 @@ def auction_form():
         )
         db.session.add(image)
         db.session.commit()
-        return auction.to_dict()
+        return {'message': "Let's Sell a car!"}, 200
     errors = form.errors
     return {'errors': validation_errors_to_error_messages(errors)}, 401
