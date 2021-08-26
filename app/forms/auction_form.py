@@ -1,6 +1,6 @@
 from typing import Text
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextField, NumericField, SubmitField
+from wtforms import StringField, IntegerField, TextField, SubmitField
 from wtforms.fields.core import DateField
 from wtforms.validators import DataRequired, ValidationError
 from app.models.user import User
@@ -13,7 +13,7 @@ class AuctionForm(FlaskForm):
     make = StringField('Make', validators=[DataRequired()])
     model = StringField('Model', validators=[DataRequired()])
     type = StringField('Type', validators=[DataRequired()])
-    reserve_price = NumericField('Reserve Price', validators=[DataRequired()])
+    reserve_price = IntegerField('Reserve Price', validators=[DataRequired()])
     description = TextField('Description', validators=[DataRequired()])
     start_date = DateField('Start Date', validators=[DataRequired()])
     end_date = DateField('End Date', validators=[DataRequired()])

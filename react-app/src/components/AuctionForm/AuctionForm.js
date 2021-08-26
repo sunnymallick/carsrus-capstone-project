@@ -4,6 +4,44 @@ import { useSelector, useDispatch } from 'react-redux';
 
 
 const AuctionForm = () => {
+    const [errors, setErrors] = useState([])
+    const [vin, setVin] = useState('')
+    const [year, setYear] = useState('')
+    const [make, setMake] = useState('')
+    const [model, setModel] = useState('')
+    const [type, setType] = useState('')
+    const [reservePrice, setReservePrice] = useState('')
+    const [description, setDescription] = useState('')
+    const [startDate, setStartDate] = useState('')
+    const [endDate, setEndDate] = useState('')
+
+    const updateVin = (e) => {
+        setVin(e.target.value)
+    }
+    const updateYear = (e) => {
+        setYear(e.target.value)
+    }
+    const updateMake = (e) => {
+        setMake(e.target.value)
+    }
+    const updateModel = (e) => {
+        setModel(e.target.value)
+    }
+    const updateType = (e) => {
+        setType(e.target.value)
+    }
+    const updateReservePrice = (e) => {
+        setReservePrice(e.target.value)
+    }
+    const updateDescription = (e) => {
+        setDescription(e.target.value)
+    }
+    const updateStartDate = (e) => {
+        setStartDate(e.target.value)
+    }
+    const updateEndDate = (e) => {
+        setEndDate(e.target.value)
+    }
 
     return (
         <>
@@ -21,71 +59,71 @@ const AuctionForm = () => {
                                 placeholder='VIN'
                                 type='text'
                                 name='vin'
-                                onChange={}
-                                value={}
+                                onChange={updateVin}
+                                value={vin}
                                 required={true}></input>
                             <input
                                 className='form-input'
                                 placeholder='Year'
                                 type='text'
                                 name='year'
-                                onChange={}
-                                value={}
+                                onChange={updateYear}
+                                value={year}
                                 required={true}></input>
                             <input
                                 className='form-input'
                                 placeholder='Make'
                                 type='text'
                                 name='make'
-                                onChange={}
-                                value={}
+                                onChange={updateMake}
+                                value={make}
                                 required={true}></input>
                             <input
                                 className='form-input'
                                 placeholder='Model'
                                 type='text'
                                 name='model'
-                                onChange={}
-                                value={}
+                                onChange={updateModel}
+                                value={model}
                                 required={true}></input>
                             <input
                                 className='form-input'
                                 placeholder='Type'
                                 type='text'
                                 name='type'
-                                onChange={}
-                                value={}
+                                onChange={updateType}
+                                value={type}
                                 required={true}></input>
                             <input
                                 className='form-input'
                                 placeholder='Reserve Price (if applicable)'
                                 type='number'
                                 name='reservePrice'
-                                onChange={}
-                                value={}
+                                onChange={updateReservePrice}
+                                value={reservePrice}
                                 required={true}></input>
                             <textarea
                                 className='form-input'
                                 placeholder='Please leave a description about your vehicle.'
                                 name='description'
-                                onChange={}
-                                value={}
+                                onChange={updateDescription}
+                                value={description}
                                 required={true}></textarea>
                             <input
                                 className='form-input'
                                 placeholder='Start Date'
                                 type='date'
                                 name='startDate'
-                                onChange={}
-                                value={}
+                                onChange={updateStartDate}
+                                value={startDate}
                                 required={true}></input>
                             <input
                                 className='form-input'
                                 placeholder='End Date'
                                 type='date'
                                 name='endDate'
-                                onChange={}
-                                value={}
+                                onChange={updateEndDate}
+                                value={endDate}
                                 required={true}></input>
                     </div>
                 </div>

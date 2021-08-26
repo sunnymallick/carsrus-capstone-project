@@ -35,7 +35,9 @@ function App() {
       <Route path='/auctions/:id' exact={true}>
         <AuctionDetail />
       </Route>
-      
+      <Route path='/auctions/form' exact={true}>
+        <AuctionForm />
+      </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

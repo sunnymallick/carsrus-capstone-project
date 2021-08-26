@@ -10,7 +10,6 @@ const AuctionDetail = () => {
     return (
         <>
         <div className='auctions-container'>
-            <h1>Auctions</h1>
             <h1>This is an individual auction page</h1>
         </div>
         </>

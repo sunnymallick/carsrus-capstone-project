@@ -10,8 +10,8 @@ const AuctionsPage = () => {
     return (
         <>
         <div className='auctions-container'>
-            <h1>Auctions</h1>
             <h1>This is the Home Page/Main Auction Page</h1>
+            <h1>Auctions</h1>
         </div>
         </>
     )
