@@ -15,6 +15,7 @@ const AuctionForm = () => {
     const [description, setDescription] = useState('')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
+    const dispatch = useDispatch();
 
     const updateVin = (e) => {
         setVin(e.target.value)
@@ -57,7 +58,7 @@ const AuctionForm = () => {
             startDate,
             endDate
         }
-        const data = awaitdispatch(createAuction(payload))
+        const data = await dispatch(createAuction(payload))
 
         if (data.errors) {
             setErrors(data.errors)
@@ -146,6 +147,7 @@ const AuctionForm = () => {
                                 onChange={updateEndDate}
                                 value={endDate}
                                 required={true}></input>
+                            <button type='Submit'>Submit Vehicle</button>
                     </div>
                 </div>
             </form>
