@@ -37,6 +37,20 @@ export const getOneAuction = id => async dispatch => {
     }
 };
 
+export const createAuction = (payload) => async dispatch => {
+    const res = await fetch('/api/auctions/form', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(payload)
+    })
+
+    if (res.ok) {
+        const newAuction = await res.json();
+        dispatch(addOneAuction(newAuction))
+        return newAuction;
+    }
+}
+
 
 export const destroyAuction = auctionId => async dispatch => {
     const deleted = await fetch(`/api/auctions/${auctionId}`, {

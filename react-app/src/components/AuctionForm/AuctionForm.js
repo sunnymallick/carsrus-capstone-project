@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
+import { createAuction } from '../../store/auction';
 
 
 const AuctionForm = () => {
@@ -43,9 +44,29 @@ const AuctionForm = () => {
         setEndDate(e.target.value)
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const payload = {
+            vin,
+            year,
+            make,
+            model,
+            type,
+            reservePrice,
+            description,
+            startDate,
+            endDate
+        }
+        const data = awaitdispatch(createAuction(payload))
+
+        if (data.errors) {
+            setErrors(data.errors)
+        }
+    }
+
     return (
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
 					{errors?.map((error, ind) => (
 						<div key={ind}>{error}</div>
