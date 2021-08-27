@@ -22,6 +22,9 @@ def bids():
 @bid_routes.route('/', methods=['POST'])
 def create_bid():
     form = BidForm()
+    print('-------')
+    print(form.data)
+    print('-------')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_bid = Bid(
@@ -29,7 +32,7 @@ def create_bid():
             user_id=form.data['user_id'],
             auction_id=form.data['auction_id'],
             created_at=form.data['created_at'],
-            updasted_at=form.data['updated_at']
+            updated_at=form.data['updated_at']
         )
         db.session.add(new_bid)
         db.session.commit()

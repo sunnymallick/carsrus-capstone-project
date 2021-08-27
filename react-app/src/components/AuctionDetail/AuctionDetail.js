@@ -8,18 +8,23 @@ import './AuctionDetail.css'
 
 const AuctionDetail = () => {
     const dispatch = useDispatch()
-    const { auctionId } = useParams()
-    const [bid, setBid] = useSelector(0)
-    const [errors, setErrors] = useSelector([])
-    const auction = useSelector(state => state.auction[auctionId])
+    const { id } = useParams()
+    const [bid, setBid] = useState(null)
+    const [errors, setErrors] = useState([])
+    const auction = useSelector(state => state.auction[id])
+    const auctionId = auction?.id
     const sessionUser = useSelector(state => state.session.user)
-    const userId = sessionUser.id
-    console.log(auction)
+    const userId = sessionUser?.id
+    console.log(auctionId)
     console.log(userId)
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(createBid(bid, userId, auctionId ))
+        const data = await dispatch(createBid(bid, userId, auctionId))
+
+        if (data) {
+            alert('Bid successful!')
+        }
     }
 
     useEffect(() => {
@@ -35,8 +40,8 @@ const AuctionDetail = () => {
         <>
         <div className='auctions-container'>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
-            <div classname='bids-container'>
-                <form>
+            <div className='bids-container'>
+                <form onSubmit={handleSubmit}>
                     <div>
 					    {errors?.map((error, ind) => (
 						    <div key={ind}>{error}</div>
