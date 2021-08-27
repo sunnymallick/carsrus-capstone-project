@@ -64,6 +64,24 @@ export const createAuction = (userId, vin, year, make, model, type, reservePrice
     }
 }
 
+export const editAuction = (auctionId, description, imgUrl) => async dispatch => {
+    const res = await fetch(`/api/auctions/${auctionId}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: auctionId,
+            description: description,
+            img_url: imgUrl
+        })
+    });
+    const editedAuction = await res.json();
+    if (res.ok) {
+        dispatch(addOneAuction(editedAuction))
+    }
+    return editedAuction;
+}
 
 export const destroyAuction = auctionId => async dispatch => {
     const deleted = await fetch(`/api/auctions/${auctionId}`, {
