@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import sessionReducer from './session'
 import auctionReducer from './auction';
+import bidReducer from './bid';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
-  auction: auctionReducer
+  auction: auctionReducer,
+  bid: bidReducer
 });
 
 
