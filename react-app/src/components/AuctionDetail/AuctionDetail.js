@@ -15,8 +15,9 @@ const AuctionDetail = () => {
     const auctionId = auction?.id
     const sessionUser = useSelector(state => state.session.user)
     const userId = sessionUser?.id
-    console.log(auctionId)
-    console.log(userId)
+    const bids = Object.values(useSelector(state => state.bid))
+    
+    
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -57,6 +58,20 @@ const AuctionDetail = () => {
                                 value={bid}
                                 required={true}></input>
                             <button type='submit'>Place Bid</button> 
+                        </div>
+                        <div className='current-bids-container'>
+                            {bids.map((bid) => {
+                                if (bid?.id) {
+                                    return (
+                                        <>
+                                            <div className='current-bid'>
+                                                <h3>Current Bids:</h3>
+                                                <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()}</h3>
+                                            </div>
+                                        </>
+                                    )
+                                }
+                            })}
                         </div>
                 </form>
             </div>
