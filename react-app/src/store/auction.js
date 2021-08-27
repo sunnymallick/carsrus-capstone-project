@@ -64,7 +64,7 @@ export const createAuction = (userId, vin, year, make, model, type, reservePrice
     }
 }
 
-export const editAuction = (auctionId, description, imgUrl) => async dispatch => {
+export const editAuction = (auctionId, description) => async dispatch => {
     const res = await fetch(`/api/auctions/${auctionId}`, {
         method: 'PUT',
         headers: {
@@ -72,8 +72,7 @@ export const editAuction = (auctionId, description, imgUrl) => async dispatch =>
         },
         body: JSON.stringify({
             id: auctionId,
-            description: description,
-            img_url: imgUrl
+            description: description
         })
     });
     const editedAuction = await res.json();

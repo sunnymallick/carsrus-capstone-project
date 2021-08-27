@@ -7,17 +7,17 @@ const EditAuctionForm = ({auctionId, setShowModal}) => {
     const auction = useSelector(state => state.auction[auctionId])
     const [errors, setErrors] = useState([])
     const [description, setDescription] = useState(auction.description)
-    const [imgUrl, setImgUrl] = useState('')
+    // const [imgUrl, setImgUrl] = useState('')
     const dispatch = useDispatch()
 
 
 useEffect(() => {
-    dispatch(getOneAuction())
+    dispatch(getOneAuction(auctionId))
 }, [dispatch])
 
 const handleEdit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(editAuction(+auctionId, description, imgUrl));
+    const data = await dispatch(editAuction(+auctionId, description));
 
     setShowModal(false)
 
@@ -30,9 +30,9 @@ const updateDescription = (e) => {
     setDescription(e.target.value);
 }
 
-const updateImgUrl = (e) => {
-    setImgUrl(e.target.value);
-}
+// const updateImgUrl = (e) => {
+//     setImgUrl(e.target.value);
+// }
 
 return (
     <>
@@ -44,6 +44,7 @@ return (
                     ))}
                 </div>
                 <div className='edit-form-container'>
+                    <p>Update Description</p>
                         <textarea
                             className='form-input'
                             placeholder='Description'
@@ -52,14 +53,14 @@ return (
                             value={description}
                             required={true}></textarea>
                 </div>
-                <div className='edit-form-container'>
+                {/* <div className='edit-form-container'>
                         <input
                             className='form-input'
                             placeholder='Images'
                             name='images'
                             onChange={updateImgUrl}
                             value={imgUrl}></input>
-                </div>
+                </div> */}
                 <div className='edit-auction_button-container'>
 					<button id='edit-auction-button' type='submit'>
 						Update Auction
