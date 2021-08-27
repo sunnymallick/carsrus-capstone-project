@@ -31,8 +31,6 @@ def create_bid():
             bid=form.data['bid'],
             user_id=form.data['user_id'],
             auction_id=form.data['auction_id'],
-            created_at=form.data['created_at'],
-            updated_at=form.data['updated_at']
         )
         db.session.add(new_bid)
         db.session.commit()
