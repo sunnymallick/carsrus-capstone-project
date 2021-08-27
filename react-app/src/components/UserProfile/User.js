@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
+import DeleteAuctionModal from '../DeleteAuctionModal';
 
 function User() {
   const { userId }  = useParams();
@@ -44,6 +45,9 @@ function User() {
                 <div className='user-auction-listing-present'>
                   <h3>Your Current Listings</h3>
                   <h3>{auction.year} {auction.make} {auction.model}</h3>
+                  <div className='edit-delete-buttons'>
+                    <DeleteAuctionModal auctionId={auction?.id} />
+                  </div>
                   <h3>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</h3>
                 </div>
               </>

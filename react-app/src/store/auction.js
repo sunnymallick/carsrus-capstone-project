@@ -95,6 +95,12 @@ const auctionReducer = (state = initialState, action) => {
             }
             return newState
         }
+        case DESTROY_AUCTION: {
+            const newState = {...state};
+            delete newState[action.auctionId]
+
+            return newState;
+        }
         default:
             return state
     }
