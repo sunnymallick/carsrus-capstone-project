@@ -23,3 +23,22 @@ export const getBids = () => async dispatch => {
     }
 }
 
+let initialState = {}
+
+const bidReducer = (state = initialState, action) => {
+    switch(action.type) {
+        case LOAD_BIDS: {
+            const allBids = {
+                ...state,
+            };
+            action.bids.forEach((bid) => {
+                allBids[bid.id] = bid;
+            });
+            return allBids;
+        }
+        default:
+            return state
+    }
+}
+
+export default bidReducer
