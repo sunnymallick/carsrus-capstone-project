@@ -9,6 +9,8 @@ const AuctionDetail = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const auction = useSelector(state => state.auction[id])
+    const sessionUser = useSelector(state => state.session.user)
+
     console.log(auction)
     
     useEffect(() => {
@@ -18,7 +20,10 @@ const AuctionDetail = () => {
     return (
         <>
         <div className='auctions-container'>
-            <h1>{auction.year} {auction.make} {auction.model}</h1>
+            <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
+            <div classname='bids-container'>
+                
+            </div>
         </div>
         </>
     )

@@ -4,7 +4,7 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', first_name='Demo', last_name='User', password='password')
+        username='Demo', email='demo@user.com', first_name='Demo', last_name='User', password='password')
     sunny = User(
         username='sunny', email='sunny@user.com', first_name='Sunny', last_name='Mallick', password='password')
 

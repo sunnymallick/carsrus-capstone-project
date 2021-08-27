@@ -1,4 +1,3 @@
-from typing import Text
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, TextField, SubmitField
 from wtforms.fields.core import DateField
