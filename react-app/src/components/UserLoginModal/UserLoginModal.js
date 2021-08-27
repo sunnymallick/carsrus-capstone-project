@@ -10,6 +10,9 @@ const UserLoginForm = ({setShowModal}) => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+
+  
+
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
@@ -21,6 +24,17 @@ const UserLoginForm = ({setShowModal}) => {
     }
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault()
+    let demoLogin = 'demo@aa.io';
+    let demoPass = 'password';
+    const demo = await dispatch(login(demoLogin, demoPass))
+      if (demo) {
+        setShowModal(false)
+      }
+  }
+
+  
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -60,6 +74,9 @@ const UserLoginForm = ({setShowModal}) => {
           onChange={updatePassword}
         />
         <button type='submit'>Login</button>
+      </div>
+      <div className='demo-login'>
+          <button type='submit' onClick={demoUser}>Demo Cars 'R' Us</button>
       </div>
     </form>
   );

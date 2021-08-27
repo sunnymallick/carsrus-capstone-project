@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import UserSignUpForm from './SignUpModal';
+import UserLoginForm from '../UserLoginModal/UserLoginModal';
 import './SignUpModal.css';
 
 function UserSignUpModal() {
@@ -13,9 +14,8 @@ function UserSignUpModal() {
 			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
-					<div className='login-title-container'>
-						<h3 className='login-title'>Sign Up</h3>
-                        <p>Already have an account? Login here...</p>
+					<div className='signup-title-container'>
+						<h3 className='signup-title'>Sign Up</h3>
 					</div>
 					<UserSignUpForm setShowModal={setShowModal} />
 				</Modal>
