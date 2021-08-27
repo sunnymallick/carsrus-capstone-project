@@ -17,6 +17,7 @@ const AuctionForm = () => {
     const [endDate, setEndDate] = useState('')
     const [imgUrl, setImgUrl] = useState('')
     const dispatch = useDispatch();
+    const sessionUser = useSelector((state) => state.session.user)
     const userId = useSelector((state) => state.session.user.id)
     const updateVin = (e) => {
         setVin(e.target.value)

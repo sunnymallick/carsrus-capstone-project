@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, Redirect, useHistory } from 'react-router-dom';
 import { logout } from '../../store/session';
 import UserLoginModal from '../UserLoginModal';
 import UserSignUpModal from '../UserSignUpModal';
@@ -12,9 +11,9 @@ const NavBar = () => {
   const history = useHistory()
 
 
-  const logoutButton = async (e) => {
+  const logoutButton = (e) => {
     e.preventDefault();
-    await dispatch(logout());
+    dispatch(logout());
     history.push('/')
   };
 
@@ -23,6 +22,7 @@ const NavBar = () => {
     sessionLinks = (
       <>
         <NavLink className='nav' onClick={logoutButton} to='/'>Logout {sessionUser.username}?</NavLink>
+        <NavLink to='/form' exact={true}>Sell your Car</NavLink>
       </>
     )
   } else {
@@ -38,7 +38,7 @@ const NavBar = () => {
       <div className='nav-container'>
         <NavLink to='/' exact={true}>Auctions</NavLink>
         <NavLink to='/past-auctions' exact={true}>Past Auctions</NavLink>
-        <NavLink to='/form' exact={true}>Sell your Car</NavLink>
+        
         <div className='nav-search'>
           <form>
             <input className='search-input' placeholder='Search for Vehicles'></input>
