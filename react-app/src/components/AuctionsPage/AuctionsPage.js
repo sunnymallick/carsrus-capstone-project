@@ -24,7 +24,9 @@ const AuctionsPage = () => {
                     return (
                         <>
                             <div className='auction-listing'>
+                                <NavLink key={auction.id} to={`/auctions/${auction.id}`}>
                                 <h3>{auction.year} {auction.make} {auction.model}</h3>
+                                </NavLink>
                             </div>
                         </>
                     )
