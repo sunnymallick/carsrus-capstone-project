@@ -7,7 +7,7 @@ function User() {
   const { userId }  = useParams();
   const sessionUser = useSelector(state => state.session.user)
   const auctions = useSelector(state => Object.values(state.auction))
-  const userAuctions = auctions.filter(auction => auction.user_id === +userId)
+  const userAuctions = auctions.filter(auction => auction?.user_id === +userId)
   console.log(userAuctions)
   // console.log(userAuctions)
   const dispatch = useDispatch();
@@ -22,6 +22,20 @@ function User() {
   return (
     <>
       <h3>{sessionUser.first_name} {sessionUser.last_name}</h3>
+        <div className='user-auction-container'>
+        <h3>Your listings</h3>
+        {userAuctions.map(auction => {
+          if (auction?.id) {
+            return (
+              <>
+                <div className='user-auction-listing'>
+                  <h3>{auction.year} {auction.make} {auction.model}</h3>
+                </div>
+              </>
+            )
+          }
+        })}
+        </div>
     </>
   );
 }
