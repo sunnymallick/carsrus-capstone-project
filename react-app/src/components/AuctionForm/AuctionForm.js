@@ -52,26 +52,11 @@ const AuctionForm = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // const payload = {
-        //     vin,
-        //     year,
-        //     make,
-        //     model,
-        //     type,
-        //     reservePrice,
-        //     description,
-        //     startDate,
-        //     endDate,
-        //     imgUrl
-        // }
         const data = await dispatch(createAuction(userId, vin, year, make, model, type, reservePrice, description, startDate, endDate,imgUrl))
 
         if (data) {
             alert('Success')
         }
-        // if (data.errors) {
-        //     setErrors(data.errors)
-        // }
     }
 
     return (
