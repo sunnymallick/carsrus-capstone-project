@@ -59,16 +59,14 @@ def auction_form():
 @auction_routes.route('/<int:id>', methods=['PUT'])
 def edit_restaurant(id):
     data = request.json
-
     auction = Auction.query.get(id)
-    image = Image.query.filter(Image.auction_id == id).first()
-
+    # image = Image.query.filter(Image.auction_id == id).all()
     auction.description = data['description']
-    image.img_url = data['img_url']
+    # image.img_url = data['img_url']
     
     db.session.commit()
 
-    return {**auction.to_dict(), 'images': [{'img_url': data['img_url']}]}
+    return auction.to_dict()
 
 @auction_routes.route('/<int:id>', methods=['DELETE'])
 def delete_auction(id):
