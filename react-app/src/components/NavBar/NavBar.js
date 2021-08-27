@@ -5,6 +5,8 @@ import { logout } from '../../store/session';
 import UserLoginModal from '../UserLoginModal';
 import UserSignUpModal from '../UserSignUpModal';
 
+import './NavBar.css'
+
 const NavBar = () => {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch()
@@ -21,9 +23,9 @@ const NavBar = () => {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink className='nav' onClick={logoutButton} to='/'>Logout {sessionUser.username}?</NavLink>
         <NavLink to='/form' exact={true}>Sell your Car</NavLink>
         <NavLink to={`/users/${sessionUser.id}`}>Your Profile</NavLink>
+        <NavLink className='nav' onClick={logoutButton} to='/'>Logout {sessionUser.username}?</NavLink>
       </>
     )
   } else {
@@ -37,8 +39,10 @@ const NavBar = () => {
   return (
     <>
       <div className='nav-container'>
-        <NavLink to='/' exact={true}>Auctions</NavLink>
-        <NavLink to='/past-auctions' exact={true}>Past Auctions</NavLink>
+        <div className='nav-left'>
+          <NavLink to='/' exact={true}>Auctions</NavLink>
+          <NavLink to='/past-auctions' exact={true}>Past Auctions</NavLink>
+        </div>
         
         <div className='nav-search'>
           <form>
