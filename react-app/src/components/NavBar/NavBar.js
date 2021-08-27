@@ -23,6 +23,7 @@ const NavBar = () => {
       <>
         <NavLink className='nav' onClick={logoutButton} to='/'>Logout {sessionUser.username}?</NavLink>
         <NavLink to='/form' exact={true}>Sell your Car</NavLink>
+        <NavLink to={`/users/${sessionUser.id}`}>Your Profile</NavLink>
       </>
     )
   } else {

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Auction, Image
+from app.models import auction, db, Auction, Image
 from app.forms.auction_form import AuctionForm
 
 
@@ -55,3 +55,26 @@ def auction_form():
         return {'message': "Let's Sell a car!"}, 200
     errors = form.errors
     return {'errors': validation_errors_to_error_messages(errors)}, 401
+
+@auction_routes.route('/<int:id>', methods=['PUT'])
+def edit_restaurant(id):
+    data = request.json
+
+    auction = Auction.query.get(id)
+    image = Image.query.filter(Image.auction_id == id).first()
+
+    auction.description = data['description']
+    image.img_url = data['img_url']
+    
+    db.session.commit()
+
+    return {**auction.to_dict(), 'images': [{'img_url': data['img_url']}]}
+
+@auction_routes.route('/<int:id>', methods=['DELETE'])
+def delete_auction(id):
+    auction = Auction.query.get(id)
+
+    db.session.delete(auction)
+    db.session.commit()
+
+    return {'message': 'success'}, 204
