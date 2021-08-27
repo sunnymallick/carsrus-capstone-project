@@ -4,33 +4,25 @@ import { useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 
 function User() {
-  const [user, setUser] = useState({});
   const { userId }  = useParams();
   const sessionUser = useSelector(state => state.session.user)
-  // const userAuctions = useState((state) => state.auction)
+  const auctions = useSelector(state => Object.values(state.auction))
+  const userAuctions = auctions.filter(auction => auction.user_id === +userId)
+  console.log(userAuctions)
+  // console.log(userAuctions)
+  const dispatch = useDispatch();
 
-  useEffect(() => {
+  useEffect(async () => {
     if (!userId) {
       return;
     }
+    await dispatch(getAuctions())
   }, [userId]);
 
-  if (!user) {
-    return null;
-  }
-
   return (
-    <ul>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>Username</strong> {sessionUser.username}
-      </li>
-      <li>
-        <strong>Email</strong> {sessionUser.email}
-      </li>
-    </ul>
+    <>
+      <h3>{sessionUser.first_name} {sessionUser.last_name}</h3>
+    </>
   );
 }
 export default User;
