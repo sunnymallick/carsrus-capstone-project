@@ -44,7 +44,7 @@ return (
                     ))}
                 </div>
                 <div className='edit-form-container'>
-                    <p>Update Description</p>
+                    <p>Update the Description for your {auction.year} {auction.make} {auction.model}</p>
                         <textarea
                             className='form-input'
                             placeholder='Description'
