@@ -8,9 +8,7 @@ import './AuctionsPage.css'
 const AuctionsPage = () => {
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user)
-    console.log(sessionUser)
     const auctions = useSelector(state => Object.values(state.auction))
-    console.log(auctions)
     
     useEffect(() => {
         dispatch(getAuctions())
