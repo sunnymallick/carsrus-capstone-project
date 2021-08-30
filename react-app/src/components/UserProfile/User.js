@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import DeleteAuctionModal from '../DeleteAuctionModal';
 import EditAuctionModal from '../EditAuctionModal';
-import EditAuctionForm from '../EditAuctionModal/EditAuctionModal';
+// import EditAuctionForm from '../EditAuctionModal/EditAuctionModal';
 
 function User() {
   const { userId }  = useParams();
