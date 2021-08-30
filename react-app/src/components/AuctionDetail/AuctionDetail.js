@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
+import EditAuctionModal from '../EditAuctionModal';
 
 import './AuctionDetail.css'
 
@@ -45,6 +46,13 @@ const AuctionDetail = () => {
         <>
         <div className='auctions-container'>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
+            <div className='owner-edit-button-container'>
+            {sessionUser.id === auction.user_id &&
+            <>
+                <EditAuctionModal />
+            </>
+            }
+            </div>
             <div className='bids-container'>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -72,20 +80,20 @@ const AuctionDetail = () => {
                                             <div className='current-bid'>
                                                 <h3>Current Bids:</h3>
                                                 <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()}</h3>
-                                                    <div className='delete-button-container'>
+                                                <div className='delete-button-container'>
                                                     {sessionUser.id === bid.user_id &&
                                                     <>
                                                         <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
                                                     </>
-                                                }
+                                                    }
                                                 </div>
                                             </div>
                                         </>
                                     )
                                 }
                             })}
-                </div>
-            </div>
+                    </div>
+             </div>
         </div>
         </>
     )
