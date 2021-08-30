@@ -71,7 +71,8 @@ def edit_restaurant(id):
 @auction_routes.route('/<int:id>', methods=['DELETE'])
 def delete_auction(id):
     auction = Auction.query.get(id)
-
+    images = Image.query.filter(Image.auction_id == id).first()
+    db.session.delete(images)
     db.session.delete(auction)
     db.session.commit()
 

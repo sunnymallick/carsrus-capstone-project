@@ -68,9 +68,21 @@ const commentReducer = (state = initialState, action) => {
             })
             return allComments
         }
+        case CREATE_COMMENT: {
+            const newState = {
+                ...state,
+                [action.comment?.id]: action.comments
+            }
+            return newState
+        }
+        case DESTROY_COMMENT: {
+            const newState = {...state};
+                delete newState[action.comment.id]
+            return newState;
+        }
         default:
             return state
     }
 }
 
- 
+export default commentReducer

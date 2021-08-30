@@ -27,17 +27,14 @@ function User() {
     userAuctions.map(auction => {
       if (new Date(auction.end_date) < new Date(currentDate)) {
         pastAuctions = (
-          <>
             <div className='user-auction-listing-past'>
               <h3>{auction.year} {auction.make} {auction.model}</h3>
               <h3>Auction ended on {new Date(auction.end_date).toLocaleDateString()}</h3>
             </div>
-          </>
         )
       
     } else if (new Date(auction.end_date) > new Date(currentDate)) {
       currentAuctions = (
-        <>
           <div className='user-auction-listing-present'>
             <h3>{auction.year} {auction.make} {auction.model}</h3>
             <div className='edit-delete-buttons'>
@@ -46,7 +43,6 @@ function User() {
             </div>
             <h3>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</h3>
           </div>
-        </>
       )
     }
   })
