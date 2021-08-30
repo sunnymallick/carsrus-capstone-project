@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Comment, Auction
+from app.forms.comment_form import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
 
