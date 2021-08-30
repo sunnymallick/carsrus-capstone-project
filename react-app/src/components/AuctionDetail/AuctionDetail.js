@@ -9,7 +9,7 @@ import './AuctionDetail.css'
 const AuctionDetail = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
-    const [bid, setBid] = useState(null)
+    const [bid, setBid] = useState(0)
     const [errors, setErrors] = useState([])
     const auction = useSelector(state => state.auction[id])
     const auctionId = auction?.id
@@ -28,8 +28,8 @@ const AuctionDetail = () => {
         }
     }
 
-    const handleDelete = (id) => {
-        dispatch(cancelBid(id)) 
+    const handleDelete = () => {
+        const cancelBid = dispatch(cancelBid(id)) 
     }
 
     useEffect(() => {
@@ -40,7 +40,6 @@ const AuctionDetail = () => {
     const updateBid = (e) => {
         setBid(e.target.value)
     }
-
 
     return (
         <>
