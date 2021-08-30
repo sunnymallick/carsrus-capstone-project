@@ -22,9 +22,6 @@ def bids():
 @bid_routes.route('/', methods=['POST'])
 def create_bid():
     form = BidForm()
-    print('-------')
-    print(form.data)
-    print('-------')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         new_bid = Bid(
@@ -38,3 +35,13 @@ def create_bid():
     errors = form.errors
     return {'errors': validation_errors_to_error_messages(errors)}, 401
 
+@bid_routes.route('/<int:id>', methods={'DELETE'})
+def delete_bid(id):
+    bid = Bid.query.get(id)
+    print('-------')
+    print(bid)
+    print('-------')
+    
+    db.session.delete(bid)
+    db.session.commit()
+    return {}, 200
