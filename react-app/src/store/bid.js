@@ -1,7 +1,6 @@
-import { CREATE_AUCTION } from "./auction";
-
 export const LOAD_BIDS = 'bids/LOAD_BIDS';
-export const CREATE_BID = 'bids/CREATE_AUCTION';
+export const CREATE_BID = 'bids/CREATE_BID';
+export const DESTROY_BID = 'bids/DESTROY_BID';
 
 const load = bids => ({
     type: LOAD_BIDS,
@@ -9,7 +8,12 @@ const load = bids => ({
 })
 
 const placeBid = bid => ({
-    type: CREATE_AUCTION,
+    type: CREATE_BID,
+    bid
+})
+
+const deleteBid = bid => ({
+    type: DESTROY_BID,
     bid
 })
 
@@ -41,6 +45,18 @@ export const createBid = (bid, userId, auctionId) => async dispatch => {
     }
 }
 
+export const deleteBid = (id) => async dispatch => {
+    const res = await fetch('/api/bids/', {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        await res.json();
+        dispatch(deleteBid(id))
+    }
+    return res;
+}
+
+
 let initialState = {}
 
 const bidReducer = (state = initialState, action) => {
@@ -61,9 +77,14 @@ const bidReducer = (state = initialState, action) => {
             }
             return newState
         }
+        case CANCEL_BID: {
+            const newState = {...state};
+            delete newState[action.bidId]
+            return newState;
+        }
         default:
             return state
     }
 }
 
-export default bidReducer
+export default bidReducer;

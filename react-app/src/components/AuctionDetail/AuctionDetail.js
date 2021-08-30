@@ -28,6 +28,11 @@ const AuctionDetail = () => {
         }
     }
 
+    const handleDelete = (e) => {
+        e.preventDefault();
+        const dataDelete = dispatch() 
+    }
+
     useEffect(() => {
         dispatch(getAuctions())
         dispatch(getBids())
@@ -36,6 +41,7 @@ const AuctionDetail = () => {
     const updateBid = (e) => {
         setBid(e.target.value)
     }
+
 
     return (
         <>
@@ -67,6 +73,13 @@ const AuctionDetail = () => {
                                             <div className='current-bid'>
                                                 <h3>Current Bids:</h3>
                                                 <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()}</h3>
+                                            </div>
+                                            <div className='delete-button-container'>
+                                                {sessionUser.id === bid.user_id &&
+                                                <>
+                                                    <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
+                                                </>
+                                                }
                                             </div>
                                         </>
                                     )

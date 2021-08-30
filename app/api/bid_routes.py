@@ -38,3 +38,9 @@ def create_bid():
     errors = form.errors
     return {'errors': validation_errors_to_error_messages(errors)}, 401
 
+@bid_routes.route('/', methods={'DELETE'})
+def delete_bid(id):
+    bid = Bid.query.get(id)
+    db.session.delete(bid)
+    db.session.commit()
+    return {}, 200
