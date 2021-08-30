@@ -19,6 +19,7 @@ def validation_errors_to_error_messages(validation_errors):
 @auction_routes.route('/')
 def auctions():
     auctions = Auction.query.all()
+    images = Image.query.all()
     return {'auctions': [auction.to_dict() for auction in auctions]}
 
 @auction_routes.route('/<int:id>')
