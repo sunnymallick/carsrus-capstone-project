@@ -89,7 +89,7 @@ const AuctionDetail = () => {
                                             <div className='current-bid'>
                                                 <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()}</h3>
                                                 <div className='delete-button-container'>
-                                                    {sessionUser.id === bid.user_id &&
+                                                    {sessionUser?.id === bid?.user_id &&
                                                     <>
                                                         <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
         
