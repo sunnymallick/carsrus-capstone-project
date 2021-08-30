@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import EditAuctionModal from '../EditAuctionModal';
@@ -17,6 +17,8 @@ const AuctionDetail = () => {
     const sessionUser = useSelector(state => state.session.user)
     const userId = sessionUser?.id
     const bids = Object.values(useSelector(state => state.bid))
+    const vehicleBids = bids.filter(bid => bid?.auction_id === +id)
+    console.log(vehicleBids)
     const history = useHistory()
     
     
@@ -51,13 +53,13 @@ const AuctionDetail = () => {
         <div className='auctions-container'>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
             <h3>{auction?.description}</h3>
-            <div className='owner-edit-button-container'>
-            {sessionUser.id === auction?.user_id &&
+            {/* <div className='owner-edit-button-container'>
+            {sessionUser?.id === auction?.user_id &&
             <>
                 <EditAuctionModal />
             </>
             }
-            </div>
+            </div> */}
             <div className='bids-container'>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -78,8 +80,9 @@ const AuctionDetail = () => {
                         </div>
                 </form>
                         <div className='current-bids-container'>
+
                             <h3>Bid History:</h3>
-                            {bids.map((bid) => {
+                            {vehicleBids.map((bid) => {
                                 if (bid?.id) {
                                     return (
                                         <>
