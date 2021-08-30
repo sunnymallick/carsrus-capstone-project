@@ -45,8 +45,8 @@ export const createBid = (bid, userId, auctionId) => async dispatch => {
     }
 }
 
-export const deleteBid = (id) => async dispatch => {
-    const res = await fetch('/api/bids/', {
+export const cancelBid = (id) => async dispatch => {
+    const res = await fetch(`/api/bids/${id}`, {
         method: 'DELETE'
     })
     if (res.ok) {
@@ -77,7 +77,7 @@ const bidReducer = (state = initialState, action) => {
             }
             return newState
         }
-        case CANCEL_BID: {
+        case DESTROY_BID: {
             const newState = {...state};
             delete newState[action.bidId]
             return newState;

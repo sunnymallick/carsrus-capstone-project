@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
-import { getBids, createBid } from '../../store/bid';
+import { getBids, createBid, cancelBid } from '../../store/bid';
 
 import './AuctionDetail.css'
 
@@ -28,9 +28,8 @@ const AuctionDetail = () => {
         }
     }
 
-    const handleDelete = (e) => {
-        e.preventDefault();
-        const dataDelete = dispatch() 
+    const handleDelete = (id) => {
+        dispatch(cancelBid(id)) 
     }
 
     useEffect(() => {
@@ -65,6 +64,7 @@ const AuctionDetail = () => {
                                 required={true}></input>
                             <button type='submit'>Place Bid</button> 
                         </div>
+                </form>
                         <div className='current-bids-container'>
                             {bids.map((bid) => {
                                 if (bid?.id) {
@@ -73,20 +73,19 @@ const AuctionDetail = () => {
                                             <div className='current-bid'>
                                                 <h3>Current Bids:</h3>
                                                 <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()}</h3>
-                                            </div>
-                                            <div className='delete-button-container'>
-                                                {sessionUser.id === bid.user_id &&
-                                                <>
-                                                    <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
-                                                </>
+                                                    <div className='delete-button-container'>
+                                                    {sessionUser.id === bid.user_id &&
+                                                    <>
+                                                        <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
+                                                    </>
                                                 }
+                                                </div>
                                             </div>
                                         </>
                                     )
                                 }
                             })}
-                        </div>
-                </form>
+                </div>
             </div>
         </div>
         </>
