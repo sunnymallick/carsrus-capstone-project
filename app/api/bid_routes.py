@@ -44,4 +44,4 @@ def delete_bid(id):
     
     db.session.delete(bid)
     db.session.commit()
-    return {}, 200
+    return {'message': "Your bid has been cancelled."}, 200

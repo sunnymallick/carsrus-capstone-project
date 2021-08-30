@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, useHistory, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import EditAuctionModal from '../EditAuctionModal';
@@ -17,7 +17,7 @@ const AuctionDetail = () => {
     const sessionUser = useSelector(state => state.session.user)
     const userId = sessionUser?.id
     const bids = Object.values(useSelector(state => state.bid))
-    
+    const history = useHistory()
     
     
     const handleSubmit = async (e) => {
@@ -29,8 +29,12 @@ const AuctionDetail = () => {
         }
     }
 
-    const handleDelete = () => {
-        const cancelBid = dispatch(cancelBid(id)) 
+    const handleDelete = (id) => {
+        const cancelled = dispatch(cancelBid(id))
+
+        if (cancelled) {
+            alert('Your bid has been cancelled.')
+        }
     }
 
     useEffect(() => {
@@ -46,8 +50,9 @@ const AuctionDetail = () => {
         <>
         <div className='auctions-container'>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
+            <h3>{auction?.description}</h3>
             <div className='owner-edit-button-container'>
-            {sessionUser.id === auction.user_id &&
+            {sessionUser.id === auction?.user_id &&
             <>
                 <EditAuctionModal />
             </>
@@ -73,17 +78,18 @@ const AuctionDetail = () => {
                         </div>
                 </form>
                         <div className='current-bids-container'>
+                            <h3>Bid History:</h3>
                             {bids.map((bid) => {
                                 if (bid?.id) {
                                     return (
                                         <>
                                             <div className='current-bid'>
-                                                <h3>Current Bids:</h3>
                                                 <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()}</h3>
                                                 <div className='delete-button-container'>
                                                     {sessionUser.id === bid.user_id &&
                                                     <>
                                                         <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
+        
                                                     </>
                                                     }
                                                 </div>

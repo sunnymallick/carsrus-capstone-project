@@ -79,7 +79,7 @@ const bidReducer = (state = initialState, action) => {
         }
         case DESTROY_BID: {
             const newState = {...state};
-            delete newState[action.bidId]
+                delete newState[action.bid.id]
             return newState;
         }
         default:
