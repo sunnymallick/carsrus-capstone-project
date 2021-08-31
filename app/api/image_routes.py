@@ -9,4 +9,3 @@ def images():
     images = Image.query.all()
     return {'images': [image.to_dict() for image in images]}
 
-    
