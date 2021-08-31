@@ -44,11 +44,11 @@ const NavBar = () => {
           <NavLink to='/past-auctions' exact={true}>Past Auctions</NavLink>
         </div>
         
-        <div className='nav-search'>
+        {/* <div className='nav-search'>
           <form>
             <input className='search-input' placeholder='Search for Vehicles'></input>
           </form>
-        </div>
+        </div> */}
         <div className='nav-right'>
           {sessionLinks}
         </div>
