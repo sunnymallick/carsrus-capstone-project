@@ -23,8 +23,8 @@ const NavBar = () => {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to='/form' exact={true}>Sell your Car</NavLink>
-        <NavLink to={`/users/${sessionUser.id}`}>Your Profile</NavLink>
+        <NavLink className='nav' to='/form' exact={true}>Sell your Car</NavLink>
+        <NavLink className='nav' to={`/users/${sessionUser.id}`}>Your Profile</NavLink>
         <NavLink className='nav' onClick={logoutButton} to='/'>Logout {sessionUser.username}?</NavLink>
       </>
     )
@@ -40,8 +40,7 @@ const NavBar = () => {
     <>
       <div className='nav-container'>
         <div className='nav-left'>
-          <NavLink to='/' exact={true}>Auctions</NavLink>
-          <NavLink to='/past-auctions' exact={true}>Past Auctions</NavLink>
+          <label>insert logo here</label>
         </div>
         
         {/* <div className='nav-search'>
@@ -50,6 +49,8 @@ const NavBar = () => {
           </form>
         </div> */}
         <div className='nav-right'>
+          <NavLink className='nav' to='/' exact={true}>Auctions</NavLink>
+          <NavLink className='nav' to='/past-auctions' exact={true}>Past Auctions</NavLink>
           {sessionLinks}
         </div>
       </div>
