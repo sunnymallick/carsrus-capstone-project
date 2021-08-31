@@ -69,7 +69,7 @@ const AuctionDetail = () => {
 
     return (
         <>
-        <div className='auctions-container'>
+        <div className='auction-container'>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
             {images?.map(image => {
                 return (
@@ -84,7 +84,7 @@ const AuctionDetail = () => {
             </>
             }
             </div> */}
-            <div className='bids-container'>
+            <div className='bid-container'>
                 <form onSubmit={handleSubmit}>
                     <div>
 					    {errors?.map((error, ind) => (

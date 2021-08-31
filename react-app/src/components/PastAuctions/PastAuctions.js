@@ -11,7 +11,7 @@ const PastAuctions = () => {
     const currentDate = new Date()
     console.log(currentDate)
     const auctions = useSelector(state => Object.values(state.auction))
-    const pastAuctions = auctions.filter(auction => new Date(auction.end_date) > new Date(currentDate))
+    const pastAuctions = auctions.filter(auction => new Date(auction.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
     console.log(auctions)
     console.log(pastAuctions)
     const images = useSelector(state => state.image)
