@@ -9,6 +9,7 @@ import AuctionsPage from './components/AuctionsPage';
 import { authenticate } from './store/session';
 import AuctionDetail from './components/AuctionDetail';
 import AuctionForm from './components/AuctionForm';
+import PastAuctions from './components/PastAuctions';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -34,6 +35,9 @@ function App() {
         </Route>
       <Route path='/auctions/:id' exact={true}>
         <AuctionDetail />
+      </Route>
+      <Route path='/past-auctions' exact={true}>
+        <PastAuctions />
       </Route>
       <Route path='/form' exact={true}>
         <AuctionForm />
