@@ -10,20 +10,22 @@ const UserSignUpForm = ({setShowModal}) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    if (password === confirmPassword) {
       const data = await dispatch(signUp(username, email,firstName, lastName, password));
       if (data) {
         setErrors(data)
       }
-    if (user) {
-      setShowModal(false)
-    }
+      if (user) {
+        setShowModal(false)
+      }
+    } else {
+      setErrors(['Passwords do not match.'])
     }
   };
 
@@ -48,8 +50,8 @@ const UserSignUpForm = ({setShowModal}) => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
+  const updateConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
   };
 
   if (user) {
@@ -109,12 +111,12 @@ const UserSignUpForm = ({setShowModal}) => {
         ></input>
       </div>
       <div>
-        <label>Repeat Password</label>
+        <label>Confirm Password</label>
         <input
           type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
+          name='confirm_password'
+          onChange={updateConfirmPassword}
+          value={confirmPassword}
           required={true}
         ></input>
       </div>
