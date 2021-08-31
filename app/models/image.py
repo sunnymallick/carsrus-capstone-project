@@ -12,6 +12,6 @@ class Image(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'bid': self.bid,
+            'img_url': self.img_url,
             'auction_id': self.auction_id
         }

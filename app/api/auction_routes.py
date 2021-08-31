@@ -18,13 +18,18 @@ def validation_errors_to_error_messages(validation_errors):
 
 @auction_routes.route('/')
 def auctions():
-    auctions = Auction.query.all()
-    return {'auctions': [auction.to_dict() for auction in auctions]}
+    auctions_query = Auction.query.all()
+    auctions = [auction.to_dict() for auction in auctions_query]
+    for auction in auctions:
+        images = Image.query.filter(Image.auction_id == auction['id']).all()
+        auction['image'] = [image.to_dict() for image in images]
+    return {'auctions': auctions}
 
 @auction_routes.route('/<int:id>')
 def get_auctions(id):
     auction = Auction.query.get(id)
-    return auction.to_dict()
+    images = Image.query.filter(Image.auction_id == id)
+    return {**auction.to_dict(), 'images': [image.to_dict() for image in images]}
 
 @auction_routes.route('/form', methods=['GET', 'POST'])
 def auction_form():

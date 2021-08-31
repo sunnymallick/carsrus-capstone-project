@@ -22,6 +22,8 @@ const AuctionDetail = () => {
     const vehicleBids = bids.filter(bid => bid?.auction_id === +id)
     const comments = Object.values(useSelector(state => state.comment))
     const auctionComments = comments.filter(comment => comment?.auction_id === +id)
+    const images = auction?.image
+    console.log(images)
     const history = useHistory()
     
     
@@ -69,6 +71,11 @@ const AuctionDetail = () => {
         <>
         <div className='auctions-container'>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
+            {images?.map(image => {
+                return (
+                    <p>{image.img_url}</p>
+                )
+            })}
             <h3>{auction?.description}</h3>
             {/* <div className='owner-edit-button-container'>
             {sessionUser?.id === auction?.user_id &&
