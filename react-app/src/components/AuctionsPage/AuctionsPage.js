@@ -9,6 +9,7 @@ const AuctionsPage = () => {
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user)
     const auctions = useSelector(state => Object.values(state.auction))
+    const images = useSelector(state => state.image)
     
     useEffect(() => {
         dispatch(getAuctions())

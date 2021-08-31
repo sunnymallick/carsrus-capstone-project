@@ -6,7 +6,7 @@ const loadImages = (images) => ({
 })
 
 export const getAllImages = () => async (dispatch) => {
-    const res = await fetch(`/api/image`);
+    const res = await fetch(`/api/images/`);
 
     if (res.ok) {
         const images = await res.json();
