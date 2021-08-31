@@ -132,7 +132,7 @@ const AuctionDetail = () => {
                      <h3>User Comments:</h3>
                      {auctionComments.map(comment => {
                          return (
-                             <p>{comment.comment} posted by {comment.user_id} on {comment.created_at}</p>
+                             <p>{comment?.comment} posted by {comment?.user_id} on {comment?.created_at}</p>
                          )
                      })}
                  </div>
