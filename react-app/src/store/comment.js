@@ -64,7 +64,7 @@ const commentReducer = (state = initialState, action) => {
                 ...state,
             };
             action.comments.forEach((comment) => {
-                allComments[comment.id] = bid;
+                allComments[comment.id] = comment;
             })
             return allComments
         }

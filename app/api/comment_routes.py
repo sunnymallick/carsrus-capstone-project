@@ -18,3 +18,19 @@ def validation_errors_to_error_messages(validation_errors):
 def comments():
     comments = Comment.query.all()
     return {'comments': [comment.to_dict() for comment in comments]}
+
+@comment_routes.route('/', methods=['POST'])
+def create_comment():
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_comment = Comment(
+            comment=form.data['comment'],
+            user_id=form.data['user_id'],
+            auction_id=form.data['auction_id'],
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        return {'message': 'We made a comment!'}, 200
+    errors = form.errors
+    return {'errors': validation_errors_to_error_messages(errors)}, 401

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
+import { getComments, createComment } from '../../store/comment';
 import EditAuctionModal from '../EditAuctionModal';
 
 import './AuctionDetail.css'
@@ -11,6 +12,7 @@ const AuctionDetail = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
     const [bid, setBid] = useState(0)
+    const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([])
     const auction = useSelector(state => state.auction[id])
     const auctionId = auction?.id
@@ -18,7 +20,8 @@ const AuctionDetail = () => {
     const userId = sessionUser?.id
     const bids = Object.values(useSelector(state => state.bid))
     const vehicleBids = bids.filter(bid => bid?.auction_id === +id)
-    console.log(vehicleBids)
+    const comments = Object.values(useSelector(state => state.comment))
+    const auctionComments = comments.filter(comment => comment?.auction_id === +id)
     const history = useHistory()
     
     
@@ -39,13 +42,27 @@ const AuctionDetail = () => {
         }
     }
 
+    const postComment = async (e) => {
+        e.preventDefault();
+        const data = await dispatch(createComment(comment, userId, auctionId))
+
+        if (data) {
+            alert('Your comment has been posted.')
+        }
+    }
+
     useEffect(() => {
         dispatch(getAuctions())
+        dispatch(getComments())
         dispatch(getBids())
     }, [dispatch])
 
     const updateBid = (e) => {
         setBid(e.target.value)
+    }
+
+    const updateComment = (e) => {
+        setComment(e.target.value)
     }
 
     return (
@@ -80,7 +97,6 @@ const AuctionDetail = () => {
                         </div>
                 </form>
                         <div className='current-bids-container'>
-
                             <h3>Bid History:</h3>
                             {vehicleBids.map((bid) => {
                                 if (bid?.id) {
@@ -92,7 +108,6 @@ const AuctionDetail = () => {
                                                     {sessionUser?.id === bid?.user_id &&
                                                     <>
                                                         <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
-        
                                                     </>
                                                     }
                                                 </div>
@@ -102,6 +117,26 @@ const AuctionDetail = () => {
                                 }
                             })}
                     </div>
+             </div>
+             <div className='comments-container'>
+                 <form onSubmit={postComment}>
+                    <textarea
+                        className='form-input'
+                        placeholder='comment'
+                        name='commentArea'
+                        value={comment}
+                        onChange={updateComment}></textarea>
+                        <button type='submit'>Submit Comment</button>        
+                 </form>
+                 <div className='posted-comments-container'>
+                     <h3>User Comments:</h3>
+                     {auctionComments.map(comment => {
+                         return (
+                             <p>{comment?.comment} posted by {comment?.user_id} on {comment?.created_at}</p>
+                         )
+                     })}
+                 </div>
+
              </div>
         </div>
         </>
