@@ -11,7 +11,7 @@ const PastAuctions = () => {
     const currentDate = new Date()
     console.log(currentDate)
     const auctions = useSelector(state => Object.values(state.auction))
-    const pastAuctions = auctions.filter(auction => new Date(auction.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
+    const pastAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
     console.log(auctions)
     console.log(pastAuctions)
     const images = useSelector(state => state.image)
@@ -24,9 +24,9 @@ const PastAuctions = () => {
         <>
         <div className='auctions-container'>
             {pastAuctions.map(auction => {
-                console.log(auction.end_date)
+                console.log(auction?.end_date)
                 return (
-                    <h3>{auction.year} {auction.make} {auction.model}</h3>
+                    <h3>{auction?.year} {auction?.make} {auction?.model}</h3>
                 )
             })}
             {/* {auctions.map(auction => {

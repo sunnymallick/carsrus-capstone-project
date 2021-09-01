@@ -1,0 +1,39 @@
+.login-button {
+    margin-bottom: 18px;
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 5px 10px 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form-input {
+	width: 400px;
+	padding: 10px;
+	margin: 5px;
+}
+
+.login-title {
+    text-align: center;
+}
+
+.error-container {
+    color: red;
+    text-align: center;
+}
+
+.form-container {
+    padding: 10px;
+}
+
+.submit-login-form {
+   display: flex;
+   justify-content: center;
+}
+
+.submit-button {
+    background-color: #2E294E;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+}

@@ -19,6 +19,7 @@ const AuctionForm = () => {
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
     const userId = useSelector((state) => state.session.user.id)
+    const history = useHistory();
     const updateVin = (e) => {
         setVin(e.target.value)
     }
@@ -56,6 +57,7 @@ const AuctionForm = () => {
 
         if (data) {
             alert('Success')
+            history.push('/')
         }
     }
 

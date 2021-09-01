@@ -48,15 +48,17 @@ const UserLoginForm = ({setShowModal}) => {
   }
 
   return (
+    <div className='form-container'>
     <form onSubmit={onLogin}>
-      <div>
+      <div className='error-container'>
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div className='errors' key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className='login-form-label'>
+        {/* <label htmlFor='email'>Email</label> */}
         <input
+          className='form-input'
           name='email'
           type='text'
           placeholder='Email'
@@ -64,21 +66,25 @@ const UserLoginForm = ({setShowModal}) => {
           onChange={updateEmail}
         />
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className='login-form-label'>
+        {/* <label htmlFor='password'>Password</label> */}
         <input
+          className='form-input'
           name='password'
           type='password'
           placeholder='Password'
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
       </div>
-      <div className='demo-login'>
-          <button type='submit' onClick={demoUser}>Demo Cars 'R' Us</button>
+      <div className='submit-login-form'>
+        <button className='submit-button' type='submit'>Login</button>
+      </div>
+      <div className='submit-login-form'>
+          <button className='submit-button' type='submit' onClick={demoUser}>Demo Cars 'R' Us</button>
       </div>
     </form>
+    </div>
   );
 };
 

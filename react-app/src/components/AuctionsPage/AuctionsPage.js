@@ -10,7 +10,7 @@ const AuctionsPage = () => {
     const sessionUser = useSelector((state) => state.session.user)
     const currentDate = new Date()
     const auctions = useSelector(state => Object.values(state.auction))
-    const currentAuctions = auctions.filter(auction => new Date(auction.end_date).toLocaleDateString() < new Date(currentDate).toLocaleDateString())
+    const currentAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() < new Date(currentDate).toLocaleDateString())
     console.log(currentAuctions)
     const images = useSelector(state => state.image)
     
