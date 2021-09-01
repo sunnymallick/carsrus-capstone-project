@@ -3,22 +3,21 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getOneComment, editComment } from '../../store/comment';
 
 const EditCommentForm = ({commentId, setShowModal}) => {
-    const userId = useSelector(state => state.session.user)
+    const editedComment = useSelector(state => state.comment[commentId])
     const [errors, setErrors] = useState([])
-    const [comment, setComment] = useState('')
+    const [comment, setComment] = useState(editedComment.comment)
     const dispatch = useDispatch()
 
 
-useEffect(() => {
-    dispatch(getOneComment(commentId))
-}, [dispatch])
+// useEffect(() => {
+//     dispatch(getOneComment(commentId))
+// }, [dispatch])
 
-const handleEdit = async (e) => {
+const handleEdit = (e) => {
     e.preventDefault();
-    const data = await dispatch(editComment(+commentId, comment));
+    const data = dispatch(editComment(+commentId, comment));
 
     setShowModal(false)
-
     if (data.errors) {
         setErrors(data.errors)
     }

@@ -24,7 +24,6 @@ const AuctionDetail = () => {
     const comments = Object.values(useSelector(state => state.comment))
     const auctionComments = comments.filter(comment => comment?.auction_id === +id)
     const images = auction?.image
-    console.log(images)
     const history = useHistory()
     
     
