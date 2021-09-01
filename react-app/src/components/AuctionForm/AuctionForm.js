@@ -6,20 +6,30 @@ import { createAuction } from '../../store/auction';
 
 const AuctionForm = () => {
     const [errors, setErrors] = useState([])
-    const [vin, setVin] = useState('')
-    const [year, setYear] = useState('')
-    const [make, setMake] = useState('')
-    const [model, setModel] = useState('')
-    const [type, setType] = useState('')
-    const [reservePrice, setReservePrice] = useState('')
-    const [description, setDescription] = useState('')
+    const [vin, setVin] = useState('testingvin')
+    const [year, setYear] = useState('2011')
+    const [make, setMake] = useState('toyota')
+    const [model, setModel] = useState('corolla')
+    const [type, setType] = useState('car')
+    const [city, setCity] = useState('Salt Lake City')
+    const [state, setState] = useState('UT')
+    const [description, setDescription] = useState('its a car')
+    const [miles, setMiles] = useState(138000)
+    const [color, setColor] = useState('white')
+    const [engine, setEngine] = useState('1.8L Inline-4')
+    const [transmission, setTransmission] = useState('4-speed Automatic')
+    const [imgUrl1, setImgUrl1] = useState('image1')
+    const [imgUrl2, setImgUrl2] = useState('image2')
+    const [imgUrl3, setImgUrl3] = useState('image3')
+    const [imgUrl4, setImgUrl4] = useState('image4')
     const [startDate, setStartDate] = useState('')
     const [endDate, setEndDate] = useState('')
-    const [imgUrl, setImgUrl] = useState('')
     const dispatch = useDispatch();
     const sessionUser = useSelector((state) => state.session.user)
     const userId = useSelector((state) => state.session.user.id)
     const history = useHistory();
+    
+    
     const updateVin = (e) => {
         setVin(e.target.value)
     }
@@ -35,11 +45,38 @@ const AuctionForm = () => {
     const updateType = (e) => {
         setType(e.target.value)
     }
-    const updateReservePrice = (e) => {
-        setReservePrice(e.target.value)
+    const updateCity = (e) => {
+        setCity(e.target.value)
+    }
+    const updateState = (e) => {
+        setState(e.target.value)
     }
     const updateDescription = (e) => {
         setDescription(e.target.value)
+    }
+    const updateMiles = (e) => {
+        setMiles(e.target.value)
+    }
+    const updateColor = (e) => {
+        setColor(e.target.value)
+    }
+    const updateEngine = (e) => {
+        setEngine(e.target.value)
+    }
+    const updateTransmission = (e) => {
+        setTransmission(e.target.value)
+    }
+    const updateImgUrl1 = (e) => {
+        setImgUrl1(e.target.value)
+    }
+    const updateImgUrl2 = (e) => {
+        setImgUrl2(e.target.value)
+    }
+    const updateImgUrl3 = (e) => {
+        setImgUrl3(e.target.value)
+    }
+    const updateImgUrl4 = (e) => {
+        setImgUrl4(e.target.value)
     }
     const updateStartDate = (e) => {
         setStartDate(e.target.value)
@@ -47,13 +84,10 @@ const AuctionForm = () => {
     const updateEndDate = (e) => {
         setEndDate(e.target.value)
     }
-    const updateImgUrl = (e) => {
-        setImgUrl(e.target.value)
-    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(createAuction(userId, vin, year, make, model, type, reservePrice, description, startDate, endDate,imgUrl))
+        const data = await dispatch(createAuction(userId, vin, year, make, model, type, city, state, description, miles, color, engine, transmission, imgUrl1, imgUrl2, imgUrl3, imgUrl4, startDate, endDate))
 
         if (data) {
             alert('Success')
@@ -114,11 +148,19 @@ const AuctionForm = () => {
                                 required={true}></input>
                             <input
                                 className='form-input'
-                                placeholder='Reserve Price (if applicable)'
-                                type='number'
-                                name='reservePrice'
-                                onChange={updateReservePrice}
-                                value={reservePrice}
+                                placeholder='City'
+                                type='text'
+                                name='city'
+                                onChange={updateCity}
+                                value={city}
+                                required={true}></input>
+                            <input
+                                className='form-input'
+                                placeholder='State'
+                                type='text'
+                                name='state'
+                                onChange={updateState}
+                                value={state}
                                 required={true}></input>
                             <textarea
                                 className='form-input'
@@ -127,6 +169,66 @@ const AuctionForm = () => {
                                 onChange={updateDescription}
                                 value={description}
                                 required={true}></textarea>
+                            <input
+                                className='form-input'
+                                placeholder='Miles'
+                                type='number'
+                                name='miles'
+                                onChange={updateMiles}
+                                value={miles}
+                                required={true}></input>
+                            <input
+                                className='form-input'
+                                placeholder='Color'
+                                type='text'
+                                name='color'
+                                onChange={updateColor}
+                                value={color}
+                                required={true}></input>
+                            <input
+                                className='form-input'
+                                placeholder='Engine'
+                                type='text'
+                                name='engine'
+                                onChange={updateEngine}
+                                value={engine}
+                                required={true}></input>
+                            <input
+                                className='form-input'
+                                placeholder='Transmission'
+                                type='text'
+                                name='transmission'
+                                onChange={updateTransmission}
+                                value={transmission}
+                                required={true}></input>
+                            <input 
+                                className='form-input'
+                                placeholder= 'Image URL 1'
+                                type='text'
+                                name='imageURL1'
+                                onChange={updateImgUrl1}
+                                value={imgUrl1}></input>
+                            <input 
+                                className='form-input'
+                                placeholder= 'Image URL 2'
+                                type='text'
+                                name='imageURL2'
+                                onChange={updateImgUrl2}
+                                value={imgUrl2}></input>
+                            <input 
+                                className='form-input'
+                                placeholder= 'Image URL 3'
+                                type='text'
+                                name='imageURL3'
+                                onChange={updateImgUrl3}
+                                value={imgUrl3}></input>
+                            <input 
+                                className='form-input'
+                                placeholder= 'Image URL 4'
+                                type='text'
+                                name='imageURL4'
+                                onChange={updateImgUrl4}
+                                value={imgUrl4}></input>
                             <input
                                 className='form-input'
                                 placeholder='Start Date'
@@ -143,13 +245,7 @@ const AuctionForm = () => {
                                 onChange={updateEndDate}
                                 value={endDate}
                                 required={true}></input>
-                            <input 
-                                className='form-input'
-                                placeholder= 'Image URL'
-                                type='text'
-                                name='imageURL'
-                                onChange={updateImgUrl}
-                                value={imgUrl}></input>
+                            
                             <button type='Submit'>Submit Vehicle</button>
                     </div>
                 </div>

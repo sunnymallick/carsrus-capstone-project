@@ -7,9 +7,9 @@ from app.models.auction import Auction
 
 def vin_number_exists(form, field):
     #checking if vin number is already in use
-    auction_vin = field.data
-    vin = Auction.query.filter(Auction.vin == auction_vin).first()
-    if vin:
+    vin = field.data
+    auction_vin = Auction.query.filter(Auction.vin == auction_vin).first()
+    if auction_vin:
         raise ValidationError('This VIN number has already been registered.')
 
 
@@ -20,9 +20,17 @@ class AuctionForm(FlaskForm):
     make = StringField('Make', validators=[DataRequired()])
     model = StringField('Model', validators=[DataRequired()])
     type = StringField('Type', validators=[DataRequired()])
-    reserve_price = IntegerField('Reserve Price', validators=[DataRequired()])
+    city = StringField('City', validators=[DataRequired()])
+    state = StringField('State', validators=[DataRequired()])
     description = TextField('Description', validators=[DataRequired()])
+    miles = IntegerField('Miles', validators=[DataRequired()])
+    color = StringField('Color', validators=[DataRequired()])
+    engine = StringField('Engine', validators=[DataRequired()])
+    transmission = StringField('Transmission', validators=[DataRequired()])
+    img_url_1 = StringField('Image URL 1', validators=[DataRequired()])
+    img_url_2 = StringField('Image URL 2', validators=[DataRequired()])
+    img_url_3 = StringField('Image URL 3', validators=[DataRequired()])
+    img_url_4 = StringField('Image URL 4', validators=[DataRequired()])
     start_date = DateField('Start Date', validators=[DataRequired()])
     end_date = DateField('End Date', validators=[DataRequired()])
-    img_url = TextField('Image URL')
     submit = SubmitField('Submit Auction')
