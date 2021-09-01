@@ -34,7 +34,7 @@ export const getOneAuction = (id) => async dispatch => {
 
     const auction = await res.json();
     if (res.ok) {
-        dispatch(load(auction));
+        dispatch(addOneAuction(auction));
     }
 };
 

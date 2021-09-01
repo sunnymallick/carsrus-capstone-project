@@ -5,6 +5,7 @@ import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import { getComments, createComment, deleteComment } from '../../store/comment';
 import EditAuctionModal from '../EditAuctionModal';
+import EditCommentModal from '../EditCommentModal';
 
 import './AuctionDetail.css'
 
@@ -154,6 +155,7 @@ const AuctionDetail = () => {
                              <div className='delete-button-container'>
                                 {sessionUser?.id === comment?.user_id &&
                                 <>
+                                <EditCommentModal commentId={comment?.id}/>
                                 <button className='comment-delete-button' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
                                 </>
                                 }

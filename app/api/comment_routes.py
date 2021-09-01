@@ -35,6 +35,18 @@ def create_comment():
     errors = form.errors
     return {'errors': validation_errors_to_error_messages(errors)}, 401
 
+@comment_routes.route('/<int:id>', methods=['PUT'])
+def edit_comment(id):
+    data = request.json
+    edit_comment = Comment.query.get(id)
+    print('--------')
+    print(edit_comment)
+    print('--------')
+    edit_comment.comment = data['comment']
+ 
+    db.session.commit()
+    return edit_comment.to_dict()
+
 @comment_routes.route('/<int:id>', methods=['DELETE'])
 def delete_comment(id):
     comment = Comment.query.get(id)

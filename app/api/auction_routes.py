@@ -62,7 +62,7 @@ def auction_form():
     return {'errors': validation_errors_to_error_messages(errors)}, 401
 
 @auction_routes.route('/<int:id>', methods=['PUT'])
-def edit_restaurant(id):
+def edit_auction(id):
     data = request.json
     auction = Auction.query.get(id)
     # image = Image.query.filter(Image.auction_id == id).all()
