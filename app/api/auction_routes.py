@@ -33,9 +33,11 @@ def get_auctions(id):
 @auction_routes.route('/form', methods=['GET', 'POST'])
 def auction_form():
     form = AuctionForm()
+    print('--------')
+    print(form.data)
+    print('--------')
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        
         auction = Auction(
             user_id=form.data['user_id'],
             vin=form.data['vin'],
@@ -43,18 +45,21 @@ def auction_form():
             make=form.data['make'],
             model=form.data['model'],
             type=form.data['type'],
-            reserve_price=form.data['reserve_price'],
+            city=form.data['city'],
+            state=form.data['state'],
             description=form.data['description'],
+            miles=form.data['miles'],
+            color=form.data['color'],
+            engine=form.data['engine'],
+            transmission=form.data['transmission'],
+            img_url_1=form.data['img_url_1'],
+            img_url_2=form.data['img_url_2'],
+            img_url_3=form.data['img_url_3'],
+            img_url_4=form.data['img_url_4'],
             start_date=form.data['start_date'],
             end_date=form.data['end_date'],
         )
         db.session.add(auction)
-        db.session.commit()
-        # image = Image(
-        #     img_url=form.data['img_url'],
-        #     auction_id=auction.id
-        # )
-        # db.session.add(image)
         db.session.commit()
         return {'message': "Let's Sell a car!"}, 200
     errors = form.errors
@@ -64,9 +69,7 @@ def auction_form():
 def edit_auction(id):
     data = request.json
     auction = Auction.query.get(id)
-    # image = Image.query.filter(Image.auction_id == id).all()
     auction.description = data['description']
-    # image.img_url = data['img_url']
     
     db.session.commit()
 
@@ -75,8 +78,7 @@ def edit_auction(id):
 @auction_routes.route('/<int:id>', methods=['DELETE'])
 def delete_auction(id):
     auction = Auction.query.get(id)
-    # images = Image.query.filter(Image.auction_id == id).first()
-    # db.session.delete(images)
+
     db.session.delete(auction)
     db.session.commit()
 

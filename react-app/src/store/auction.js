@@ -38,22 +38,30 @@ export const getOneAuction = (id) => async dispatch => {
     }
 };
 
-export const createAuction = (userId, vin, year, make, model, type, reservePrice, description, startDate, endDate,imgUrl) => async dispatch => {
+export const createAuction = (userId, vin, year, make, model, type, city, state, description, miles, color, engine, transmission, imgUrl1, imgUrl2, imgUrl3, imgUrl4, startDate, endDate) => async dispatch => {
     const res = await fetch('/api/auctions/form', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            user_id:userId,
-            vin:vin,
+            user_id: userId,
+            vin: vin,
             year:year,
             make: make,
             model: model,
             type: type,
-            reserve_price: reservePrice,
+            city: city,
+            state: state,
             description: description,
+            miles: miles,
+            color: color,
+            engine: engine,
+            transmission: transmission,
+            img_url_1: imgUrl1,
+            img_url_2: imgUrl2,
+            img_url_3: imgUrl3, 
+            img_url_4: imgUrl4,   
             start_date: startDate,
             end_date: endDate,
-            img_url: imgUrl
         })
     })
 
