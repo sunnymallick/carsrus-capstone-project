@@ -27,6 +27,16 @@ export const getComments = () => async dispatch => {
     }
 }
 
+export const getOneComment = (id) => async dispatch => {
+    const res = await fetch(`/api/auctions/${id}`);
+
+    const comment = await res.json();
+    if (res.ok) {
+        dispatch(load(comment))
+    }
+}
+
+
 export const createComment = (comment, userId, auctionId) => async dispatch => {
     const res = await fetch('/api/comments/', {
         method: 'POST',
@@ -42,6 +52,25 @@ export const createComment = (comment, userId, auctionId) => async dispatch => {
         dispatch(placeComment(newComment))
         return newComment;
     }
+}
+
+export const editComment = (commentId, userId, auctionId, comment) => async dispatch => {
+    const res = await fetch(`/api/comments/${commentId}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            id: commentId,
+            user_id: userId,
+            auction_id: auctionId,
+            comment,
+        })
+    })
+
+    const editedComment = await res.json();
+    if (res.ok) {
+        dispatch(placeComment(editedComment))
+    }
+    return editedComment;
 }
 
 export const deleteComment = (id) => async dispatch => {
