@@ -15,7 +15,7 @@ function UserSignUpModal() {
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
 					<div className='signup-title-container'>
-						<h3 className='signup-title'>Sign Up</h3>
+						<h3 className='signup-title'>Sign Up for Cars 'R' Us</h3>
 					</div>
 					<UserSignUpForm setShowModal={setShowModal} />
 				</Modal>

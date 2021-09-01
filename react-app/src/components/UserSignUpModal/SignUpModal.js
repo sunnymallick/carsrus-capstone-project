@@ -59,15 +59,17 @@ const UserSignUpForm = ({setShowModal}) => {
   }
 
   return (
+    <div className='form-container'>
     <form onSubmit={onSignUp}>
-      <div>
+      <div className='error-container'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
       <div>
-        <label>User Name</label>
         <input
+          className='form-input'
+          placeholder='Enter Username'
           type='text'
           name='username'
           onChange={updateUsername}
@@ -75,8 +77,9 @@ const UserSignUpForm = ({setShowModal}) => {
         ></input>
       </div>
       <div>
-        <label>Email</label>
         <input
+          className='form-input'
+          placeholder='Enter Email'
           type='text'
           name='email'
           onChange={updateEmail}
@@ -84,8 +87,9 @@ const UserSignUpForm = ({setShowModal}) => {
         ></input>
       </div>
       <div>
-        <label>First Name</label>
         <input
+          className='form-input'
+          placeholder='Enter Your First Name'
           type='text'
           name='firstName'
           onChange={updateFirstName}
@@ -93,8 +97,9 @@ const UserSignUpForm = ({setShowModal}) => {
         ></input>
       </div>
       <div>
-        <label>Last Name</label>
         <input
+          className='form-input'
+          placeholder='Enter Your Last Name'
           type='text'
           name='lastName'
           onChange={updateLastName}
@@ -102,8 +107,9 @@ const UserSignUpForm = ({setShowModal}) => {
         ></input>
       </div>
       <div>
-        <label>Password</label>
         <input
+          className='form-input'
+          placeholder='Enter a Password'
           type='password'
           name='password'
           onChange={updatePassword}
@@ -111,8 +117,9 @@ const UserSignUpForm = ({setShowModal}) => {
         ></input>
       </div>
       <div>
-        <label>Confirm Password</label>
         <input
+          className='form-input'
+          placeholder='Confirm Password'
           type='password'
           name='confirm_password'
           onChange={updateConfirmPassword}
@@ -120,8 +127,11 @@ const UserSignUpForm = ({setShowModal}) => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div className='submit-container'>
+      <button className='submit-button' type='submit'>Sign Up</button>
+      </div>
     </form>
+    </div>
   );
 };
 
