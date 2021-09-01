@@ -38,14 +38,15 @@ def create_comment():
 @comment_routes.route('/<int:id>', methods=['PUT'])
 def edit_comment(id):
     data = request.json
-    edit_comment = Comment.query.get(id)
-    print('--------')
-    print(edit_comment)
-    print('--------')
-    edit_comment.comment = data['comment']
+    comment = Comment.query.get(id)
+    print('-------')
+    print(comment.id)
+    print('-------')
+
+    comment.comment = data['comment']
  
     db.session.commit()
-    return edit_comment.to_dict()
+    return comment.to_dict()
 
 @comment_routes.route('/<int:id>', methods=['DELETE'])
 def delete_comment(id):

@@ -28,11 +28,11 @@ export const getComments = () => async dispatch => {
 }
 
 export const getOneComment = (id) => async dispatch => {
-    const res = await fetch(`/api/auctions/${id}`);
+    const res = await fetch(`/api/comments/${id}`);
 
     const comment = await res.json();
     if (res.ok) {
-        dispatch(load(comment))
+        dispatch(placeComment(comment))
     }
 }
 
@@ -54,15 +54,14 @@ export const createComment = (comment, userId, auctionId) => async dispatch => {
     }
 }
 
-export const editComment = (commentId, userId, auctionId, comment) => async dispatch => {
+export const editComment = (commentId, comment) => async dispatch => {
+    console.log(comment)
     const res = await fetch(`/api/comments/${commentId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
             id: commentId,
-            user_id: userId,
-            auction_id: auctionId,
-            comment,
+            comment: comment
         })
     })
 

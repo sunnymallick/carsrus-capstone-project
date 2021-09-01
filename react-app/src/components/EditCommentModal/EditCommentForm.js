@@ -15,7 +15,7 @@ useEffect(() => {
 
 const handleEdit = async (e) => {
     e.preventDefault();
-    const data = await dispatch(editComment(+commentId, userId, comment));
+    const data = await dispatch(editComment(+commentId, comment));
 
     setShowModal(false)
 
