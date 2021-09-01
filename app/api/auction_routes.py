@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Auction, Image
+from app.models import db, Auction
 from app.forms.auction_form import AuctionForm
 
 
@@ -20,16 +20,15 @@ def validation_errors_to_error_messages(validation_errors):
 def auctions():
     auctions_query = Auction.query.all()
     auctions = [auction.to_dict() for auction in auctions_query]
-    for auction in auctions:
-        images = Image.query.filter(Image.auction_id == auction['id']).all()
-        auction['image'] = [image.to_dict() for image in images]
-    return {'auctions': auctions}
+    # for auction in auctions:
+    #     images = Image.query.filter(Image.auction_id == auction['id']).all()
+    #     auction['image'] = [image.to_dict() for image in images]
+    # return {'auctions': auctions}
 
 @auction_routes.route('/<int:id>')
 def get_auctions(id):
     auction = Auction.query.get(id)
-    images = Image.query.filter(Image.auction_id == id)
-    return {**auction.to_dict(), 'images': [image.to_dict() for image in images]}
+    return auction.to_dict()
 
 @auction_routes.route('/form', methods=['GET', 'POST'])
 def auction_form():
@@ -51,11 +50,11 @@ def auction_form():
         )
         db.session.add(auction)
         db.session.commit()
-        image = Image(
-            img_url=form.data['img_url'],
-            auction_id=auction.id
-        )
-        db.session.add(image)
+        # image = Image(
+        #     img_url=form.data['img_url'],
+        #     auction_id=auction.id
+        # )
+        # db.session.add(image)
         db.session.commit()
         return {'message': "Let's Sell a car!"}, 200
     errors = form.errors
@@ -76,8 +75,8 @@ def edit_auction(id):
 @auction_routes.route('/<int:id>', methods=['DELETE'])
 def delete_auction(id):
     auction = Auction.query.get(id)
-    images = Image.query.filter(Image.auction_id == id).first()
-    db.session.delete(images)
+    # images = Image.query.filter(Image.auction_id == id).first()
+    # db.session.delete(images)
     db.session.delete(auction)
     db.session.commit()
 

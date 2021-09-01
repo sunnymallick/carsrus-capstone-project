@@ -4,7 +4,7 @@ import datetime
 # Adds a demo user, you can add other users here if you want
 def seed_auctions():
     demo = Auction(
-        vin='5TFCZ5AN2KX186676', year='2019', make='Toyota', model='Tacoma', type='Truck', reserve_price=39000, description='This truck has been absolutely amazing!', start_date=datetime.date(2021, 8, 24), end_date=datetime.date(2021, 8, 31), user_id=2)
+        vin='5TFCZ5AN2KX186676', year='2019', make='Toyota', model='Tacoma', type='Truck', city='Salt Lake City', state='Utah', description='This truck has been absolutely amazing!', miles='48000', color='white', engine='3.5L V6', transmission='6-speed Automatic', img_url_1='url1', img_url_2='url2', img_url_3='url3', img_url_4='url4', start_date=datetime.date(2021, 9, 5), end_date=datetime.date(2021, 9, 12), user_id=2)
         
     db.session.add(demo)
     db.session.commit()
