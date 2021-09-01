@@ -13,11 +13,13 @@
 .nav {
     color: white;
     justify-content: space-between;
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .nav-left {
 	margin-left: 30px;
-	padding: 5px;
+    padding-top: 10px;
 }
 
 /* .search-input {
