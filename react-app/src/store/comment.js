@@ -1,7 +1,6 @@
 export const LOAD_COMMENTS = 'comments/LOAD_COMMENTS';
 export const CREATE_COMMENT = 'comments/CREATE_COMMENT';
 export const DESTROY_COMMENT = 'comments/DESTROY_COMMENT';
-// export const UPDATE_COMMENT = 'comments/UPDATE_COMMENT';
 
 const load = comments => ({
     type: LOAD_COMMENTS,
