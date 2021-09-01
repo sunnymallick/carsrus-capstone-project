@@ -32,6 +32,7 @@ const AuctionDetail = () => {
         const data = await dispatch(createBid(bid, userId, auctionId))
 
         if (data) {
+            dispatch(getBids())
             alert('Bid successful!')
         }
     }

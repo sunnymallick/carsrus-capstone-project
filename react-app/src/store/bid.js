@@ -73,7 +73,7 @@ const bidReducer = (state = initialState, action) => {
         case CREATE_BID: {
             const newState = {
                 ...state,
-                [action.bid?.id]: action.bids
+                [action.bid.id]: action.bids
             }
             return newState
         }
