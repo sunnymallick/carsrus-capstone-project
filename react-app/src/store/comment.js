@@ -65,8 +65,8 @@ export const editComment = (commentId, comment) => async dispatch => {
         })
     })
 
-    const editedComment = await res.json();
     if (res.ok) {
+        const editedComment = await res.json();
         dispatch(placeComment(editedComment))
     }
 }
@@ -98,7 +98,7 @@ const commentReducer = (state = initialState, action) => {
         case CREATE_COMMENT: {
             const newState = {
                 ...state,
-                [action.comment?.id]: action.comments
+                [action.comment?.id]: action.comment
             }
             return newState
         }
