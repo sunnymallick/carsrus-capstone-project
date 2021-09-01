@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
-import { getComments, createComment } from '../../store/comment';
+import { getComments, createComment, deleteComment } from '../../store/comment';
 import EditAuctionModal from '../EditAuctionModal';
 
 import './AuctionDetail.css'
@@ -32,16 +32,17 @@ const AuctionDetail = () => {
         const data = await dispatch(createBid(bid, userId, auctionId))
 
         if (data) {
-            alert('Bid successful!')
+            dispatch(getBids())
+            history.push(`/auctions/${id}`)
         }
     }
 
-    const handleDelete = (id) => {
+    const handleBidDelete = (e, id) => {
+        e.preventDefault()
         const cancelled = dispatch(cancelBid(id))
-
         if (cancelled) {
             alert('Your bid has been cancelled.')
-        }
+        } 
     }
 
     const postComment = async (e) => {
@@ -49,8 +50,17 @@ const AuctionDetail = () => {
         const data = await dispatch(createComment(comment, userId, auctionId))
 
         if (data) {
-            alert('Your comment has been posted.')
-        }
+            dispatch(getComments())
+        } 
+    }
+
+    const handleCommentDelete = (id) => {
+        dispatch(deleteComment(id))
+
+        // if (cancelled) {
+        //     alert('Your comment has been deleted.')
+        //     dispatch(getComments())
+        // } 
     }
 
     useEffect(() => {
@@ -110,11 +120,11 @@ const AuctionDetail = () => {
                                     return (
                                         <>
                                             <div className='current-bid'>
-                                                <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()}</h3>
+                                                <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()} by {bid.user_id}</h3>
                                                 <div className='delete-button-container'>
                                                     {sessionUser?.id === bid?.user_id &&
                                                     <>
-                                                        <button className='bid-delete-button' onClick={() => handleDelete(bid.id)}>Cancel Bid</button>
+                                                        <button className='bid-delete-button' onClick={(e) => handleBidDelete(e, bid.id)}>Cancel Bid</button>
                                                     </>
                                                     }
                                                 </div>
@@ -129,7 +139,7 @@ const AuctionDetail = () => {
                  <form onSubmit={postComment}>
                     <textarea
                         className='form-input'
-                        placeholder='comment'
+                        placeholder='Place Comment Here'
                         name='commentArea'
                         value={comment}
                         onChange={updateComment}></textarea>
@@ -139,7 +149,16 @@ const AuctionDetail = () => {
                      <h3>User Comments:</h3>
                      {auctionComments.map(comment => {
                          return (
+                            <>
                              <p>{comment?.comment} posted by {comment?.user_id} on {comment?.created_at}</p>
+                             <div className='delete-button-container'>
+                                {sessionUser?.id === comment?.user_id &&
+                                <>
+                                <button className='comment-delete-button' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
+                                </>
+                                }
+                            </div>
+                            </>
                          )
                      })}
                  </div>
