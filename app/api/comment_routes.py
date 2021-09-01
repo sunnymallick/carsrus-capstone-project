@@ -34,3 +34,14 @@ def create_comment():
         return {'message': 'We made a comment!'}, 200
     errors = form.errors
     return {'errors': validation_errors_to_error_messages(errors)}, 401
+
+@comment_routes.route('/<int:id>', methods={'DELETE'})
+def delete_comment(id):
+    comment = Comment.query.get(id)
+    print('-------')
+    print(comment)
+    print('-------')
+    
+    db.session.delete(comment)
+    db.session.commit()
+    return {'message': "Your comment has been deleted."}, 200
