@@ -12,9 +12,9 @@ const placeBid = bid => ({
     bid
 })
 
-const deleteBid = bid => ({
+const deleteBid = bidId => ({
     type: DESTROY_BID,
-    bid
+    bidId
 })
 
 export const getBids = () => async dispatch => {
@@ -79,7 +79,7 @@ const bidReducer = (state = initialState, action) => {
         }
         case DESTROY_BID: {
             const newState = {...state};
-                delete newState[action.bid.id]
+                delete newState[action.bidId]
             return newState;
         }
         default:

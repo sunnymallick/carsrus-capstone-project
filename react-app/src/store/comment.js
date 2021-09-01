@@ -12,9 +12,9 @@ const placeComment = comment => ({
     comment
 })
 
-const destroy = comment => ({
+const destroy = commentId => ({
     type: DESTROY_COMMENT,
-    comment
+    commentId
 })
 
 export const getComments = () => async dispatch => {
@@ -77,7 +77,7 @@ const commentReducer = (state = initialState, action) => {
         }
         case DESTROY_COMMENT: {
             const newState = {...state};
-                delete newState[action.comment.id]
+                delete newState[action.commentId]
             return newState;
         }
         default:

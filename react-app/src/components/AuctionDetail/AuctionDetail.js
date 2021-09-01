@@ -42,9 +42,7 @@ const AuctionDetail = () => {
         const cancelled = dispatch(cancelBid(id))
         if (cancelled) {
             alert('Your bid has been cancelled.')
-        } else {
-            alert('Your bid was not cancelled. Please try again.')
-        }
+        } 
     }
 
     const postComment = async (e) => {
@@ -53,20 +51,16 @@ const AuctionDetail = () => {
 
         if (data) {
             dispatch(getComments())
-        } else {
-            alert('Your comment was not posted. Please try again.')
-        }
+        } 
     }
 
     const handleCommentDelete = (id) => {
-        const cancelled = dispatch(deleteComment(id))
+        dispatch(deleteComment(id))
 
-        if (cancelled) {
-            alert('Your comment has been deleted.')
-            dispatch(getComments())
-        } else {
-            alert('Your comment was not deleted. Please try again.')
-        }
+        // if (cancelled) {
+        //     alert('Your comment has been deleted.')
+        //     dispatch(getComments())
+        // } 
     }
 
     useEffect(() => {
@@ -160,7 +154,7 @@ const AuctionDetail = () => {
                              <div className='delete-button-container'>
                                 {sessionUser?.id === comment?.user_id &&
                                 <>
-                                <button className='comment-delete-button' onClick={(e) => handleCommentDelete(comment.id)}>Delete Comment</button>
+                                <button className='comment-delete-button' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
                                 </>
                                 }
                             </div>
