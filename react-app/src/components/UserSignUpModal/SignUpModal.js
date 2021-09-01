@@ -25,7 +25,7 @@ const UserSignUpForm = ({setShowModal}) => {
         setShowModal(false)
       }
     } else {
-      setErrors(['Passwords do not match.'])
+      setErrors(['Your password does not match.'])
     }
   };
 

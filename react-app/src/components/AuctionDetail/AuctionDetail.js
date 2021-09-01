@@ -5,6 +5,7 @@ import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import { getComments, createComment, deleteComment } from '../../store/comment';
 import EditAuctionModal from '../EditAuctionModal';
+import EditCommentModal from '../EditCommentModal';
 
 import './AuctionDetail.css'
 
@@ -23,7 +24,6 @@ const AuctionDetail = () => {
     const comments = Object.values(useSelector(state => state.comment))
     const auctionComments = comments.filter(comment => comment?.auction_id === +id)
     const images = auction?.image
-    console.log(images)
     const history = useHistory()
     
     
@@ -154,6 +154,7 @@ const AuctionDetail = () => {
                              <div className='delete-button-container'>
                                 {sessionUser?.id === comment?.user_id &&
                                 <>
+                                <EditCommentModal commentId={comment?.id}/>
                                 <button className='comment-delete-button' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
                                 </>
                                 }

@@ -27,6 +27,16 @@ export const getComments = () => async dispatch => {
     }
 }
 
+export const getOneComment = (id) => async dispatch => {
+    const res = await fetch(`/api/comments/${id}`);
+
+    const comment = await res.json();
+    if (res.ok) {
+        dispatch(placeComment(comment))
+    }
+}
+
+
 export const createComment = (comment, userId, auctionId) => async dispatch => {
     const res = await fetch('/api/comments/', {
         method: 'POST',
@@ -41,6 +51,23 @@ export const createComment = (comment, userId, auctionId) => async dispatch => {
         const newComment = await res.json();
         dispatch(placeComment(newComment))
         return newComment;
+    }
+}
+
+export const editComment = (commentId, comment) => async dispatch => {
+    console.log(comment)
+    const res = await fetch(`/api/comments/${commentId}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            id: commentId,
+            comment: comment
+        })
+    })
+
+    if (res.ok) {
+        const editedComment = await res.json();
+        dispatch(placeComment(editedComment))
     }
 }
 
@@ -71,7 +98,7 @@ const commentReducer = (state = initialState, action) => {
         case CREATE_COMMENT: {
             const newState = {
                 ...state,
-                [action.comment?.id]: action.comments
+                [action.comment?.id]: action.comment
             }
             return newState
         }

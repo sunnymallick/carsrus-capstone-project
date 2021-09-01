@@ -29,7 +29,7 @@ export const getAuctions = () => async dispatch => {
     }
 }
 
-export const getOneAuction = id => async dispatch => {
+export const getOneAuction = (id) => async dispatch => {
     const res = await fetch(`/api/auctions/${id}`);
 
     const auction = await res.json();
