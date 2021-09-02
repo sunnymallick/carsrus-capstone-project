@@ -79,7 +79,7 @@ const AuctionDetail = () => {
     return (
         <>
         <div className='auction-container'>
-            <p>{auction?.img_url_1}</p>
+            <img src={auction?.img_url_1} alt='img_url_1' />
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
             {sessionUser?.id === auction?.user_id &&
             <>
