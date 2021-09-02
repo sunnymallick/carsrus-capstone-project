@@ -85,6 +85,7 @@ const AuctionDetail = () => {
                 <img className='vehicle-image' src={auction?.img_url_3} alt='img_url_3' />
                 <img className='vehicle-image' src={auction?.img_url_4} alt='img_url_4' />
             </div>
+            <div className='auction-details-container'>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
             {sessionUser?.id === auction?.user_id &&
             <>
@@ -95,15 +96,14 @@ const AuctionDetail = () => {
             </div>
             </>
             }
-            <div className='auction-details-container'>
-                <p>Hosted by: {auction.username}</p>
-                <p>Location: {auction.city}, {auction.state}</p>
-                <p>Color: {auction.color}</p>
-                <p>Miles: {auction.miles}</p>
+                <p>Hosted by: {auction?.username}</p>
+                <p>Location: {auction?.city}, {auction?.state}</p>
+                <p>Color: {auction?.color}</p>
+                <p>Miles: {auction?.miles}</p>
                 <p>Tech Specs:</p>
-                <p>{auction.engine} engine</p>
-                <p>{auction.transmission}</p>
-                <p>Auction Ends: {new Date(auction.end_date).toLocaleDateString()}</p>
+                <p>{auction?.engine} engine</p>
+                <p>{auction?.transmission}</p>
+                <p>Auction Ends: {new Date(auction?.end_date).toLocaleDateString()}</p>
             </div>
             <h3>{auction?.description}</h3>
             <div className='bid-container'>

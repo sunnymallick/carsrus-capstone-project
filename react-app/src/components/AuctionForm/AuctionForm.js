@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
 import { createAuction } from '../../store/auction';
 
+import './AuctionForm.css'
+
 
 const AuctionForm = () => {
     const [errors, setErrors] = useState([])
@@ -96,14 +98,20 @@ const AuctionForm = () => {
 
     return (
         <>
+            <div className='auction-form-container'>
+            <div className='why-info-container'>
+                <>
+                    <h2>Why buy from Cars 'R' Us?</h2>
+                    <p>We are one of the only no-reserve clean title vehicle auction sites.</p>
+                </>
+            </div>
             <form onSubmit={handleSubmit}>
                 <div>
 					{errors?.map((error, ind) => (
 						<div key={ind}>{error}</div>
 					))}
 				</div>
-                <div className='forms-container'>
-                    <div className='auction-container'>
+                <div className='form-container'>
                         <p>Submit your vehicle for auction</p>
                             <input
                                 className='form-input'
@@ -247,11 +255,10 @@ const AuctionForm = () => {
                                 onChange={updateEndDate}
                                 value={endDate}
                                 required={true}></input>
-                            
                             <button type='Submit'>Submit Vehicle</button>
-                    </div>
                 </div>
             </form>
+            </div>
         </>
     )
 }

@@ -1,13 +1,13 @@
 
 .nav-container {
-	width: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-content: space-around;
     background-color: #2E294E;
-    padding: 20px;
-    
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-right: 20px;
+    width: 100%;
 }
 
 .nav {
