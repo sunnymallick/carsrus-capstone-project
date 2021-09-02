@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Auction
+from app.models import db, Auction, User
 from app.forms.auction_form import AuctionForm
 
 
@@ -18,8 +18,12 @@ def validation_errors_to_error_messages(validation_errors):
 
 @auction_routes.route('/')
 def auctions():
-    auctions = Auction.query.all()
-    return {'auctions': [auction.to_dict() for auction in auctions]}
+    auctions_query = Auction.query.all()
+    auctions = [auction.to_dict() for auction in auctions_query]
+    for auction in auctions:
+        #goes through each bid and grabs username by user_id
+        auction['username'] = User.query.get(auction['user_id']).username
+    return {'auctions': auctions}
 
 @auction_routes.route('/<int:id>')
 def get_auctions(id):
