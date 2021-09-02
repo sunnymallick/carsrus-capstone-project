@@ -52,12 +52,17 @@ const AuctionDetail = () => {
 
     const postComment = async (e) => {
         e.preventDefault();
-        const data = await dispatch(createComment(comment, userId, auctionId))
+        if (comment) {
+            const data = await dispatch(createComment(comment, userId, auctionId))
+            if (data) {
+                dispatch(getComments())
+                setComment('')
+            } 
 
-        if (data) {
-            dispatch(getComments())
-            setComment('')
-        } 
+        } else {
+            alert('Comment field cannot be empty.')
+        }
+
     }
 
     const handleCommentDelete = (id) => {
