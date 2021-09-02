@@ -96,6 +96,7 @@ const AuctionDetail = () => {
             </>
             }
             <div className='auction-details-container'>
+                <p>Hosted by: {auction.username}</p>
                 <p>Location: {auction.city}, {auction.state}</p>
                 <p>Color: {auction.color}</p>
                 <p>Miles: {auction.miles}</p>
