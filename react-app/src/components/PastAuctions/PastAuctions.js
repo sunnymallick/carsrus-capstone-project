@@ -20,6 +20,7 @@ const PastAuctions = () => {
     return (
         <>
         <div className='auctions-container'>
+            <h3>Check out our past listings here.</h3>
             {pastAuctions.map(auction => {
                 console.log(auction?.end_date)
                 return (

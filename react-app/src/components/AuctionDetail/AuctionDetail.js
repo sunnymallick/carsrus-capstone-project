@@ -29,12 +29,16 @@ const AuctionDetail = () => {
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = await dispatch(createBid(bid, userId, auctionId))
-
-        if (data) {
-            dispatch(getBids())
-            history.push(`/auctions/${id}`)
+        if (bid > 0) {
+            const data = await dispatch(createBid(bid, userId, auctionId))
+            if (data) {
+                dispatch(getBids())
+                history.push(`/auctions/${id}`)
+            }
+        } else {
+            alert('Bid must be above $0.')
         }
+
     }
 
     const handleBidDelete = (e, id) => {
@@ -95,7 +99,7 @@ const AuctionDetail = () => {
 						    <div key={ind}>{error}</div>
 					    ))}
 				    </div>
-                        {!sessionUser?.id === auction?.user_id &&
+                        {sessionUser?.id !== auction?.user_id &&
                         <div className='bid-form-container'>
                             <p>Place your bid here</p>
                             <input
