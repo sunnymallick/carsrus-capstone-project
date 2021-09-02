@@ -18,14 +18,9 @@
     padding-left: 15px;
 }
 
-
-/* .auction-details-container{
-    padding-left: 10px;
+.current-bids-container {
+    padding-bottom: 15px;
 }
-
-.bid-form-container{
-    padding-left: 10px;
-} */
 
 .technical-details-container {
     float: right;
@@ -35,4 +30,8 @@
 
 .technical-details {
     padding: 10px;
+}
+
+.comments-container {
+    padding-bottom: 15px;
 }
