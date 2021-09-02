@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { useHistory } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { destroyAuction } from '../../store/auction';
@@ -12,13 +12,15 @@ function DeleteAuction({auctionId, setShowModal}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const { id } = useParams()
+    const userId = useSelector(state => state.session.user.id)
 
     const handleDelete = (e) => {
         const success = dispatch(destroyAuction(auctionId));
         if (success) {
             e.preventDefault();
             setShowModal(false);
-            return <Redirect to={`/users/${id}`} />;
+            alert('Your auction has successfully been cancelled.')
+            history.push(`/users/${userId}`)
         } else {
             alert('Please try again')
         }
@@ -30,7 +32,7 @@ function DeleteAuction({auctionId, setShowModal}) {
     return (
         <div className="delete-confirmation-container">
           <div className="delete-confirmation-message">
-            <p className="confirmation-message">Are you sure you want to delete this auction?</p>
+            <p className="confirmation-message">Are you sure you want to cancel this auction? You will be charged a 25% convenience fee for doing so.</p>
           </div>
           <div className="delete-confirmation-buttons">
             <button className="delete-confirmation-button" onClick={handleDelete}>Delete</button>

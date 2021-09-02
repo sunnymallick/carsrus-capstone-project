@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Bid, Auction
+from app.models import db, Bid, Auction, User
 from app.forms.bid_form import BidForm
 
 bid_routes = Blueprint('bids', __name__)

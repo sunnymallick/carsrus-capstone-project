@@ -9,12 +9,9 @@ const PastAuctions = () => {
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user)
     const currentDate = new Date()
-    console.log(currentDate)
     const auctions = useSelector(state => Object.values(state.auction))
-    const pastAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
-    console.log(auctions)
-    console.log(pastAuctions)
-    const images = useSelector(state => state.image)
+    const pastAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() < new Date(currentDate).toLocaleDateString())
+
     
     useEffect(() => {
         dispatch(getAuctions())

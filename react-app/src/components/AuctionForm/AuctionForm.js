@@ -15,7 +15,7 @@ const AuctionForm = () => {
     const [state, setState] = useState('')
     const [description, setDescription] = useState('')
     const [miles, setMiles] = useState(0)
-    const [color, setColor] = useState('white')
+    const [color, setColor] = useState('')
     const [engine, setEngine] = useState('')
     const [transmission, setTransmission] = useState('')
     const [imgUrl1, setImgUrl1] = useState('')
