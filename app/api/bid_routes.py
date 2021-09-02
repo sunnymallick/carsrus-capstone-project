@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from app.models import db, Bid, Auction
+from app.models import db, Bid, Auction, User
 from app.forms.bid_form import BidForm
 
 bid_routes = Blueprint('bids', __name__)
@@ -16,8 +16,12 @@ def validation_errors_to_error_messages(validation_errors):
 
 @bid_routes.route('/')
 def bids():
-    bids = Bid.query.all()
-    return {'bids': [bid.to_dict() for bid in bids]}
+    bids_query = Bid.query.all()
+    bids = [bid.to_dict() for bid in bids_query]
+    for bid in bids:
+        #goes through each bid and grabs username by user_id
+        bid['username'] = User.query.get(bid['user_id']).username
+    return {'bids': bids}
 
 @bid_routes.route('/', methods=['POST'])
 def create_bid():

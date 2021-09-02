@@ -29,9 +29,9 @@ useEffect(() => {
     dispatch(getOneAuction(auctionId))
 }, [dispatch])
 
-const handleEdit = async (e) => {
+const handleEdit = (e) => {
     e.preventDefault();
-    const data = await dispatch(editAuction(+auctionId, vin, year, make, model, type, city, state, description, miles, color, engine, transmission, imgUrl1, imgUrl2, imgUrl3, imgUrl4));
+    const data = dispatch(editAuction(+auctionId, vin, year, make, model, type, city, state, description, miles, color, engine, transmission, imgUrl1, imgUrl2, imgUrl3, imgUrl4));
 
     setShowModal(false)
     if (data) {

@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Comment, Auction
+from app.models import db, Comment, Auction, User
 from app.forms.comment_form import CommentForm
 
 comment_routes = Blueprint('comments', __name__)
@@ -16,8 +16,12 @@ def validation_errors_to_error_messages(validation_errors):
 
 @comment_routes.route('/')
 def comments():
-    comments = Comment.query.all()
-    return {'comments': [comment.to_dict() for comment in comments]}
+    comments_query = Comment.query.all()
+    comments = [comment.to_dict() for comment in comments_query]
+    for comment in comments:
+        #goes through each comment and grabs username by user_id
+        comment['username'] = User.query.get(comment['user_id']).username
+    return {'comments': comments }
 
 @comment_routes.route('/', methods=['POST'])
 def create_comment():
@@ -39,9 +43,6 @@ def create_comment():
 def edit_comment(id):
     data = request.json
     comment = Comment.query.get(id)
-    print('-------')
-    print(comment.id)
-    print('-------')
 
     comment.comment = data['comment']
  

@@ -40,7 +40,6 @@ const NavBar = () => {
     <>
       <div className='nav-container'>
         <div className='nav-left'>
-          <label className='nav'>insert logo here</label>
           <NavLink className='nav' to='/' exact={true}>Auctions</NavLink>
           <NavLink className='nav' to='/past-auctions' exact={true}>Past Auctions</NavLink>
         </div>
