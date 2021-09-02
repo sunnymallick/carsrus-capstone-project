@@ -18,12 +18,8 @@ def validation_errors_to_error_messages(validation_errors):
 
 @auction_routes.route('/')
 def auctions():
-    auctions_query = Auction.query.all()
-    auctions = [auction.to_dict() for auction in auctions_query]
-    # for auction in auctions:
-    #     images = Image.query.filter(Image.auction_id == auction['id']).all()
-    #     auction['image'] = [image.to_dict() for image in images]
-    # return {'auctions': auctions}
+    auctions = Auction.query.all()
+    return {'auctions': [auction.to_dict() for auction in auctions]}
 
 @auction_routes.route('/<int:id>')
 def get_auctions(id):
@@ -69,7 +65,24 @@ def auction_form():
 def edit_auction(id):
     data = request.json
     auction = Auction.query.get(id)
+    auction.vin = data['vin']
+    auction.year = data['year']
+    auction.make = data['make']
+    auction.model = data['model']
+    auction.type = data['type']
+    auction.city = data['city']
+    auction.state = data['state']
     auction.description = data['description']
+    auction.miles = data['miles']
+    auction.color = data['color']
+    auction.engine = data['engine']
+    auction.transmission = data['transmission']
+    auction.img_url_1 = data['img_url_1']
+    auction.img_url_2 = data['img_url_2']
+    auction.img_url_3 = data['img_url_3']
+    auction.img_url_4 = data['img_url_4']
+    # auction.start_date = data['start_date']
+    # auction.end_date = data['end_date']
     
     db.session.commit()
 
