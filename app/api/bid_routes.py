@@ -19,6 +19,7 @@ def bids():
     bids_query = Bid.query.all()
     bids = [bid.to_dict() for bid in bids_query]
     for bid in bids:
+        #goes through each bid and grabs username by user_id
         bid['username'] = User.query.get(bid['user_id']).username
     return {'bids': bids}
 

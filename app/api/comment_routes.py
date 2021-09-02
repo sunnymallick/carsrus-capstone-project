@@ -19,6 +19,7 @@ def comments():
     comments_query = Comment.query.all()
     comments = [comment.to_dict() for comment in comments_query]
     for comment in comments:
+        #goes through each comment and grabs username by user_id
         comment['username'] = User.query.get(comment['user_id']).username
     return {'comments': comments }
 
