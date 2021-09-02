@@ -32,7 +32,8 @@ const AuctionDetail = () => {
         if (bid > 0) {
             const data = await dispatch(createBid(bid, userId, auctionId))
             if (data) {
-                dispatch(getBids())
+                await dispatch(getBids())
+                setBid(0)
                 history.push(`/auctions/${id}`)
             }
         } else {
@@ -55,6 +56,7 @@ const AuctionDetail = () => {
 
         if (data) {
             dispatch(getComments())
+            setComment('')
         } 
     }
 
@@ -96,6 +98,8 @@ const AuctionDetail = () => {
             </div>
             </>
             }
+                <div className='technical-details-container'>
+                    <div className='technical-details'>
                 <p>Hosted by: {auction?.username}</p>
                 <p>Location: {auction?.city}, {auction?.state}</p>
                 <p>Color: {auction?.color}</p>
@@ -104,6 +108,8 @@ const AuctionDetail = () => {
                 <p>{auction?.engine} engine</p>
                 <p>{auction?.transmission}</p>
                 <p>Auction Ends: {new Date(auction?.end_date).toLocaleDateString()}</p>
+                    </div>
+                </div>
             </div>
             <h3>{auction?.description}</h3>
             <div className='bid-container'>
