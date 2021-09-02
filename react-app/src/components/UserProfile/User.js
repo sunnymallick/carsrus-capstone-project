@@ -12,8 +12,8 @@ function User() {
   const currentDate = new Date()
   const auctions = useSelector(state => Object.values(state.auction))
   const userAuctions = auctions.filter(auction => auction?.user_id === +userId)
-  const pastAuctions = userAuctions.filter(auction => new Date(auction.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
-  const currentAuctions = userAuctions.filter(auction => new Date(auction.end_date).toLocaleDateString() < new Date(currentDate).toLocaleDateString())
+  const pastAuctions = userAuctions.filter(auction => new Date(auction.end_date).toLocaleDateString() < new Date(currentDate).toLocaleDateString())
+  const currentAuctions = userAuctions.filter(auction => new Date(auction.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
   const dispatch = useDispatch();
 
   useEffect(async () => {
