@@ -13,3 +13,25 @@
     border-radius: 10px;
     padding: 10px;
 }
+
+.auction-container {
+    padding-left: 15px;
+}
+
+.current-bids-container {
+    padding-bottom: 15px;
+}
+
+.technical-details-container {
+    float: right;
+    border: 1px solid black;
+    margin-right: 40px;
+}
+
+.technical-details {
+    padding: 10px;
+}
+
+.comments-container {
+    padding-bottom: 15px;
+}

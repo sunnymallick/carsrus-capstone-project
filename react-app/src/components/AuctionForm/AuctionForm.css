@@ -1,0 +1,14 @@
+.why-info-container{
+    float: left;
+    padding-left: 50px;
+}
+
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-bottom: 50px;
+    padding-right: 50px;
+    float: right;
+}
