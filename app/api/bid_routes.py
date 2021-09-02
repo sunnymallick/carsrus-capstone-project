@@ -16,8 +16,11 @@ def validation_errors_to_error_messages(validation_errors):
 
 @bid_routes.route('/')
 def bids():
-    bids = Bid.query.all()
-    return {'bids': [bid.to_dict() for bid in bids]}
+    bids_query = Bid.query.all()
+    bids = [bid.to_dict() for bid in bids_query]
+    for bid in bids:
+        bid['username'] = User.query.get(bid['user_id']).username
+    return {'bids': bids}
 
 @bid_routes.route('/', methods=['POST'])
 def create_bid():
