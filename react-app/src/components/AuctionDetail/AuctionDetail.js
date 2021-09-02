@@ -5,6 +5,7 @@ import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import { getComments, createComment, deleteComment } from '../../store/comment';
 import EditAuctionModal from '../EditAuctionModal';
+import DeleteAuctionModal from '../DeleteAuctionModal';
 import EditCommentModal from '../EditCommentModal';
 
 import './AuctionDetail.css'
@@ -23,7 +24,6 @@ const AuctionDetail = () => {
     const vehicleBids = bids.filter(bid => bid?.auction_id === +id)
     const comments = Object.values(useSelector(state => state.comment))
     const auctionComments = comments.filter(comment => comment?.auction_id === +id)
-    const images = auction?.image
     const history = useHistory()
     
     
@@ -56,11 +56,6 @@ const AuctionDetail = () => {
 
     const handleCommentDelete = (id) => {
         dispatch(deleteComment(id))
-
-        // if (cancelled) {
-        //     alert('Your comment has been deleted.')
-        //     dispatch(getComments())
-        // } 
     }
 
     useEffect(() => {
@@ -80,20 +75,18 @@ const AuctionDetail = () => {
     return (
         <>
         <div className='auction-container'>
+            <p>{auction?.img_url_1}</p>
             <h1>{auction?.year} {auction?.make} {auction?.model}</h1>
-            {images?.map(image => {
-                return (
-                    <p>{image.img_url}</p>
-                )
-            })}
+            
             <h3>{auction?.description}</h3>
-            {/* <div className='owner-edit-button-container'>
+            <div className='owner-edit-button-container'>
             {sessionUser?.id === auction?.user_id &&
             <>
-                <EditAuctionModal />
+                <EditAuctionModal auctionId={auction?.id} />
+                <DeleteAuctionModal auctionId={auction?.id} />
             </>
             }
-            </div> */}
+            </div>
             <div className='bid-container'>
                 <form onSubmit={handleSubmit}>
                     <div>
