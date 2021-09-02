@@ -168,6 +168,7 @@ const AuctionForm = () => {
                                 onChange={updateDescription}
                                 value={description}
                                 required={true}></textarea>
+                            <label>Please enter your vehicle's mileage:</label>
                             <input
                                 className='form-input'
                                 placeholder='Miles'
@@ -228,6 +229,7 @@ const AuctionForm = () => {
                                 name='imageURL4'
                                 onChange={updateImgUrl4}
                                 value={imgUrl4}></input>
+                            <label>Please enter a start date for your auction:</label>
                             <input
                                 className='form-input'
                                 placeholder='Start Date'
@@ -236,6 +238,7 @@ const AuctionForm = () => {
                                 onChange={updateStartDate}
                                 value={startDate}
                                 required={true}></input>
+                            <label>Please enter an end date for your auction:</label>
                             <input
                                 className='form-input'
                                 placeholder='End Date'
