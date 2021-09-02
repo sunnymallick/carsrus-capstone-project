@@ -20,7 +20,8 @@ const AuctionsPage = () => {
     return (
         <>
             <div className='auctions-title'>
-                <h2>Auctions</h2>
+                <h2>Welcome to Cars 'R' Us, a no-reserve auction website for cars and trucks!</h2>
+                <h3>Live Auctions</h3>
             </div>
         <div className='auctions-container'>
             {auctions.map(auction => {
@@ -29,7 +30,8 @@ const AuctionsPage = () => {
                         <>
                             <div className='auction-listing'>
                                 <NavLink key={auction.id} to={`/auctions/${auction.id}`}>
-                                <h3>{auction.year} {auction.make} {auction.model}</h3>
+                                <img className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
+                                <h3 className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
                                 </NavLink>
                             </div>
                         </>

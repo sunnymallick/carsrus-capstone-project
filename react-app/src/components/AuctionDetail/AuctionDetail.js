@@ -95,7 +95,15 @@ const AuctionDetail = () => {
             </div>
             </>
             }
-            
+            <div className='auction-details-container'>
+                <p>Location: {auction.city}, {auction.state}</p>
+                <p>Color: {auction.color}</p>
+                <p>Miles: {auction.miles}</p>
+                <p>Tech Specs:</p>
+                <p>{auction.engine} engine</p>
+                <p>{auction.transmission}</p>
+                <p>Auction Ends: {new Date(auction.end_date).toLocaleDateString()}</p>
+            </div>
             <h3>{auction?.description}</h3>
             <div className='bid-container'>
                 <form onSubmit={handleSubmit}>
