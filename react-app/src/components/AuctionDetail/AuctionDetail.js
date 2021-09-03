@@ -139,7 +139,7 @@ const AuctionDetail = () => {
                 <p>Color: {auction?.color}</p>
                 <p>Miles: {auction?.miles}</p>
                 <p>Tech Specs:</p>
-                <p>{auction?.engine} engine</p>
+                <p>{auction?.engine}</p>
                 <p>{auction?.transmission}</p>
                 <p>Auction Begins: {new Date(auction?.start_date).toLocaleDateString()} </p>
                 <p>Auction Ends: {new Date(auction?.end_date).toLocaleDateString()}</p>
