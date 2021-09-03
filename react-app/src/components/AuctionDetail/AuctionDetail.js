@@ -154,9 +154,9 @@ const AuctionDetail = () => {
 						    <div key={ind}>{error}</div>
 					    ))}
 				    </div>
+                    {highestBidAnnouncement}
                         {sessionUser?.id !== auction?.user_id &&
                         <div className='bid-form-container'>
-                            {highestBidAnnouncement}
                             <h3>Place your bid here</h3>
                             <input
                                 id='bid-input'
@@ -180,7 +180,7 @@ const AuctionDetail = () => {
                                             <div className='current-bid'>
                                                 <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()} at {new Date(bid.created_at).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})} by {bid.username}</h3>
                                                 <div className='delete-button-container'>
-                                                    {sessionUser?.id === bid?.user_id &&
+                                                    {sessionUser?.id === bid?.user_id && bid.bid === highestBid.bid &&
                                                     <>
                                                         <button className='bid-delete-button' onClick={(e) => handleBidDelete(e, bid.id)}>Cancel Bid</button>
                                                     </>
