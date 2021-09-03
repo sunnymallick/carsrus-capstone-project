@@ -31,9 +31,9 @@ const AuctionsPage = () => {
                     return (
                         <>
                             <div className='auction-listing'>
-                                <NavLink key={auction.id} to={`/auctions/${auction.id}`}>
-                                <img className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
-                                <h3 className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
+                                <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`}>
+                                <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
+                                <h3 key={auction.id} className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
                                 </NavLink>
                             </div>
                         </>
@@ -50,9 +50,9 @@ const AuctionsPage = () => {
                     return (
                         <>
                             <div className='auction-listing'>
-                                <NavLink key={auction.id} to={`/auctions/${auction.id}`}>
-                                <img className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
-                                <h3 className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
+                                <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`}>
+                                <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
+                                <h3 key={auction.id} className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
                                 </NavLink>
                             </div>
                         </>
