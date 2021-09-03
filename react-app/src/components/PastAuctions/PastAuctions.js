@@ -21,9 +21,8 @@ const PastAuctions = () => {
         <div className='auctions-container'>
             <h3>Check out our past listings here.</h3>
             {pastAuctions.map(auction => {
-                console.log(auction?.end_date)
                 return (
-                    <h3 key={auction.id}>{auction?.year} {auction?.make} {auction?.model}</h3>
+                    <h3 key={auction?.id}>{auction?.year} {auction?.make} {auction?.model}</h3>
                 )
             })}
             {/* {auctions.map(auction => {
