@@ -6,9 +6,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding-left: 100px;
-    padding-right: 100px;
-    border: 1px solid black
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .auction-listing {
@@ -16,13 +15,21 @@
 }
 
 .img-main-page {
-    width: 500px;
-    height: 350px;
+    width: 430px;
+    height: 300px;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
 }
 
 .auction-title {
     text-align: center;
 }
 
+.auction-listing {
+    border: 1px solid gray;
+    border-radius: 8px
+}
+
+.future-auctions-title {
+    padding-top: 30px;
+}

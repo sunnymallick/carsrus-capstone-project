@@ -23,7 +23,7 @@ const AuctionsPage = () => {
         <>
             <div className='current-auctions-title'>
                 <h2>Welcome to Cars 'R' Us, a no-reserve auction website for cars and trucks!</h2>
-                <h3>Live Auctions</h3>
+                <h3 className='auction-title'>Live Auctions</h3>
             </div>
         <div className='auctions-container'>
             {currentAuctions.map(auction => {
@@ -42,7 +42,7 @@ const AuctionsPage = () => {
             })}
         </div>
         <div className='future-auctions-title'>
-            <h3>Future Auctions</h3>
+            <h3 className='auction-title'>Future Auctions</h3>
         </div>
         <div className='auctions-container'>
         {futureAuctions.map(auction => {
