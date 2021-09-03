@@ -97,7 +97,7 @@ const AuctionDetail = () => {
             <p>You need to be logged in to place a bid on this vehicle.</p> 
         )
         commentSubmitButton = (
-            <button id='comment-submit' type='submit' disabled>Submit Comment</button>  
+            <p>You need to be logged in to place a comment.</p> 
         )
     }
 
