@@ -13,9 +13,6 @@ import './AuctionDetail.css'
 const AuctionDetail = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
-    const [bid, setBid] = useState(0)
-    const [comment, setComment] = useState('')
-    const [errors, setErrors] = useState([])
     const auction = useSelector(state => state.auction[id])
     const auctionId = auction?.id
     const sessionUser = useSelector(state => state.session.user)
@@ -24,20 +21,25 @@ const AuctionDetail = () => {
     const vehicleBids = bids.filter(bid => bid?.auction_id === +id)
     const comments = Object.values(useSelector(state => state.comment))
     const auctionComments = comments.filter(comment => comment?.auction_id === +id)
+    const highestBid = vehicleBids.reduce((accum, currentVal) => (accum.bid > currentVal.bid) ? accum: currentVal, 1)
+    const [bid, setBid] = useState(highestBid.bid)
+    const [comment, setComment] = useState('')
+    const [errors, setErrors] = useState([])
     const history = useHistory()
     
+    console.log(highestBid.bid)
     
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (bid > 0) {
+        if (bid > highestBid.bid) {
             const data = await dispatch(createBid(bid, userId, auctionId))
             if (data) {
                 await dispatch(getBids())
-                setBid(0)
+                setBid(bid)
                 history.push(`/auctions/${id}`)
             }
         } else {
-            alert('Bid must be above $0.')
+            alert(`Bid must be above $${highestBid.bid}.`)
         }
 
     }
@@ -81,6 +83,24 @@ const AuctionDetail = () => {
 
     const updateComment = (e) => {
         setComment(e.target.value)
+    }
+
+    let commentSubmitButton;
+    let bidSubmitButton;
+    if (sessionUser) {
+        bidSubmitButton = (
+            <button type='submit'>Place Bid</button> 
+        )
+        commentSubmitButton = (
+            <button type='submit'>Submit Comment</button>   
+        )
+    } else {
+        bidSubmitButton = (
+            <button type='submit' disabled>Place Bid</button> 
+        )
+        commentSubmitButton = (
+            <button type='submit' disabled>Submit Comment</button>  
+        )
     }
 
     return (
@@ -132,10 +152,11 @@ const AuctionDetail = () => {
                                 placeholder='Bid Amount'
                                 type='number'
                                 name='bid'
+                                min={highestBid.bid}
                                 onChange={updateBid}
                                 value={bid}
                                 required={true}></input>
-                            <button type='submit'>Place Bid</button> 
+                            {bidSubmitButton}
                         </div>
                         }
                 </form>
@@ -169,7 +190,7 @@ const AuctionDetail = () => {
                         name='commentArea'
                         value={comment}
                         onChange={updateComment}></textarea>
-                        <button type='submit'>Submit Comment</button>        
+                        {commentSubmitButton}       
                  </form>
                  <div className='posted-comments-container'>
                      <h3>User Comments:</h3>
