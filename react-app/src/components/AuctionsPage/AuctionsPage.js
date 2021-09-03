@@ -11,6 +11,8 @@ const AuctionsPage = () => {
     const currentDate = new Date()
     const auctions = useSelector(state => Object.values(state.auction))
     const currentAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
+    const futureAuctions = auctions.filter(auction => new Date(auction?.start_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
+    console.log(futureAuctions)
 
     
     useEffect(() => {
@@ -19,12 +21,31 @@ const AuctionsPage = () => {
 
     return (
         <>
-            <div className='auctions-title'>
+            <div className='current-auctions-title'>
                 <h2>Welcome to Cars 'R' Us, a no-reserve auction website for cars and trucks!</h2>
                 <h3>Live Auctions</h3>
             </div>
         <div className='auctions-container'>
-            {auctions.map(auction => {
+            {currentAuctions.map(auction => {
+                if (auction?.id) {
+                    return (
+                        <>
+                            <div className='auction-listing'>
+                                <NavLink key={auction.id} to={`/auctions/${auction.id}`}>
+                                <img className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
+                                <h3 className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
+                                </NavLink>
+                            </div>
+                        </>
+                    )
+                }
+            })}
+        </div>
+        <div className='future-auctions-title'>
+            <h3>Future Auctions</h3>
+        </div>
+        <div className='auctions-container'>
+        {futureAuctions.map(auction => {
                 if (auction?.id) {
                     return (
                         <>
