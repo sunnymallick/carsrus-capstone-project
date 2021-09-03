@@ -39,7 +39,7 @@ const AuctionDetail = () => {
                 history.push(`/auctions/${id}`)
             }
         } else {
-            alert(`Bid must be above $${highestBid.bid}.`)
+            alert(`Bid must be above the highest bid of $${highestBid.bid}.`)
         }
 
     }
@@ -146,7 +146,7 @@ const AuctionDetail = () => {
 				    </div>
                         {sessionUser?.id !== auction?.user_id &&
                         <div className='bid-form-container'>
-                            <p>Place your bid here</p>
+                            <h3>Place your bid here</h3>
                             <input
                                 className='form-input'
                                 placeholder='Bid Amount'
