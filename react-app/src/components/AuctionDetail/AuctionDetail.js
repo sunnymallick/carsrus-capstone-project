@@ -26,9 +26,7 @@ const AuctionDetail = () => {
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([])
     const history = useHistory()
-    
-    console.log(highestBid.bid)
-    
+        
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (bid > highestBid.bid) {
@@ -89,17 +87,28 @@ const AuctionDetail = () => {
     let bidSubmitButton;
     if (sessionUser) {
         bidSubmitButton = (
-            <button type='submit'>Place Bid</button> 
+            <button className='bid-comment-submit' type='submit'>Place Bid</button> 
         )
         commentSubmitButton = (
-            <button type='submit'>Submit Comment</button>   
+            <button className='bid-comment-submit' type='submit'>Submit Comment</button>   
         )
     } else {
         bidSubmitButton = (
-            <button type='submit' disabled>Place Bid</button> 
+            <p>You need to be logged in to place a bid on this vehicle.</p> 
         )
         commentSubmitButton = (
-            <button type='submit' disabled>Submit Comment</button>  
+            <button id='comment-submit' type='submit' disabled>Submit Comment</button>  
+        )
+    }
+
+    let highestBidAnnouncement;
+    if (highestBid.bid > 0) {
+        highestBidAnnouncement = (
+            <h2>The highest bid is currently ${highestBid.bid} by {highestBid.username}!</h2>
+        )
+    } else {
+        highestBidAnnouncement = (
+            <h2>This vehicle currently has no bids.</h2>
         )
     }
 
@@ -136,6 +145,7 @@ const AuctionDetail = () => {
                     </div>
                 </div>
             </div>
+            
             <h3>{auction?.description}</h3>
             <div className='bid-container'>
                 <form onSubmit={handleSubmit}>
@@ -146,13 +156,14 @@ const AuctionDetail = () => {
 				    </div>
                         {sessionUser?.id !== auction?.user_id &&
                         <div className='bid-form-container'>
+                            {highestBidAnnouncement}
                             <h3>Place your bid here</h3>
                             <input
-                                className='form-input'
+                                id='bid-input'
                                 placeholder='Bid Amount'
                                 type='number'
                                 name='bid'
-                                min={highestBid.bid}
+                                min={highestBid?.bid}
                                 onChange={updateBid}
                                 value={bid}
                                 required={true}></input>
@@ -167,7 +178,7 @@ const AuctionDetail = () => {
                                     return (
                                         <>
                                             <div className='current-bid'>
-                                                <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()} by {bid.username}</h3>
+                                                <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()} at {new Date(bid.created_at).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})} by {bid.username}</h3>
                                                 <div className='delete-button-container'>
                                                     {sessionUser?.id === bid?.user_id &&
                                                     <>
@@ -183,21 +194,24 @@ const AuctionDetail = () => {
                     </div>
              </div>
              <div className='comments-container'>
+                 <div className='comments-form'>
                  <form onSubmit={postComment}>
-                    <textarea
-                        className='form-input'
+                    <input
+                        id='comment-input'
+                        type='text'
                         placeholder='Place Comment Here'
                         name='commentArea'
                         value={comment}
-                        onChange={updateComment}></textarea>
-                        {commentSubmitButton}       
+                        onChange={updateComment}></input>
+                        {commentSubmitButton} 
                  </form>
+                </div>      
                  <div className='posted-comments-container'>
                      <h3>User Comments:</h3>
                      {auctionComments.map(comment => {
                          return (
                             <>
-                             <p>{comment?.comment} posted by {comment?.username} on {new Date(comment?.created_at).toLocaleDateString()}</p>
+                             <h3>{comment?.comment} posted by {comment?.username} on {new Date(comment?.created_at).toLocaleDateString()}</h3>
                              <div className='delete-button-container'>
                                 {sessionUser?.id === comment?.user_id &&
                                 <>

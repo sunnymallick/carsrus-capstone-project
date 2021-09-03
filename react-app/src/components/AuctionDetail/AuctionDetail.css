@@ -35,3 +35,23 @@
 .comments-container {
     padding-bottom: 15px;
 }
+
+#bid-input {
+    padding: 10px;
+}
+
+.bid-comment-submit {
+    padding: 10px;
+    background-color: #2E294E;
+    color: white;
+}
+
+#comment-input {
+    padding: 10px;
+    width: 500px
+}
+
+.comments-form {
+    display: block;
+    align-items: center;
+}
