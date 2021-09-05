@@ -7,7 +7,6 @@ import './AuctionsPage.css'
 
 const AuctionsPage = () => {
     const dispatch = useDispatch()
-    const sessionUser = useSelector((state) => state.session.user)
     const currentDate = new Date()
     const auctions = useSelector(state => Object.values(state.auction))
     const currentAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
