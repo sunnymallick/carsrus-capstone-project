@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Auction, User
+from app.models import db, Auction, User, Bid
 from app.forms.auction_form import AuctionForm
 
 

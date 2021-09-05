@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
-import { getBids } from '../../store/bid';
+
 
 import './AuctionsPage.css'
 
@@ -12,13 +12,10 @@ const AuctionsPage = () => {
     const auctions = useSelector(state => Object.values(state.auction))
     const currentAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
     const futureAuctions = auctions.filter(auction => new Date(auction?.start_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
-    const bids = useSelector(state => state.bid)
-    console.log(bids)
 
     
     useEffect(() => {
         dispatch(getAuctions())
-        dispatch(getBids())
     }, [dispatch])
 
     return (
@@ -33,13 +30,13 @@ const AuctionsPage = () => {
                     return (
                         <>
                             <div className='auction-listing'>
-                                <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`}>
-                                <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
-                                <h3 key={auction.id} className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
-                                <div>
-                                    <p className='auction-title'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
-                                </div>
-                                </NavLink>
+                                <Link key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}>
+                                    <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
+                                    <div className='vehicle-detail-container'>
+                                        <h3 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h3>
+                                    </div>
+                                        <p className='auction-details'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
+                                </Link>
                             </div>
                         </>
                     )
@@ -55,10 +52,12 @@ const AuctionsPage = () => {
                     return (
                         <>
                             <div className='auction-listing'>
-                                <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`}>
+                                <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}>
                                 <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
-                                <h3 key={auction.id} className='auction-title'>{auction.year} {auction.make} {auction.model}</h3>
+                                <h3 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h3>
+                                <p className='auction-details'>Auction begins on {new Date(auction.start_date).toLocaleDateString()}</p>
                                 </NavLink>
+
                             </div>
                         </>
                     )
