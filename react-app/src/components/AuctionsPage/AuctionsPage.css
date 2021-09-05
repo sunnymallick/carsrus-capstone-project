@@ -8,7 +8,7 @@
     justify-content: space-between;
     padding-left: 50px;
     padding-right: 50px;
-    text-decoration: none !important;
+    text-decoration: none;
 }
 
 
@@ -40,4 +40,25 @@
 
 .date-container {
     text-decoration: none;
+    float: left;
+    color: black;
+}
+
+.auction-date-detail {
+    color: black;
+    padding-left: 15px;
+    float: left;
+}
+
+.auction-location-container {
+    text-align: right;
+    float: right;
+}
+
+
+.auction-location-detail {
+    font-weight: lighter;
+    padding-right: 15px;
+    color: gray;
+    float: right;
 }

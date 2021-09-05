@@ -34,8 +34,14 @@ const AuctionsPage = () => {
                                     <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
                                     <div className='vehicle-detail-container'>
                                         <h3 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h3>
+                                        <div className='auction-date-container'>
+                                        <p className='auction-date-detail'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
+                                        </div>
+                                        <div className='auction-location-container'>
+                                        <p className='auction-location-detail'>{auction.city}, {auction.state}
+                                        </p>
+                                        </div>
                                     </div>
-                                        <p className='auction-details'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
                                 </Link>
                             </div>
                         </>
