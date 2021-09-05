@@ -40,8 +40,10 @@ const NavBar = () => {
     <>
       <div className='nav-container'>
         <div className='nav-left'>
-          <NavLink className='nav' to='/' exact={true}>Auctions</NavLink>
-          <NavLink className='nav' to='/past-auctions' exact={true}>Past Auctions</NavLink>
+          <NavLink to='/' exact={true}>
+            <img id='logo' src='https://sunny-capstone-project.s3.us-west-1.amazonaws.com/images-for-site/logo/carsrus-transparent.001.png' alt='logo-png'></img>
+          </NavLink>
+          
         </div>
         
         {/* <div className='nav-search'>
@@ -50,6 +52,8 @@ const NavBar = () => {
           </form>
         </div> */}
         <div className='nav-right'>
+          <NavLink className='nav' to='/' exact={true}>Auctions</NavLink>
+          <NavLink className='nav' to='/past-auctions' exact={true}>Past Auctions</NavLink>
           {sessionLinks}
         </div>
       </div>
