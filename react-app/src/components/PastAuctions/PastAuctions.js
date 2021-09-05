@@ -22,7 +22,12 @@ const PastAuctions = () => {
             <h3>Check out our past listings here.</h3>
             {pastAuctions.map(auction => {
                 return (
+                    <>
+                    <NavLink to={`/auctions/${auction.id}`}>
+                    <img className='img-past-auction-page' src={auction.img_url_1} alt='img_url_1'></img>
                     <h3 key={auction?.id}>{auction?.year} {auction?.make} {auction?.model}</h3>
+                    </NavLink>
+                    </>
                 )
             })}
             {/* {auctions.map(auction => {
