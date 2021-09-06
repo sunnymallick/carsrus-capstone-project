@@ -146,8 +146,8 @@ const AuctionDetail = () => {
                 <p>Tech Specs:</p>
                 <p>{auction?.engine}</p>
                 <p>{auction?.transmission}</p>
-                <p>Auction Begins: {new Date(auction?.start_date).toLocaleDateString()} </p>
-                <p>Auction Ends: {new Date(auction?.end_date).toLocaleDateString()}</p>
+                <p>Auction Begins: {new Date(auction?.start_date).toLocaleDateString('en-US', {timeZone: 'UTC'})} </p>
+                <p>Auction Ends: {new Date(auction?.end_date).toLocaleDateString('en-US', {timeZone: 'UTC'})}</p>
                     </div>
                 </div>
             </div>

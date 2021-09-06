@@ -78,10 +78,10 @@ const UserLoginForm = ({setShowModal}) => {
         />
       </div>
       <div className='submit-login-form'>
-        <button className='submit-button' type='submit'>Login</button>
+        <button className='bid-comment-submit-edit-delete' type='submit'>Login</button>
       </div>
       <div className='submit-login-form'>
-          <button className='submit-button' type='submit' onClick={demoUser}>Demo Cars 'R' Us</button>
+          <button className='bid-comment-submit-edit-delete' type='submit' onClick={demoUser}>Demo Cars 'R' Us</button>
       </div>
     </form>
     </div>

@@ -10,11 +10,10 @@ const AuctionsPage = () => {
     const dispatch = useDispatch()
     const currentDate = new Date()
     const auctions = useSelector(state => Object.values(state.auction))
-    console.log(auctions)
-    const currentAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
+    const currentAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString('en-US', {timeZone: 'UTC'}) < new Date(currentDate).toLocaleDateString('en-US', {timeZone: 'UTC'}))
+    const futureAuctions = auctions.filter(auction => new Date(auction?.start_date).toLocaleDateString('en-US', {timeZone: 'UTC'}) > new Date(currentDate).toLocaleDateString('en-US', {timeZone: 'UTC'}))
     console.log(currentAuctions)
-    const futureAuctions = auctions.filter(auction => new Date(auction?.start_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
-
+    console.log(futureAuctions)
     
     useEffect(() => {
         dispatch(getAuctions())
@@ -39,7 +38,7 @@ const AuctionsPage = () => {
                                         <h2 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h2>
                                         </div>
                                         <div className='auction-date-container'>
-                                            <p className='auction-date-detail'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
+                                            <p className='auction-date-detail'>Auction ends on {new Date(auction.end_date).toLocaleDateString('en-US', {timeZone: 'UTC'})}</p>
                                         </div>
                                         <div className='auction-location-container'>
                                             <p className='auction-location-detail'>{auction.city}, {auction.state}</p>

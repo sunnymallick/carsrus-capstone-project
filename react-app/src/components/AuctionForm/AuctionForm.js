@@ -255,7 +255,7 @@ const AuctionForm = () => {
                                 onChange={updateEndDate}
                                 value={endDate}
                                 required={true}></input>
-                            <button type='Submit'>Submit Vehicle</button>
+                            <button className='bid-comment-submit-edit-delete' type='Submit'>Submit Vehicle</button>
                 </div>
             </form>
             </div>

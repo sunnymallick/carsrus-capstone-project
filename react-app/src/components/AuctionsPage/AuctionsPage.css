@@ -31,7 +31,8 @@
     color: black;
 }
 .auction-listing-container {
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
 }
 .auction-listing {
     border: 1px solid gray;
@@ -71,6 +72,3 @@
     float: right;
 }
 
-.future-auctions-container {
-    padding-bottom: 30px;
-}
