@@ -1,8 +1,12 @@
+.auction-form-container {
+    display: flex;
+    flex-direction: column;
+}
+
 .why-info-container{
     float: left;
     padding-left: 50px;
 }
-
 
 .form-container {
     display: flex;

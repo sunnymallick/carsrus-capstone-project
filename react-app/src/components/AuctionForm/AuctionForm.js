@@ -107,7 +107,7 @@ const AuctionForm = () => {
                 </>
             </div>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='error-container'>
 					{errors?.map((error, ind) => (
 						<div key={ind}>{error}</div>
 					))}
@@ -257,7 +257,7 @@ const AuctionForm = () => {
                                 value={endDate}
                                 required={true}></input> */}
                             <button className='bid-comment-submit-edit-delete' type='Submit'>Submit Vehicle</button>
-                            <p>By clicking submit, you are agreeing to the terms and conditions set by Cars 'R' Us and their supporting entities. Upon successful submission, your auction will begin immediately and expire in 7 days on {endDate.toLocaleDateString()}. </p>
+                            {/* <p>By clicking Submit Vehicle, you are agreeing to the terms and conditions set by Cars 'R' Us and their supporting entities. Upon successful submission, your auction will begin immediately and expire in 7 days on {endDate.toLocaleDateString()}. </p> */}
                 </div>
             </form>
             </div>

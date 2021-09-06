@@ -7,7 +7,7 @@ from app.models.auction import Auction
 
 def vin_number_exists(form, field):
     #checking if vin number is already in use
-    vin = field.data
+    vin = form.data['vin']
     auction_vin = Auction.query.filter(Auction.vin == vin).first()
     if auction_vin:
         raise ValidationError('This VIN number has already been registered.')
