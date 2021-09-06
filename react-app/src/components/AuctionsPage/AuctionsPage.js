@@ -51,6 +51,7 @@ const AuctionsPage = () => {
         </div>
         <div className='future-auctions-title'>
             <h3 className='auction-title'>Future Auctions</h3>
+            <h3 className='auction-title'>Check back in to bid on these vehicles!</h3>
         </div>
         <div className='auctions-container'>
         {futureAuctions.map(auction => {
@@ -59,11 +60,11 @@ const AuctionsPage = () => {
                         <>
                         <div className='future-auctions-container'>
                             <div className='auction-listing'>
-                                <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}>
+                                {/* <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}> */}
                                 <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
                                 <h2 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h2>
                                 <p className='auction-details'>Auction begins on {new Date(auction.start_date).toLocaleDateString()}</p>
-                                </NavLink>
+                                {/* </NavLink> */}
                             </div>
                         </div>
                         </>

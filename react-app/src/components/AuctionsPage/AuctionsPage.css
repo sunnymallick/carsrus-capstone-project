@@ -35,7 +35,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     text-decoration: none;
 }
 
