@@ -30,7 +30,9 @@
     text-decoration: none; 
     color: black;
 }
-
+.auction-listing-container {
+    padding-top: 30px;
+}
 .auction-listing {
     border: 1px solid gray;
     border-radius: 8px;

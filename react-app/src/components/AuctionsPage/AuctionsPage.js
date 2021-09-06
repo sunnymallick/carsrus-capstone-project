@@ -27,10 +27,11 @@ const AuctionsPage = () => {
                 <h3 className='auction-title'>Live Auctions</h3>
             </div>
         <div className='auctions-container'>
-            {currentAuctions.map(auction => {
+            {auctions.map(auction => {
                 if (auction?.id) {
                     return (
                         <>
+                        <div className='auction-listing-container'> 
                             <div className='auction-listing'>
                                 <Link key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}>
                                     <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
@@ -43,15 +44,15 @@ const AuctionsPage = () => {
                                         <div className='auction-location-container'>
                                             <p className='auction-location-detail'>{auction.city}, {auction.state}</p>
                                         </div>
-                                    
                                 </Link>
                             </div>
+                        </div>
                         </>
                     )
                 }
             })}
         </div>
-        <div className='future-auctions-title'>
+        {/* <div className='future-auctions-title'>
             <h3 className='auction-title'>Upcoming Auctions</h3>
             <h3 className='auction-title'>Check back in to bid on these vehicles!</h3>
         </div>
@@ -62,18 +63,17 @@ const AuctionsPage = () => {
                         <>
                         <div className='future-auctions-container'>
                             <div className='auction-listing'>
-                                {/* <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}> */}
                                 <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
                                 <h2 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h2>
                                 <p className='auction-details'>Auction begins on {new Date(auction.start_date).toLocaleDateString()}</p>
-                                {/* </NavLink> */}
+                                
                             </div>
                         </div>
                         </>
                     )
                 }
             })}
-        </div>
+        </div> */}
         </>
     )
 }
