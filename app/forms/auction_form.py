@@ -7,7 +7,7 @@ from app.models.auction import Auction
 
 def vin_number_exists(form, field):
     #checking if vin number is already in use
-    vin = field.data
+    vin = form.data['vin']
     auction_vin = Auction.query.filter(Auction.vin == vin).first()
     if auction_vin:
         raise ValidationError('This VIN number has already been registered.')
@@ -31,6 +31,6 @@ class AuctionForm(FlaskForm):
     img_url_2 = StringField('Image URL 2', validators=[DataRequired()])
     img_url_3 = StringField('Image URL 3', validators=[DataRequired()])
     img_url_4 = StringField('Image URL 4', validators=[DataRequired()])
-    start_date = DateField('Start Date', validators=[DataRequired()])
-    end_date = DateField('End Date', validators=[DataRequired()])
+    start_date = StringField('Start Date')
+    end_date = StringField('End Date')
     submit = SubmitField('Submit Auction')

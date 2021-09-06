@@ -5,3 +5,10 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.bid-comment-submit-edit-delete {
+    padding: 10px;
+    background-color: #2E294E;
+    color: white;
+    border-radius: 8px;
+}

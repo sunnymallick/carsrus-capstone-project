@@ -1,0 +1,35 @@
+
+.user-profile-details {
+    text-align: right;
+    padding-right: 50px;
+}
+
+#user-profile-header {
+    text-align: center;
+}
+
+.user-auction-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-left: 50px;
+    padding-right: 50px;
+    text-decoration: none;
+}
+
+.user-auction-listing {
+    border: 1px solid gray;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+}
+
+.edit-delete-buttons {
+    padding-left: 135px;
+    padding-bottom: 10px;
+}
+
+.user-auctions-container {
+    padding-top: 20px;
+}

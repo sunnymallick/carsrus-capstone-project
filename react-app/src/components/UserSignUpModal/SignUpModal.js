@@ -128,7 +128,7 @@ const UserSignUpForm = ({setShowModal}) => {
         ></input>
       </div>
       <div className='submit-container'>
-      <button className='submit-button' type='submit'>Sign Up</button>
+      <button className='bid-comment-submit-edit-delete' type='submit'>Sign Up</button>
       </div>
     </form>
     </div>

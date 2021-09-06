@@ -24,8 +24,9 @@ const AuctionForm = () => {
     const [imgUrl2, setImgUrl2] = useState('')
     const [imgUrl3, setImgUrl3] = useState('')
     const [imgUrl4, setImgUrl4] = useState('')
-    const [startDate, setStartDate] = useState('')
-    const [endDate, setEndDate] = useState('')
+    const currentDate = new Date();
+    const startDate = new Date();
+    const endDate = new Date(currentDate.setDate(currentDate.getDate() + 7))
     const dispatch = useDispatch();
     const userId = useSelector((state) => state.session.user.id)
     const history = useHistory();
@@ -79,19 +80,19 @@ const AuctionForm = () => {
     const updateImgUrl4 = (e) => {
         setImgUrl4(e.target.value)
     }
-    const updateStartDate = (e) => {
-        setStartDate(e.target.value)
-    }
-    const updateEndDate = (e) => {
-        setEndDate(e.target.value)
-    }
+    // const updateStartDate = (e) => {
+    //     setStartDate(e.target.value)
+    // }
+    // const updateEndDate = (e) => {
+    //     setEndDate(e.target.value)
+    // }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const data = await dispatch(createAuction(userId, vin, year, make, model, type, city, state, description, miles, color, engine, transmission, imgUrl1, imgUrl2, imgUrl3, imgUrl4, startDate, endDate))
 
         if (data) {
-            alert('Success')
+            alert('Your auction has been submitted!')
             history.push('/')
         }
     }
@@ -106,7 +107,7 @@ const AuctionForm = () => {
                 </>
             </div>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='error-container'>
 					{errors?.map((error, ind) => (
 						<div key={ind}>{error}</div>
 					))}
@@ -237,7 +238,7 @@ const AuctionForm = () => {
                                 name='imageURL4'
                                 onChange={updateImgUrl4}
                                 value={imgUrl4}></input>
-                            <label>Please enter a start date for your auction:</label>
+                            {/* <label>Please enter a start date for your auction:</label>
                             <input
                                 className='form-input'
                                 placeholder='Start Date'
@@ -254,8 +255,9 @@ const AuctionForm = () => {
                                 name='endDate'
                                 onChange={updateEndDate}
                                 value={endDate}
-                                required={true}></input>
-                            <button type='Submit'>Submit Vehicle</button>
+                                required={true}></input> */}
+                            <button className='bid-comment-submit-edit-delete' type='Submit'>Submit Vehicle</button>
+                            {/* <p>By clicking Submit Vehicle, you are agreeing to the terms and conditions set by Cars 'R' Us and their supporting entities. Upon successful submission, your auction will begin immediately and expire in 7 days on {endDate.toLocaleDateString()}. </p> */}
                 </div>
             </form>
             </div>
