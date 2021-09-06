@@ -1,4 +1,11 @@
+.user-profile-container {
+    position: relative;
+    min-height: 100vh;
+}
 
+.content-wrap {
+    padding-bottom: 2.5rem;
+}
 .user-profile-details {
     text-align: right;
     padding-right: 50px;
@@ -33,4 +40,12 @@
 .user-auctions-container {
     padding-top: 20px;
     padding-bottom: 30px;
+}
+
+.error-msg {
+    text-align: center;
+}
+
+.user-auction-container-none {
+    padding-bottom: 794px;
 }
