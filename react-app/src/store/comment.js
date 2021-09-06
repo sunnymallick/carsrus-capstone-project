@@ -1,7 +1,7 @@
 export const LOAD_COMMENTS = 'comments/LOAD_COMMENTS';
 export const CREATE_COMMENT = 'comments/CREATE_COMMENT';
 export const DESTROY_COMMENT = 'comments/DESTROY_COMMENT';
-export const UPDATE_COMMENT = 'comments/UPDATE_COMMENT';
+// export const UPDATE_COMMENT = 'comments/UPDATE_COMMENT';
 
 const load = comments => ({
     type: LOAD_COMMENTS,
@@ -13,10 +13,10 @@ const placeComment = comment => ({
     comment
 })
 
-const updateComment = comment => ({
-    type: UPDATE_COMMENT,
-    comment
-})
+// const updateComment = comment => ({
+//     type: UPDATE_COMMENT,
+//     comment
+// })
 
 const destroy = commentId => ({
     type: DESTROY_COMMENT,
@@ -73,7 +73,7 @@ export const editComment = (commentId, comment, userId, auctionId) => async disp
 
     if (res.ok) {
         const editedComment = await res.json();
-        dispatch(updateComment(editedComment))
+        dispatch(placeComment(editedComment))
     }
 }
 
@@ -108,13 +108,13 @@ const commentReducer = (state = initialState, action) => {
             }
             return newState
         }
-        case UPDATE_COMMENT: {
-            const newState = { 
-                ...state,
-                [action.comment.id]: action.comment
-            }
-            return newState
-        }
+        // case UPDATE_COMMENT: {
+        //     const newState = { 
+        //         ...state,
+        //         [action.comment?.id]: action.comment
+        //     }
+        //     return newState
+        // }
         case DESTROY_COMMENT: {
             const newState = {...state};
                 delete newState[action.commentId]

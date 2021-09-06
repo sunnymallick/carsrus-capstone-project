@@ -1,5 +1,6 @@
 from .db import db
 from flask_login import UserMixin
+from .user import User
 
 class Comment(db.Model, UserMixin):
     __tablename__ = 'comments'
@@ -21,5 +22,6 @@ class Comment(db.Model, UserMixin):
             'user_id': self.user_id,
             'auction_id': self.auction_id,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'username': User.query.get(self.user_id).username
         }

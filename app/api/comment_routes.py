@@ -40,25 +40,14 @@ def create_comment():
     return {'errors': validation_errors_to_error_messages(errors)}, 401
 
 @comment_routes.route('/<int:id>', methods=['PUT'])
-def edit_comment(id):
+def edit_comment(id): 
+    data = request.json
     comment = Comment.query.get(id)
-    form = CommentForm()
-    print('---------')
-    print(form.data)
-    print('==========')
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        comment.comment=form.data['comment']
-        db.session.commit()
-        return comment.to_dict()
-    # data = request.json
-    # comment = Comment.query.get(id)
 
-    # comment.comment = data['comment']
- 
-    # db.session.commit()
-    # return comment.to_dict()
-    return {'errors', validation_errors_to_error_messages(form.errors)}
+    comment.comment = data['comment']
+    # comment.username = User.query.get(comment.user_id).username
+    db.session.commit()
+    return comment.to_dict()
 
 
 @comment_routes.route('/<int:id>', methods=['DELETE'])

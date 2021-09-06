@@ -1,5 +1,6 @@
 from .db import db
 from flask_login import UserMixin
+from .user import User
 
 
 class Auction(db.Model, UserMixin):
@@ -27,8 +28,8 @@ class Auction(db.Model, UserMixin):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     user = db.relationship('User', back_populates='auctions')
-    bids = db.relationship('Bid', back_populates='auction')
-    comments = db.relationship('Comment', back_populates='auction')
+    bids = db.relationship('Bid', back_populates='auction', cascade='all, delete')
+    comments = db.relationship('Comment', back_populates='auction', cascade='all, delete')
 
     def to_dict(self):
         return {
@@ -51,5 +52,6 @@ class Auction(db.Model, UserMixin):
             'img_url_4': self.img_url_4,
             'start_date': self.start_date,
             'end_date': self.end_date,
-            'user_id': self.user_id
+            'user_id': self.user_id,
+            'username': User.query.get(self.user_id).username
         }
