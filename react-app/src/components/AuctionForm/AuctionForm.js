@@ -102,8 +102,10 @@ const AuctionForm = () => {
             <div className='auction-form-container'>
             <div className='why-info-container'>
                 <>
-                    <h2>Why buy from Cars 'R' Us?</h2>
-                    <p>We are one of the only no-reserve clean title vehicle auction sites.</p>
+                    <h2>Why sell through Cars 'R' Us?</h2>
+                    <p className='why-info'>We are one of the only no-reserve clean title vehicle auction sites.</p>
+                    <p className='why-info'>Get top dollar for your vehicle with our industry low fees.</p>
+                    <p className='why-info'>Enjoy selling to a market of car enthusiasts.</p>
                 </>
             </div>
             <form onSubmit={handleSubmit}>
@@ -257,7 +259,7 @@ const AuctionForm = () => {
                                 value={endDate}
                                 required={true}></input> */}
                             <button className='bid-comment-submit-edit-delete' type='Submit'>Submit Vehicle</button>
-                            {/* <p>By clicking Submit Vehicle, you are agreeing to the terms and conditions set by Cars 'R' Us and their supporting entities. Upon successful submission, your auction will begin immediately and expire in 7 days on {endDate.toLocaleDateString()}. </p> */}
+                            <p>*By clicking Submit Vehicle, you are agreeing to the terms and conditions set by Cars 'R' Us and their supporting entities. Upon successful submission, your auction will begin immediately and expire in 7 days on {endDate.toLocaleDateString()}. </p>
                 </div>
             </form>
             </div>
