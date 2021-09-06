@@ -10,7 +10,7 @@ const PastAuctions = () => {
     const sessionUser = useSelector((state) => state.session.user)
     const currentDate = new Date()
     const auctions = useSelector(state => Object.values(state.auction))
-    const pastAuctions = auctions.filter(auction => (new Date(auction?.end_date).toLocaleDateString() < new Date(currentDate).toLocaleDateString()) && (new Date(auction?.start_date).toLocaleDateString() < new Date(currentDate).toLocaleDateString()))
+    const futureAuctions = auctions.filter(auction => new Date(auction?.start_date).toLocaleDateString() > new Date(currentDate).toLocaleDateString())
     
     useEffect(() => {
         dispatch(getAuctions())
@@ -20,13 +20,13 @@ const PastAuctions = () => {
         <>
         <div className='auctions-container'>
             <h3>Check out our past listings here.</h3>
-            {pastAuctions.map(auction => {
+            {futureAuctions.map(auction => {
                 return (
                     <>
                     <NavLink to={`/auctions/${auction.id}`}>
                     <img className='img-past-auction-page' src={auction.img_url_1} alt='img_url_1'></img>
-                    <h3 key={auction?.id}>{auction?.year} {auction?.make} {auction?.model}</h3>
                     </NavLink>
+                    <h3 key={auction?.id}>{auction?.year} {auction?.make} {auction?.model}</h3>
                     </>
                 )
             })}
