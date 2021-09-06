@@ -27,8 +27,11 @@ function User() {
 
   return (
     <>
-      <h3>{sessionUser.first_name} {sessionUser.last_name}</h3>
-            <h2>Your Listings</h2>
+      <div className='user-profile-details-container'>
+        <h3 className='user-profile-details'>{sessionUser.first_name} {sessionUser.last_name}</h3>
+        <h3 className='user-profile-details'>Member since September 2021</h3>
+      </div>
+            <h2 id='user-profile-header'>Your Listings on Cars 'R' Us</h2>
         <div className='user-auction-container'>
             {userAuctions.map(auction => {
               return (
