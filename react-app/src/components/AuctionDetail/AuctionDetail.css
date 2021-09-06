@@ -16,6 +16,7 @@
 
 .auction-container {
     padding-left: 15px;
+    padding-right: 15px;
 }
 
 .current-bids-container {
@@ -52,3 +53,6 @@
     align-items: center;
 }
 
+.auction-description-container {
+    padding-right: 20px;
+}

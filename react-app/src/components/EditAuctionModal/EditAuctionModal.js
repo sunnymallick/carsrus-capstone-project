@@ -102,7 +102,7 @@ return (
                     ))}
                 </div>
                 <div className='edit-form-container'>
-                    <p>Update the Description for your {auction?.year} {auction?.make} {auction?.model}</p>
+                    <p>Update the information for your {auction?.year} {auction?.make} {auction?.model}</p>
                             <input
                                 className='form-input'
                                 placeholder='VIN'
@@ -227,7 +227,7 @@ return (
                                 onChange={updateImgUrl4}
                                 value={imgUrl4}></input>
                      <div className='edit-auction_button-container'>
-					    <button id='edit-auction-button' type='submit'>
+					    <button className='bid-comment-submit-edit-delete' type='submit'>
 						Update Auction
 					</button>
                     </div>

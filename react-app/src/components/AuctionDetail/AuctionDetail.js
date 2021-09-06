@@ -151,8 +151,9 @@ const AuctionDetail = () => {
                     </div>
                 </div>
             </div>
-            
-            <h3>{auction?.description}</h3>
+            <div className='auction-description-container'>
+                <h3 className='auction-description'>{auction?.description}</h3>
+            </div>
             <div className='bid-container'>
                 <form onSubmit={handleSubmit}>
                     <div>
