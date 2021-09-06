@@ -8,7 +8,7 @@ function DeleteAuctionModal({auctionId}) {
 
 	return (
         <>
-            <button className='bid-comment-submit-edit-delete' onClick={() => setShowModal(true)}>Delete Auction</button>
+            <button className='bid-comment-submit-edit-delete' onClick={() => setShowModal(true)}>Cancel Auction</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <DeleteAuction auctionId={auctionId} setShowModal={setShowModal} />

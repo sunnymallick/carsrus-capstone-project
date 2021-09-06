@@ -47,7 +47,7 @@ return (
                         required={true}></textarea>
                 </div>
                 <div className='edit-comment_button-container'>
-                    <button id='edit-comment-button' type='submit'>
+                    <button className='bid-comment-submit-edit-delete' type='submit'>
                         Update Comment
                     </button>
                 </div>

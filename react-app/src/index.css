@@ -11,5 +11,13 @@ body {
     background-color: #2E294E;
     color: white;
     border-radius: 8px;
+    font-family: 'Red Hat Display', sans-serif;
 }
 
+.delete-button {
+    padding: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 8px;
+    font-family: 'Red Hat Display', sans-serif;
+}

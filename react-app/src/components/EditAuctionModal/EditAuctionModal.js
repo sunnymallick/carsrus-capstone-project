@@ -102,7 +102,7 @@ return (
                     ))}
                 </div>
                 <div className='edit-form-container'>
-                    <p>Update the information for your {auction?.year} {auction?.make} {auction?.model}</p>
+                    <p className='edit-form-header'>Update the information for your {auction?.year} {auction?.make} {auction?.model}</p>
                             <input
                                 className='form-input'
                                 placeholder='VIN'
