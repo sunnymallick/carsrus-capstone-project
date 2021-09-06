@@ -8,7 +8,7 @@ function EditCommentModal({ commentId }) {
 
     return (
         <>
-            <button id='edit-comment-button' onClick={() => setShowModal(true)}>Edit</button>
+            <button className='bid-comment-submit-edit-delete' onClick={() => setShowModal(true)}>Edit</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <EditCommentForm commentId={commentId} setShowModal={setShowModal} />

@@ -58,7 +58,7 @@ def auction_form():
         )
         db.session.add(auction)
         db.session.commit()
-        return {'message': "Let's Sell a car!"}, 200
+        return {}, 200
     errors = form.errors
     return {'errors': validation_errors_to_error_messages(errors)}, 401
 

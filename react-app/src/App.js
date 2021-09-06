@@ -36,9 +36,9 @@ function App() {
       <Route path='/auctions/:id' exact={true}>
         <AuctionDetail />
       </Route>
-      <Route path='/past-auctions' exact={true}>
+      {/* <Route path='/past-auctions' exact={true}>
         <PastAuctions />
-      </Route>
+      </Route> */}
       <Route path='/form' exact={true}>
         <AuctionForm />
       </Route>

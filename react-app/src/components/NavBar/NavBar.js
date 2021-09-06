@@ -53,7 +53,7 @@ const NavBar = () => {
         </div> */}
         <div className='nav-right'>
           <NavLink className='nav' to='/' exact={true}>Auctions</NavLink>
-          <NavLink className='nav' to='/past-auctions' exact={true}>Past Auctions</NavLink>
+          {/* <NavLink className='nav' to='/past-auctions' exact={true}>Past Auctions</NavLink> */}
           {sessionLinks}
         </div>
       </div>
