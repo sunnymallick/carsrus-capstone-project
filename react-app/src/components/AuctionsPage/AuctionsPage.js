@@ -50,7 +50,7 @@ const AuctionsPage = () => {
             })}
         </div>
         <div className='future-auctions-title'>
-            <h3 className='auction-title'>Future Auctions</h3>
+            <h3 className='auction-title'>Upcoming Auctions</h3>
             <h3 className='auction-title'>Check back in to bid on these vehicles!</h3>
         </div>
         <div className='auctions-container'>

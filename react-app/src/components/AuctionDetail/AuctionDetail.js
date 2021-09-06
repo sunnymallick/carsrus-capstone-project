@@ -17,13 +17,12 @@ const AuctionDetail = () => {
     const auctionId = auction?.id
     const sessionUser = useSelector(state => state.session.user)
     const userId = sessionUser?.id
+    const currentDate = new Date()
     const bids = Object.values(useSelector(state => state.bid))
     const vehicleBids = bids.filter(bid => bid?.auction_id === +id)
-    console.log(vehicleBids)
     const comments = Object.values(useSelector(state => state.comment))
     const auctionComments = comments.filter(comment => comment?.auction_id === +id)
     const highestBid = vehicleBids.reduce((accum, currentVal) => (accum.bid > currentVal.bid) ? accum: currentVal, 1)
-    console.log(highestBid.bid)
     const [bid, setBid] = useState(highestBid.bid)
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([])
@@ -36,6 +35,7 @@ const AuctionDetail = () => {
             if (data) {
                 await dispatch(getBids())
                 setBid(bid)
+                alert('Your bid has been placed!')
                 history.push(`/auctions/${id}`)
             }
         } else if (highestBid.bid === undefined) {
@@ -46,6 +46,8 @@ const AuctionDetail = () => {
                 history.push(`/auctions/${id}`)
             }
         } else if (bid < highestBid.bid) {
+            alert(`Bid must be above the highest bid of $${highestBid.bid}.`)
+        } else {
             alert(`Bid must be above the highest bid of $${highestBid.bid}.`)
         }
 
@@ -93,18 +95,12 @@ const AuctionDetail = () => {
     }
 
     let commentSubmitButton;
-    let bidSubmitButton;
     if (sessionUser) {
-        bidSubmitButton = (
-            <button className='bid-comment-submit' type='submit'>Place Bid</button> 
-        )
+       
         commentSubmitButton = (
-            <button className='bid-comment-submit' type='submit'>Submit Comment</button>   
+            <button className='bid-comment-submit-edit-delete' type='submit'>Submit Comment</button>   
         )
     } else {
-        bidSubmitButton = (
-            <p>You need to be logged in to place a bid on this vehicle.</p> 
-        )
         commentSubmitButton = (
             <p>You need to be logged in to place a comment.</p> 
         )
@@ -165,7 +161,7 @@ const AuctionDetail = () => {
 					    ))}
 				    </div>
                     {highestBidAnnouncement}
-                        {sessionUser?.id !== auction?.user_id &&
+                        {sessionUser?.id && sessionUser?.id !== auction?.user_id && 
                         <div className='bid-form-container'>
                             <h3>Place your bid here</h3>
                             <input
@@ -177,9 +173,13 @@ const AuctionDetail = () => {
                                 onChange={updateBid}
                                 value={bid}
                                 required={true}></input>
-                            {bidSubmitButton}
+                            <button className='bid-comment-submit-edit-delete' type='submit'>Place Bid</button> 
                         </div>
                         }
+                        {!sessionUser?.id &&
+                            <p>You must be logged in to place a bid on this vehicle.</p>
+                        }
+                        {/* {auction?.end_date < current} */}
                 </form>
                         <div className='current-bids-container'>
                             <h3>Bid History:</h3>
@@ -188,11 +188,11 @@ const AuctionDetail = () => {
                                     return (
                                         <>
                                             <div className='current-bid'>
-                                                <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()} at {new Date(bid.created_at).toLocaleTimeString('en-US', {hour: '2-digit', minute:'2-digit'})} by {bid.username}</h3>
+                                                <h3>${bid.bid} on {new Date(bid.created_at).toLocaleDateString()} at {new Date(bid.created_at).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} by {bid.username}</h3>
                                                 <div className='delete-button-container'>
                                                     {sessionUser?.id === bid?.user_id && bid.bid === highestBid.bid &&
                                                     <>
-                                                        <button className='bid-delete-button' onClick={(e) => handleBidDelete(e, bid.id)}>Cancel Bid</button>
+                                                        <button className='bid-comment-submit-edit-delete' onClick={(e) => handleBidDelete(e, bid.id)}>Cancel Your Bid</button>
                                                     </>
                                                     }
                                                 </div>
@@ -226,7 +226,7 @@ const AuctionDetail = () => {
                                 {sessionUser?.id === comment?.user_id &&
                                 <>
                                 <EditCommentModal commentId={comment?.id}/>
-                                <button className='comment-delete-button' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
+                                <button className='bid-comment-submit-edit-delete' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
                                 </>
                                 }
                             </div>

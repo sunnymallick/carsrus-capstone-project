@@ -8,7 +8,7 @@ function EditAuctionModal({ auctionId }) {
 
     return (
         <>
-            <button id='edit-auction-button' onClick={() => setShowModal(true)}>Edit Auction</button>
+            <button className='bid-comment-submit-edit-delete' onClick={() => setShowModal(true)}>Edit Auction</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
                     <EditAuctionForm auctionId={auctionId} setShowModal={setShowModal} />
