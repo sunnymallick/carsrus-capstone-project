@@ -39,8 +39,7 @@ const AuctionsPage = () => {
                                             <p className='auction-date-detail'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
                                         </div>
                                         <div className='auction-location-container'>
-                                            <p className='auction-location-detail'>{auction.city}, {auction.state}
-                                        </p>
+                                            <p className='auction-location-detail'>{auction.city}, {auction.state}</p>
                                         </div>
                                     
                                 </Link>
