@@ -21,7 +21,7 @@ const AuctionsPage = () => {
     return (
         <>
             <div className='current-auctions-title'>
-                <h2>Welcome to Cars 'R' Us, a no-reserve auction website for cars and trucks!</h2>
+                <h2 id='site-title'>Welcome to Cars 'R' Us, a no-reserve auction website for cars and trucks!</h2>
                 <h3 className='auction-title'>Live Auctions</h3>
             </div>
         <div className='auctions-container'>
@@ -33,15 +33,16 @@ const AuctionsPage = () => {
                                 <Link key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}>
                                     <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
                                     <div className='vehicle-detail-container'>
-                                        <h3 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h3>
+                                        <h2 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h2>
+                                        </div>
                                         <div className='auction-date-container'>
-                                        <p className='auction-date-detail'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
+                                            <p className='auction-date-detail'>Auction ends on {new Date(auction.end_date).toLocaleDateString()}</p>
                                         </div>
                                         <div className='auction-location-container'>
-                                        <p className='auction-location-detail'>{auction.city}, {auction.state}
+                                            <p className='auction-location-detail'>{auction.city}, {auction.state}
                                         </p>
                                         </div>
-                                    </div>
+                                    
                                 </Link>
                             </div>
                         </>
@@ -57,14 +58,16 @@ const AuctionsPage = () => {
                 if (auction?.id) {
                     return (
                         <>
+                        <div className='future-auctions-container'>
                             <div className='auction-listing'>
                                 <NavLink key={Math.floor(Math.random() * 10000)} to={`/auctions/${auction.id}`} style={{ textDecoration: 'none'}}>
                                 <img key={Math.floor(Math.random() * 10000)} className='img-main-page' src={auction.img_url_1} alt='img_url_1'></img>
-                                <h3 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h3>
+                                <h2 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h2>
                                 <p className='auction-details'>Auction begins on {new Date(auction.start_date).toLocaleDateString()}</p>
                                 </NavLink>
 
                             </div>
+                        </div>
                         </>
                     )
                 }
