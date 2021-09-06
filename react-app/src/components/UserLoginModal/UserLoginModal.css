@@ -1,19 +1,22 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap');
 
 .login-button {
     margin-left: 10px;
-    padding: 5px 15px;
+    margin-bottom: 5px;
+    padding: 5px 15px 5px;
     cursor: pointer;
     color: white;
     background-color: #2E294E;
     font-size: 20px;
     border: 1px solid white;
+    font-family: 'Red Hat Display', sans-serif;
 }
 
 .form-input {
 	width: 400px;
 	padding: 10px;
 	margin: 5px;
+    font-family: 'Red Hat Display', sans-serif;
 }
 
 .login-title {
@@ -27,11 +30,13 @@
 
 .form-container {
     padding: 10px;
+    margin-left: 30px;
 }
 
 .submit-login-form {
    display: flex;
    justify-content: center;
+   padding: 5px;
 }
 
 .submit-button {
@@ -40,3 +45,4 @@
     border-radius: 5px;
     color: white;
 }
+

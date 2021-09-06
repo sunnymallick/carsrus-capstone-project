@@ -19,9 +19,11 @@ const AuctionDetail = () => {
     const userId = sessionUser?.id
     const bids = Object.values(useSelector(state => state.bid))
     const vehicleBids = bids.filter(bid => bid?.auction_id === +id)
+    console.log(vehicleBids)
     const comments = Object.values(useSelector(state => state.comment))
     const auctionComments = comments.filter(comment => comment?.auction_id === +id)
     const highestBid = vehicleBids.reduce((accum, currentVal) => (accum.bid > currentVal.bid) ? accum: currentVal, 1)
+    console.log(highestBid.bid)
     const [bid, setBid] = useState(highestBid.bid)
     const [comment, setComment] = useState('')
     const [errors, setErrors] = useState([])
@@ -36,7 +38,14 @@ const AuctionDetail = () => {
                 setBid(bid)
                 history.push(`/auctions/${id}`)
             }
-        } else {
+        } else if (highestBid.bid === undefined) {
+            const data = await dispatch(createBid(bid, userId, auctionId))
+            if (data) {
+                await dispatch(getBids())
+                setBid(bid)
+                history.push(`/auctions/${id}`)
+            }
+        } else if (bid < highestBid.bid) {
             alert(`Bid must be above the highest bid of $${highestBid.bid}.`)
         }
 
@@ -164,7 +173,7 @@ const AuctionDetail = () => {
                                 placeholder='Bid Amount'
                                 type='number'
                                 name='bid'
-                                min={highestBid?.bid}
+                                min='0'
                                 onChange={updateBid}
                                 value={bid}
                                 required={true}></input>
