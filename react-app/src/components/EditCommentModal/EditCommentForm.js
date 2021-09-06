@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getOneComment, editComment } from '../../store/comment';
+import { getComments, getOneComment, editComment } from '../../store/comment';
 
 const EditCommentForm = ({commentId, setShowModal}) => {
     const editedComment = useSelector(state => state.comment[commentId])
+    const userId = editedComment.user_id
+    const auctionId = editedComment.auction_id
+    const username = editedComment.username
     const [errors, setErrors] = useState([])
     const [comment, setComment] = useState(editedComment.comment)
     const dispatch = useDispatch()
@@ -15,9 +18,11 @@ const EditCommentForm = ({commentId, setShowModal}) => {
 
 const handleEdit = (e) => {
     e.preventDefault();
-    const data = dispatch(editComment(+commentId, comment));
+    const data = dispatch(editComment(+commentId, comment, userId, auctionId));
 
-    setShowModal(false)
+    if (data) {
+        setShowModal(false)
+    }
     if (data.errors) {
         setErrors(data.errors)
     }
