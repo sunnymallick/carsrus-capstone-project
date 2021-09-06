@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { getComments, getOneComment, editComment } from '../../store/comment';
 
 const EditCommentForm = ({commentId, setShowModal}) => {
@@ -10,18 +11,22 @@ const EditCommentForm = ({commentId, setShowModal}) => {
     const [errors, setErrors] = useState([])
     const [comment, setComment] = useState(editedComment.comment)
     const dispatch = useDispatch()
+    const history = useHistory()
 
 
-// useEffect(() => {
-//     dispatch(getOneComment(commentId))
-// }, [dispatch])
+useEffect(() => {
+    dispatch(getComments())
+}, [dispatch])
 
 const handleEdit = (e) => {
     e.preventDefault();
     const data = dispatch(editComment(+commentId, comment, userId, auctionId));
 
     if (data) {
+        dispatch(getComments())
         setShowModal(false)
+        history.push(`/auctions/${auctionId}`)
+        
     }
     if (data.errors) {
         setErrors(data.errors)
