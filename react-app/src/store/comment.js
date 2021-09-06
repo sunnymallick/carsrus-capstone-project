@@ -1,6 +1,7 @@
 export const LOAD_COMMENTS = 'comments/LOAD_COMMENTS';
 export const CREATE_COMMENT = 'comments/CREATE_COMMENT';
 export const DESTROY_COMMENT = 'comments/DESTROY_COMMENT';
+export const UPDATE_COMMENT = 'comments/UPDATE_COMMENT';
 
 const load = comments => ({
     type: LOAD_COMMENTS,
@@ -9,6 +10,11 @@ const load = comments => ({
 
 const placeComment = comment => ({
     type: CREATE_COMMENT,
+    comment
+})
+
+const updateComment = comment => ({
+    type: UPDATE_COMMENT,
     comment
 })
 
@@ -54,20 +60,20 @@ export const createComment = (comment, userId, auctionId) => async dispatch => {
     }
 }
 
-export const editComment = (commentId, comment) => async dispatch => {
-    console.log(comment)
+export const editComment = (commentId, comment, userId, auctionId) => async dispatch => {
     const res = await fetch(`/api/comments/${commentId}`, {
         method: 'PUT',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
-            id: commentId,
-            comment: comment
+            comment: comment,
+            user_id: userId,
+            auction_id: auctionId,
         })
     })
 
     if (res.ok) {
         const editedComment = await res.json();
-        dispatch(placeComment(editedComment))
+        dispatch(updateComment(editedComment))
     }
 }
 
@@ -99,6 +105,13 @@ const commentReducer = (state = initialState, action) => {
             const newState = {
                 ...state,
                 [action.comment?.id]: action.comment
+            }
+            return newState
+        }
+        case UPDATE_COMMENT: {
+            const newState = { 
+                ...state,
+                [action.comment.id]: action.comment
             }
             return newState
         }

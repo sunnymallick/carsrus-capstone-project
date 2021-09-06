@@ -1,0 +1,22 @@
+.auction-edit-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-form-container {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+.edit-form-header {
+    text-align: center;
+}
+
+.edit-auction_button-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}

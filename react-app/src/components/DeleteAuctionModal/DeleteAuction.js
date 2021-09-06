@@ -35,7 +35,7 @@ function DeleteAuction({auctionId, setShowModal}) {
             <p className="confirmation-message">Are you sure you want to cancel this auction? You will be charged a 25% convenience fee for doing so.</p>
           </div>
           <div className="delete-confirmation-buttons">
-            <button className="bid-comment-submit-edit-delete" onClick={handleDelete}>Delete</button>
+            <button className="delete-button" onClick={handleDelete}>Delete Auction</button>
             <button className="bid-comment-submit-edit-delete" onClick={handleCancel}>Cancel</button>
           </div>
         </div>
