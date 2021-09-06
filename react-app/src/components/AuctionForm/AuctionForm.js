@@ -8,22 +8,22 @@ import './AuctionForm.css'
 
 const AuctionForm = () => {
     const [errors, setErrors] = useState([])
-    const [vin, setVin] = useState('testtest')
-    const [year, setYear] = useState('test')
-    const [make, setMake] = useState('test')
-    const [model, setModel] = useState('test')
-    const [type, setType] = useState('test')
-    const [city, setCity] = useState('test')
-    const [state, setState] = useState('test')
-    const [description, setDescription] = useState('test')
-    const [miles, setMiles] = useState(5000000)
-    const [color, setColor] = useState('test')
-    const [engine, setEngine] = useState('test')
-    const [transmission, setTransmission] = useState('test')
-    const [imgUrl1, setImgUrl1] = useState('test')
-    const [imgUrl2, setImgUrl2] = useState('test')
-    const [imgUrl3, setImgUrl3] = useState('test')
-    const [imgUrl4, setImgUrl4] = useState('test')
+    const [vin, setVin] = useState('')
+    const [year, setYear] = useState('')
+    const [make, setMake] = useState('')
+    const [model, setModel] = useState('')
+    const [type, setType] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [description, setDescription] = useState('')
+    const [miles, setMiles] = useState(0)
+    const [color, setColor] = useState('')
+    const [engine, setEngine] = useState('')
+    const [transmission, setTransmission] = useState('')
+    const [imgUrl1, setImgUrl1] = useState('')
+    const [imgUrl2, setImgUrl2] = useState('')
+    const [imgUrl3, setImgUrl3] = useState('')
+    const [imgUrl4, setImgUrl4] = useState('')
     const currentDate = new Date();
     const startDate = new Date();
     const endDate = new Date(currentDate.setDate(currentDate.getDate() + 7))
@@ -257,6 +257,7 @@ const AuctionForm = () => {
                                 value={endDate}
                                 required={true}></input> */}
                             <button className='bid-comment-submit-edit-delete' type='Submit'>Submit Vehicle</button>
+                            <p>By clicking submit, you are agreeing to the terms and conditions set by Cars 'R' Us and their supporting entities. Upon successful submission, your auction will begin immediately and expire in 7 days on {endDate.toLocaleDateString()}. </p>
                 </div>
             </form>
             </div>

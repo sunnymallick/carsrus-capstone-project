@@ -12,8 +12,6 @@ const AuctionsPage = () => {
     const auctions = useSelector(state => Object.values(state.auction))
     const currentAuctions = auctions.filter(auction => new Date(auction?.end_date).toLocaleDateString('en-US', {timeZone: 'UTC'}) < new Date(currentDate).toLocaleDateString('en-US', {timeZone: 'UTC'}))
     const futureAuctions = auctions.filter(auction => new Date(auction?.start_date).toLocaleDateString('en-US', {timeZone: 'UTC'}) > new Date(currentDate).toLocaleDateString('en-US', {timeZone: 'UTC'}))
-    console.log(currentAuctions)
-    console.log(futureAuctions)
     
     useEffect(() => {
         dispatch(getAuctions())
