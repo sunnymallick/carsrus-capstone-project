@@ -23,10 +23,7 @@ const handleEdit = (e) => {
     const data = dispatch(editComment(+commentId, comment, userId, auctionId));
 
     if (data) {
-        dispatch(getComments())
-        setShowModal(false)
-        history.push(`/auctions/${auctionId}`)
-        
+        setShowModal(false) 
     }
     if (data.errors) {
         setErrors(data.errors)
