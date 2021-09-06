@@ -64,7 +64,6 @@ const AuctionsPage = () => {
                                 <h2 key={auction.id} className='auction-details'>{auction.year} {auction.make} {auction.model}</h2>
                                 <p className='auction-details'>Auction begins on {new Date(auction.start_date).toLocaleDateString()}</p>
                                 </NavLink>
-
                             </div>
                         </div>
                         </>
