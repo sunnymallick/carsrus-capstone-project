@@ -11,10 +11,12 @@ const Footer = () => {
                             <h2>Built and designed by Sunny Mallick</h2>
                         </div>
                         <div className='footer-links'> 
-                            <a className='footer-link' href='https://www.linkedin.com/in/sunny-mallick-896a33169/'>
-                                Check me out on Linkedin <i class="fab fa-linkedin"></i></a>
                             <a className='footer-link' href='https://github.com/sunnymallick/carsrus-capstone-project'>
-                                Check out this repo <i class="fab fa-github"></i></a>
+                                Link to this repo on Github <i class="fab fa-github"></i></a>
+                            <a className='footer-link' href='https://www.linkedin.com/in/sunny-mallick-896a33169/'>
+                                Check out my Linkedin profile <i class="fab fa-linkedin"></i></a>
+                            <a className='footer-link' href='mailto:sunny.mallick927@gmail.com'>
+                                Contact me <i class="fas fa-envelope-square"></i></a>
                         </div>
                     </div>
                 </div>
