@@ -171,6 +171,7 @@ const AuctionDetail = () => {
                                 type='number'
                                 name='bid'
                                 min='0'
+                                max='100000'
                                 onChange={updateBid}
                                 value={bid}
                                 required={true}></input>
@@ -212,6 +213,7 @@ const AuctionDetail = () => {
                         type='text'
                         placeholder='Place Comment Here'
                         name='commentArea'
+                        maxLength='100'
                         value={comment}
                         onChange={updateComment}></input>
                         {commentSubmitButton} 

@@ -60,7 +60,7 @@ const UserLoginForm = ({setShowModal}) => {
         <input
           className='form-input'
           name='email'
-          type='text'
+          type='email'
           placeholder='Email'
           value={email}
           onChange={updateEmail}
