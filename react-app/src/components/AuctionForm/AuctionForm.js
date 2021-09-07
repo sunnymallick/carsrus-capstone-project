@@ -93,7 +93,7 @@ const AuctionForm = () => {
 
         if (data) {
             alert('Your auction has been submitted!')
-            history.push('/')
+            history.push('/auctions')
         }
     }
 

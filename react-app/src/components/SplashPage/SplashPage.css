@@ -1,0 +1,17 @@
+
+#site-title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+.splash-info {
+    text-align: center;
+}
+
+.login-signup-splash {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 723px;
+    
+}
