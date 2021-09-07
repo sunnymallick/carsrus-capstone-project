@@ -33,7 +33,13 @@
 .auction-listing-container {
     padding-top: 20px;
     padding-bottom: 30px;
+    transition: transform .2s;
 }
+
+.auction-listing-container:hover {
+    transform: scale(1.1);
+}
+
 .auction-listing {
     border: 1px solid gray;
     border-radius: 8px;

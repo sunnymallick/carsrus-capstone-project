@@ -22,6 +22,7 @@
     padding-left: 50px;
     padding-right: 50px;
     text-decoration: none;
+    
 }
 
 .user-auction-listing {
@@ -30,6 +31,11 @@
     display: flex;
     flex-direction: column;
     text-decoration: none;
+    transition: transform .2s;
+}
+
+.user-auction-listing:hover {
+    transform: scale(1.1);
 }
 
 .edit-delete-buttons {
