@@ -12,6 +12,7 @@ body {
     color: white;
     border-radius: 8px;
     font-family: 'Red Hat Display', sans-serif;
+    cursor: pointer;
 }
 
 .delete-button {
@@ -20,4 +21,5 @@ body {
     color: white;
     border-radius: 8px;
     font-family: 'Red Hat Display', sans-serif;
+    cursor: pointer;
 }
