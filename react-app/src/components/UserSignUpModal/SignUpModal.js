@@ -80,7 +80,7 @@ const UserSignUpForm = ({setShowModal}) => {
         <input
           className='form-input'
           placeholder='Enter Email'
-          type='text'
+          type='email'
           name='email'
           onChange={updateEmail}
           value={email}
