@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
@@ -9,6 +10,7 @@ const UserLoginForm = ({setShowModal}) => {
   const [password, setPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
 
   
@@ -17,6 +19,10 @@ const UserLoginForm = ({setShowModal}) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
+      setShowModal(false)
+    }
+
+    if (data.errors) {
       setErrors(data);
     }
     if (user) {
@@ -31,6 +37,7 @@ const UserLoginForm = ({setShowModal}) => {
     const demo = await dispatch(login(demoLogin, demoPass))
       if (demo) {
         setShowModal(false)
+        history.push('/auctions')
       }
   }
 
@@ -44,7 +51,7 @@ const UserLoginForm = ({setShowModal}) => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/auctions' />;
   }
 
   return (
