@@ -20,8 +20,8 @@ const AuctionsPage = () => {
     return (
         <>
             <div className='current-auctions-title'>
-                <h2 id='site-title'>Welcome to Cars 'R' Us, a no-reserve auction website for cars and trucks!</h2>
                 <h3 className='auction-title'>Live Auctions</h3>
+                <h3 className='auction-title'>Click any of the vehicles below to find more information.</h3>
             </div>
         <div className='auctions-container'>
             {auctions.map(auction => {

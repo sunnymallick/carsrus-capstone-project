@@ -5,6 +5,7 @@ import NavBar from './components/NavBar/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/UserProfile/User';
+import SplashPage from './components/SplashPage';
 import AuctionsPage from './components/AuctionsPage';
 import { authenticate } from './store/session';
 import AuctionDetail from './components/AuctionDetail';
@@ -32,8 +33,11 @@ function App() {
       <NavBar />
       <Switch>
       <Route path='/' exact={true} >
-          <AuctionsPage />
+          <SplashPage />
         </Route>
+      <Route path='/auctions' exact={true} >
+          <AuctionsPage />
+      </Route>
       <Route path='/auctions/:id' exact={true}>
         <AuctionDetail />
       </Route>

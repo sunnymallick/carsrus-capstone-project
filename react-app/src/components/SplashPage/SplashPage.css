@@ -1,0 +1,28 @@
+
+#site-title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+}
+
+.splash-container {
+    padding-top: 349px;
+    padding-bottom: 377px;
+}
+
+.splash-info {
+    text-align: center;
+}
+
+/* .login-signup-splash {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 723px;
+    
+} */
+
+.auctions-link-splash {
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+}
