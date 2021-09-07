@@ -41,7 +41,9 @@
     padding: 10px;
 }
 
-
+#comment {
+    border: 1px solid black;
+}
 
 #comment-input {
     padding: 10px;

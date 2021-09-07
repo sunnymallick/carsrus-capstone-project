@@ -222,7 +222,8 @@ const AuctionDetail = () => {
                      {auctionComments.map(comment => {
                          return (
                             <>
-                             <h3>{comment?.comment} posted by {comment?.username} on {new Date(comment?.created_at).toLocaleDateString()}</h3>
+                            <h3>{comment?.username} posted on {new Date(comment?.created_at).toLocaleDateString()}:</h3>
+                             <h3>"{comment?.comment}"</h3>
                              <div className='delete-button-container'>
                                 {sessionUser?.id === comment?.user_id &&
                                 <>
