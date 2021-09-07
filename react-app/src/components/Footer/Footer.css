@@ -26,7 +26,7 @@ footer {
     flex-direction: column;
     text-align: center;
     float: left;
-    padding: 5px 0px 0px 20px
+    padding: 15px 0px 0px 20px
 }
 
 .footer-info {
@@ -53,3 +53,6 @@ footer {
     color: #3f66b3;
 }
 
+.fa-envelope-square {
+    color: red
+}
