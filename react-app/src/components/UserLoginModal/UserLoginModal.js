@@ -18,11 +18,8 @@ const UserLoginForm = ({setShowModal}) => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    if (data) {
-      setShowModal(false)
-    }
 
-    if (data.errors) {
+    if (data) {
       setErrors(data);
     }
     if (user) {
@@ -37,7 +34,7 @@ const UserLoginForm = ({setShowModal}) => {
     const demo = await dispatch(login(demoLogin, demoPass))
       if (demo) {
         setShowModal(false)
-        history.push('/auctions')
+        history.push('/')
       }
   }
 
@@ -71,6 +68,7 @@ const UserLoginForm = ({setShowModal}) => {
           placeholder='Email'
           value={email}
           onChange={updateEmail}
+          required={true}
         />
       </div>
       <div className='login-form-label'>
@@ -82,6 +80,7 @@ const UserLoginForm = ({setShowModal}) => {
           placeholder='Password'
           value={password}
           onChange={updatePassword}
+          required={true}
         />
       </div>
       <div className='submit-login-form'>
