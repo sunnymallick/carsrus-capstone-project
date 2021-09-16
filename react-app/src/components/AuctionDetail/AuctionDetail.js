@@ -144,6 +144,7 @@ const AuctionDetail = () => {
                 <p>Color: {auction?.color}</p>
                 <p>Miles: {auction?.miles}</p>
                 <p>Tech Specs:</p>
+                <p>VIN: {auction?.vin}</p>
                 <p>{auction?.engine}</p>
                 <p>{auction?.transmission}</p>
                 <p>Auction Begins: {new Date(auction?.start_date).toLocaleDateString('en-US', {timeZone: 'UTC'})} </p>
