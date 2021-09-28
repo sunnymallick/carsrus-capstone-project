@@ -108,13 +108,6 @@ const commentReducer = (state = initialState, action) => {
             }
             return newState
         }
-        // case UPDATE_COMMENT: {
-        //     const newState = { 
-        //         ...state,
-        //         [action.comment?.id]: action.comment
-        //     }
-        //     return newState
-        // }
         case DESTROY_COMMENT: {
             const newState = {...state};
                 delete newState[action.commentId]
