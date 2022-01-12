@@ -16,7 +16,7 @@ const Footer = () => {
                             <a className='footer-link' href='https://www.linkedin.com/in/sunny-mallick-896a33169/'>
                                 Check out my Linkedin profile <i class="fab fa-linkedin"></i></a>
                             <a className='footer-link' href='mailto:sunny.mallick927@gmail.com'>
-                                Contact me <i class="fas fa-envelope-square"></i></a>
+                                Contact <i class="fas fa-envelope-square"></i></a>
                         </div>
                     </div>
                 </div>
