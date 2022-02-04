@@ -86,13 +86,9 @@ const AuctionDetail = () => {
         dispatch(getBids())
     }, [dispatch])
 
-    const updateBid = (e) => {
-        setBid(e.target.value)
-    }
-
-    const updateComment = (e) => {
-        setComment(e.target.value)
-    }
+    const updateBid = (e) => setBid(e.target.value)
+    const updateComment = (e) => setComment(e.target.value)
+    
 
     let commentSubmitButton;
     if (sessionUser) {
