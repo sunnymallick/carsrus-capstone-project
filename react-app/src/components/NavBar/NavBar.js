@@ -40,7 +40,7 @@ const NavBar = () => {
     <>
       <div className='nav-container'>
         <div className='nav-left'>
-          <NavLink to='/' exact={true}>
+          <NavLink to='/auctions' exact={true}>
             <img id='logo' src='https://sunny-capstone-project.s3.us-west-1.amazonaws.com/images-for-site/logo/carsrus-transparent.001.png' alt='logo-png'></img>
           </NavLink>
           
