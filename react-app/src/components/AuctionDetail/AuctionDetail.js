@@ -178,7 +178,6 @@ const AuctionDetail = () => {
                         {!sessionUser?.id &&
                             <p>You must be logged in to place a bid on this vehicle.</p>
                         }
-                        {/* {auction?.end_date < current} */}
                 </form>
                         <div className='current-bids-container'>
                             <h3>Bid History:</h3>
