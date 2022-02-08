@@ -234,7 +234,7 @@ const AuctionDetail = () => {
                                 }
                             </div>
                                 <div className='time-ago-container'>
-                                    <TimeAgo datetime={timeConverter(comment.created_at)} />
+                                    <TimeAgo datetime={comment?.created_at} />
                                 </div>
                             </div>
                             </>
