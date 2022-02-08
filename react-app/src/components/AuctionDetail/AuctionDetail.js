@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import { getComments, createComment, deleteComment } from '../../store/comment';
+import TimeAgo from 'timeago-react';
+import timeConverter from '../../utils';
 import EditAuctionModal from '../EditAuctionModal';
 import DeleteAuctionModal from '../DeleteAuctionModal';
 import EditCommentModal from '../EditCommentModal';
@@ -161,7 +163,7 @@ const AuctionDetail = () => {
                     {highestBidAnnouncement}
                         {sessionUser?.id && sessionUser?.id !== auction?.user_id && 
                         <div className='bid-form-container'>
-                            <h3>Place your bid here</h3>
+                            <h3>Place your bid below:</h3>
                             <input
                                 id='bid-input'
                                 placeholder='Bid Amount'
@@ -178,10 +180,9 @@ const AuctionDetail = () => {
                         {!sessionUser?.id &&
                             <p>You must be logged in to place a bid on this vehicle.</p>
                         }
-                        {/* {auction?.end_date < current} */}
                 </form>
                         <div className='current-bids-container'>
-                            <h3>Bid History:</h3>
+                            <h2 className='auction-detail-heading'>Bid History:</h2>
                             {vehicleBids.map((bid) => {
                                 if (bid?.id) {
                                     return (
@@ -217,19 +218,24 @@ const AuctionDetail = () => {
                  </form>
                 </div>      
                  <div className='posted-comments-container'>
-                     <h3>User Comments:</h3>
+                     <h2 className='auction-detail-heading'>User Comments:</h2>
                      {auctionComments.map(comment => {
                          return (
                             <>
-                            <h3>{comment?.username} posted on {new Date(comment?.created_at).toLocaleDateString()}:</h3>
+                            <div className='individual-comment-container'>
+                            <h3>{comment?.username} wrote:</h3>
                              <h3>"{comment?.comment}"</h3>
                              <div className='delete-button-container'>
                                 {sessionUser?.id === comment?.user_id &&
                                 <>
-                                <EditCommentModal commentId={comment?.id}/>
-                                <button className='bid-comment-submit-edit-delete' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
+                                    <EditCommentModal commentId={comment?.id}/>
+                                    <button className='bid-comment-submit-edit-delete' onClick={() => handleCommentDelete(comment.id)}>Delete Comment</button>
                                 </>
                                 }
+                            </div>
+                                <div className='time-ago-container'>
+                                    <TimeAgo datetime={timeConverter(comment.created_at)} />
+                                </div>
                             </div>
                             </>
                          )
