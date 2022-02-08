@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import { getComments, createComment, deleteComment } from '../../store/comment';
+import TimeAgo from 'timeago-react';
+import timeConverter from '../../utils';
 import EditAuctionModal from '../EditAuctionModal';
 import DeleteAuctionModal from '../DeleteAuctionModal';
 import EditCommentModal from '../EditCommentModal';
@@ -221,7 +223,7 @@ const AuctionDetail = () => {
                          return (
                             <>
                             <div className='individual-comment-container'>
-                            <h3>{comment?.username} posted on {new Date(comment?.created_at).toLocaleDateString()}:</h3>
+                            <h3>{comment?.username} wrote:</h3>
                              <h3>"{comment?.comment}"</h3>
                              <div className='delete-button-container'>
                                 {sessionUser?.id === comment?.user_id &&
@@ -231,6 +233,9 @@ const AuctionDetail = () => {
                                 </>
                                 }
                             </div>
+                                <div className='time-ago-container'>
+                                    <TimeAgo datetime={timeConverter(comment.created_at)} />
+                                </div>
                             </div>
                             </>
                          )
