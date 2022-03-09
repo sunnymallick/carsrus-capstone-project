@@ -57,3 +57,4 @@ View live: <a href='https://carsrus-capstone.herokuapp.com/'>Cars 'R' Us Live Li
 ## Future Features
 - Web sockets for simultaneous bidding.
 - Better image optimization.
+- Live timers on main page.
