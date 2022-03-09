@@ -54,4 +54,6 @@ View live: <a href='https://carsrus-capstone.herokuapp.com/'>Cars 'R' Us Live Li
 - <a href="https://redux.js.org/"><img src="https://img.shields.io/badge/-Redux-764ABC?logo=Redux" /></a>
 - <a href=https://www.sqlalchemy.org/><img src=https://img.shields.io/badge/-SQLAlchemy-red /></a>
 
-
+## Future Features
+- Web sockets for simultaneous bidding.
+- Better image optimization.
