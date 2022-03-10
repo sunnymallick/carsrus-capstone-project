@@ -5,7 +5,6 @@ import { getAuctions } from '../../store/auction';
 import { getBids, createBid, cancelBid } from '../../store/bid';
 import { getComments, createComment, deleteComment } from '../../store/comment';
 import TimeAgo from 'timeago-react';
-import timeConverter from '../../utils';
 import EditAuctionModal from '../EditAuctionModal';
 import DeleteAuctionModal from '../DeleteAuctionModal';
 import EditCommentModal from '../EditCommentModal';
