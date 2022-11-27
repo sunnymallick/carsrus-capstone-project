@@ -11,9 +11,6 @@ Cars 'R' Us is a fullstack web application loosely based off of an automotive au
 
 This application was built with a Python and Flask/SQLAlchemy backend that interacts with a PostgreSQL database and a React/Redux frontend.
 
-View live: <a href='https://carsrus-capstone.herokuapp.com/'>Cars 'R' Us Live Link</a>
-
-
 ## Features
 - User Signup and Login with email and password. Demo User is provided.
 - View all live vehicle listings.
